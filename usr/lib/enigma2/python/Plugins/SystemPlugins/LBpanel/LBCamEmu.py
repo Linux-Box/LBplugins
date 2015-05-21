@@ -271,38 +271,46 @@ size="628,350">
 		return emuname
 		
 	def start(self):
-		emutype = self["menu"].getCurrent()[3]
-		os.system("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
-		emuexec = self["menu"].getCurrent()[0]
-		emuexec = emuexec[7:]
-		print "Add execute permision to %s" % (emuexec)
-		if fileExists("/usr/bin/%s" % emuexec):
-			os.chmod("/usr/bin/%s" % emuexec, 0777)
-		config.plugins.lbpanel.activeemu.value = self["menu"].getCurrent()[0]
-		self.indexpos = self["menu"].getIndex()
-		config.plugins.lbpanel.activeemu.save()
-		os.system("/usr/CamEmu/%s start" % config.plugins.lbpanel.activeemu.value)
-		self.mbox = self.session.open(MessageBox, _("Please wait, starting %s") % self["menu"].getCurrent()[0], MessageBox.TYPE_INFO, timeout = 4 )
-		self.setTitle(_("Select SoftCam or CardServer: - %s") % config.plugins.lbpanel.activeemu.value)
-		self.selemulist()
-		
+		try:
+			emutype = self["menu"].getCurrent()[3]
+			os.system("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
+			emuexec = self["menu"].getCurrent()[0]
+			emuexec = emuexec[7:]
+			print "Add execute permision to %s" % (emuexec)
+			if fileExists("/usr/bin/%s" % emuexec):
+				os.chmod("/usr/bin/%s" % emuexec, 0777)
+			config.plugins.lbpanel.activeemu.value = self["menu"].getCurrent()[0]
+			self.indexpos = self["menu"].getIndex()
+			config.plugins.lbpanel.activeemu.save()
+			os.system("/usr/CamEmu/%s start" % config.plugins.lbpanel.activeemu.value)
+			self.mbox = self.session.open(MessageBox, _("Please wait, starting %s") % self["menu"].getCurrent()[0], MessageBox.TYPE_INFO, timeout = 4 )
+			self.setTitle(_("Select SoftCam or CardServer: - %s") % config.plugins.lbpanel.activeemu.value)
+			self.selemulist()
+		except:
+                        pass
+                        
 	def stop(self):
-		emutype = self["menu"].getCurrent()[3]
-		os.system("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
-		self.mbox = self.session.open(MessageBox, _("Please wait, stoping softcam or cardserver"), MessageBox.TYPE_INFO, timeout = 4 )
-		config.plugins.lbpanel.activeemu.value = "NotSelected"
-		config.plugins.lbpanel.activeemu.save()
-		self.setTitle(_("Select SoftCam or CardServer: - %s") % config.plugins.lbpanel.activeemu.value)
-		self.indexpos = self["menu"].getIndex()
-		self.selemulist()
-		
+		try:
+			emutype = self["menu"].getCurrent()[3]
+			os.system("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
+			self.mbox = self.session.open(MessageBox, _("Please wait, stoping softcam or cardserver"), MessageBox.TYPE_INFO, timeout = 4 )
+			config.plugins.lbpanel.activeemu.value = "NotSelected"
+			config.plugins.lbpanel.activeemu.save()
+			self.setTitle(_("Select SoftCam or CardServer: - %s") % config.plugins.lbpanel.activeemu.value)
+			self.indexpos = self["menu"].getIndex()
+			self.selemulist()
+		except:
+			pass
+			
 	def restart(self):
-		emutype = self["menu"].getCurrent()[3]
-		#if self.emuversion(emutype) != " ":
-		os.system("/usr/CamEmu/%s restart" % config.plugins.lbpanel.activeemu.value)
-		self.mbox = self.session.open(MessageBox,_("Please wait, restarting %s")% self.emuversion(emutype), MessageBox.TYPE_INFO, timeout = 4 )
-		self.indexpos = self["menu"].getIndex()
-		
+		try:
+			emutype = self["menu"].getCurrent()[3]
+			#if self.emuversion(emutype) != " ":
+			os.system("/usr/CamEmu/%s restart" % config.plugins.lbpanel.activeemu.value)
+			self.mbox = self.session.open(MessageBox,_("Please wait, restarting %s")% self.emuversion(emutype), MessageBox.TYPE_INFO, timeout = 4 )
+			self.indexpos = self["menu"].getIndex()
+		except:
+			pass
 	def install(self):
 		self.session.openWithCallback(self.selemulist,installCam)
 

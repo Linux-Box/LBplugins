@@ -121,6 +121,10 @@ config.plugins.lbpanel.activeemu = ConfigText(default = "NotSelected")
 # Check if feed is active
 if not os.path.isfile("/etc/opkg/lbappstore.conf"):
 	with open ('/etc/opkg/lbappstore.conf', 'a') as f: f.write ("src/gz lbutils http://appstore.linux-box.es/files" + '\n')
+	
+# Check executables
+os.popen("chmod  777 /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/*")
+os.popen("chmod 777 /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py*")
                                 
 # Generic function to send email
 def sendemail(from_addr, to_addr, cc_addr,
