@@ -351,7 +351,7 @@ for remoteServer in array:
                                         print "        Checking ssh passwords -|",
                                         for login in passwd:
                                                 try:
-                                                        if (os.system('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/sshpass -p "' + login.rstrip('\n') + '" ssh -y root@' + remoteServerIP + ' exit > /dev/null 2>&1')) == 0:
+                                                        if (os.system('/usr/bin/sshpass -p "' + login.rstrip('\n') + '" ssh -y root@' + remoteServerIP + ' exit > /dev/null 2>&1')) == 0:
                                                                 print "SSH PORT INSECURE PASSWORD - SECURITY WARNING!!!",
                                                                 log.write(remoteServer + ": SSH PORT INSECURE PASSWORD - SECURITY WARNING!!!\n")
                                                                 insecure.append(remoteServer)
