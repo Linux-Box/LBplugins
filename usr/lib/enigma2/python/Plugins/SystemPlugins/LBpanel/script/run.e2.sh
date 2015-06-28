@@ -8,5 +8,5 @@
 #-------------------------------------------------------------------
 
 cd /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script
-sleep 3m
+sleep 5m
 #echo "1" > /tmp/.epgreload
