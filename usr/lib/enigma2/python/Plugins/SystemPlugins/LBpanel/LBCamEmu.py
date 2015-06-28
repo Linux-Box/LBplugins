@@ -521,9 +521,11 @@ class installCam2(Screen):
 		self.setup()
 		
 	def setup(self):
-		os.system("opkg remove %s" % self["menu"].getCurrent()[0])
-		self.mbox = self.session.open(MessageBox, _("%s is remove" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
-		
+                try:
+                        os.system("opkg remove %s" % self["menu"].getCurrent()[0])
+			self.mbox = self.session.open(MessageBox, _("%s is remove" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+		except:
+			self.close()
 
 	def cancel(self):
 		self.close()
