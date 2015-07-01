@@ -28,7 +28,7 @@ from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Components.Sources.StaticText import StaticText
-from Components.config import config, getConfigListEntry, ConfigText, ConfigPassword, ConfigClock, ConfigSelection, ConfigSubsection, ConfigYesNo,  config, configfile
+from Components.config import config, getConfigListEntry, ConfigText, ConfigPassword, ConfigClock, ConfigNumber, ConfigSelection, ConfigSubsection, ConfigYesNo,  config, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.Harddisk import harddiskmanager
 from Components.Pixmap import Pixmap
@@ -65,6 +65,8 @@ import gettext
 import MountManager
 import RestartNetwork
 import urllib
+## Epg
+import Screens.Standby
 
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
@@ -118,6 +120,8 @@ config.plugins.lbpanel.lang = ConfigSelection(default = "es", choices = [
 		])
 config.plugins.lbpanel.epgtime = ConfigClock(default = ((16*60) + 15) * 60) # 18:15
 config.plugins.lbpanel.epgtime2 = ConfigClock(default = ((16*60) + 15) * 60)
+config.plugins.lbpanel.epgmhw2wait = ConfigNumber(default = 240 ) # Four minutes default
+config.plugins.lbpanel.runeveryhour = ConfigYesNo(default = False)
 #config.plugins.lbpanel.weekday = ConfigSelection(default = "01", choices = [
 #		("00", _("Mo")),
 #		("01", _("Tu")),
@@ -776,11 +780,13 @@ size="628,350">
 			os.system("echo -e '%s/swapfile swap swap defaults 0 0' >> /etc/fstab" % self.swapfile[:10])
 			self.mbox = self.session.open(MessageBox,_("Swap file started"), MessageBox.TYPE_INFO, timeout = 4 )
 			self.CfgMenu()
+			
 		elif m_choice is "5":
 			os.system("swapoff %s" % (self.swapfile))
 			os.system("sed -i '/swap/d' /etc/fstab")
 			self.mbox = self.session.open(MessageBox,_("Swap file stoped"), MessageBox.TYPE_INFO, timeout = 4 )
 			self.CfgMenu()
+						
 		elif m_choice is "11":
 			self.makeSwapFile("131072")
 
@@ -2011,9 +2017,10 @@ class Ttimer():
                                                                                                 
         def run(self):
                 self.timer.stop()
-                os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/run.e2.sh")
+                time.sleep(float(config.plugins.lbpanel.epgmhw2wait.value))
                 self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
                 self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 5 )                                                                                                                                        
+
 
 class epgscript(ConfigListScreen, Screen):
 	skin = """
@@ -2070,12 +2077,14 @@ class epgscript(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("LBpanel - D+ SAT EPG"))
 		self.list = []
-		self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
-		self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
+#		self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
+#		self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
 		self.list.append(getConfigListEntry(_("Auto download epg.dat"), config.plugins.lbpanel.auto2))
 		self.list.append(getConfigListEntry(_("Auto download hour"), config.plugins.lbpanel.epgtime2))
-		self.list.append(getConfigListEntry(_("Auto load and save EPG"), config.plugins.lbpanel.autosave))
-		self.list.append(getConfigListEntry(_("Save copy in ../epgtmp.gz"), config.plugins.lbpanel.autobackup))
+#		self.list.append(getConfigListEntry(_("Auto load and save EPG"), config.plugins.lbpanel.autosave))
+#		self.list.append(getConfigListEntry(_("Save copy in ../epgtmp.gz"), config.plugins.lbpanel.autobackup))
+                self.list.append(getConfigListEntry(_("Timeout downloading epg"), config.plugins.lbpanel.epgmhw2wait))
+		self.list.append(getConfigListEntry(_("Run every hour on standby?"), config.plugins.lbpanel.runeveryhour))
 		ConfigListScreen.__init__(self, self.list)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save"))
@@ -2095,11 +2104,11 @@ class epgscript(ConfigListScreen, Screen):
 	        self.session.nav.playService(eServiceReference(reftozap))
 
 	def downepg(self):
-                self.oldService = self.session.nav.getCurrentlyPlayingServiceReference().toString()
                 channel = "1:0:1:75C6:422:1:C00000:0:0:0:"
                 self.zapTo(channel)
                 fo = open("/tmp/.lbepg","a+")
                 fo.close()
+
                 mt = Ttimer()
                 mt.gotSession(self.session)
 
@@ -2109,14 +2118,16 @@ class epgscript(ConfigListScreen, Screen):
 		self.close(False)
 	
 	def save(self):
-		config.misc.epgcache_filename.value = ("%sepg.dat" % config.plugins.lbpanel.direct.value)
-		config.misc.epgcache_filename.save()
+#		config.misc.epgcache_filename.value = ("%sepg.dat" % config.plugins.lbpanel.direct.value)
+#		config.misc.epgcache_filename.save()
 		config.plugins.lbpanel.epgtime2.save()
-		config.plugins.lbpanel.lang.save()
-		config.plugins.lbpanel.direct.save()
+#		config.plugins.lbpanel.lang.save()
+#		config.plugins.lbpanel.direct.save()
 		config.plugins.lbpanel.auto2.save()
-		config.plugins.lbpanel.autosave.save()
-		config.plugins.lbpanel.autobackup.save()
+#		config.plugins.lbpanel.autosave.save()
+#		config.plugins.lbpanel.autobackup.save()
+                config.plugins.lbpanel.epgmhw2wait.save()
+                config.plugins.lbpanel.runeveryhour.save()
 		configfile.save()
 		self.mbox = self.session.open(MessageBox,(_("configuration is saved")), MessageBox.TYPE_INFO, timeout = 4 )
 ################################################################################################################

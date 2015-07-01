@@ -72,6 +72,7 @@ import enigma
 import smtplib
 import commands
 import urllib
+import Screens.Standby
 
 global min
 min = 0
@@ -116,6 +117,7 @@ config.plugins.lbpanel.lbemailproto =ConfigSelection(default = "tls", choices = 
 		])                                                                
 config.plugins.lbpanel.testcam = ConfigYesNo(default = False)
 config.plugins.lbpanel.activeemu = ConfigText(default = "No EMU Selecionada")
+config.plugins.lbpanel.runeveryhour = ConfigYesNo(default = False)
 ##################################################################
 
 # Check if feed is active
@@ -1250,6 +1252,10 @@ class lbCron():
 			self.dload()
 		# cron control epg2
 		if (config.plugins.lbpanel.auto2.value == "yes" and config.plugins.lbpanel.epgtime2.value[0] == now.tm_hour and config.plugins.lbpanel.epgtime2.value[1] == now.tm_min):
+			myepg = LBtools.epgscript(self.session)
+			myepg.downepg()
+		#epg every hour
+		if (config.plugins.lbpanel.runeveryhour.value == True and now.tm_min == 0 and Screens.Standby.inStandby ):
 			myepg = LBtools.epgscript(self.session)
 			myepg.downepg()
 		# reload epg
