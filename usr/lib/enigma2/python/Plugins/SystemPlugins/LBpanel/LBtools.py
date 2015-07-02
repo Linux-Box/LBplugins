@@ -89,6 +89,13 @@ def _(txt):
 		t = gettext.gettext(txt)
 	return t
 ######################################################################################
+config.misc = ConfigSubsection()
+config.misc.epgcachepath = ConfigSelection(default = "/media/hdd/", choices = [
+		("/media/hdd/", _("/media/hdd/")),
+		("/media/usb/", _("/media/usb/")),
+		("/usr/share/enigma2/", _("/usr/share/enigma2/")),
+		("/media/cf/", _("/media/cf/")),
+])
 config.plugins.lbpanel = ConfigSubsection()
 config.plugins.lbpanel.scriptpath = ConfigSelection(default = "/usr/CamEmu/script/", choices = [
 		("/usr/CamEmu/script/", _("/usr/CamEmu/script/")),
@@ -99,12 +106,6 @@ config.plugins.lbpanel.scriptpath1 = ConfigSelection(default = "/usr/lib/enigma2
 		("/usr/script/", _("/usr/script/")),
 		("/media/hdd/script/", _("/media/hdd/script/")),
 		("/media/usb/script/", _("/media/usb/script/")),
-])
-config.plugins.lbpanel.direct = ConfigSelection(default = "/media/hdd/", choices = [
-		("/media/hdd/", _("/media/hdd/")),
-		("/media/usb/", _("/media/usb/")),
-		("/usr/share/enigma2/", _("/usr/share/enigma2/")),
-		("/media/cf/", _("/media/cf/")),
 ])
 config.plugins.lbpanel.auto = ConfigSelection(default = "no", choices = [
 		("no", _("no")),
@@ -1941,12 +1942,12 @@ class epgdn(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("LBpanel - D+ EPG"))
 		self.list = []
-		self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
-		self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
+		#self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
+		#self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
 		self.list.append(getConfigListEntry(_("Auto download epg.dat"), config.plugins.lbpanel.auto))
 		self.list.append(getConfigListEntry(_("Auto download hour"), config.plugins.lbpanel.epgtime))
-		self.list.append(getConfigListEntry(_("Auto load and save EPG"), config.plugins.lbpanel.autosave))
-		self.list.append(getConfigListEntry(_("Save copy in ../epgtmp.gz"), config.plugins.lbpanel.autobackup))
+		#self.list.append(getConfigListEntry(_("Auto load and save EPG"), config.plugins.lbpanel.autosave))
+		#self.list.append(getConfigListEntry(_("Save copy in ../epgtmp.gz"), config.plugins.lbpanel.autobackup))
 		ConfigListScreen.__init__(self, self.list)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save"))
@@ -1964,15 +1965,15 @@ class epgdn(ConfigListScreen, Screen):
 		
 	def downepg(self):
 		try:
-			os.system("wget -q http://appstore.linux-box.es/epg/epg.dat.gz -O %sepg.dat.gz" % (config.plugins.lbpanel.direct.value))
-			if fileExists("%sepg.dat" % config.plugins.lbpanel.direct.value):
-				os.unlink("%sepg.dat" % config.plugins.lbpanel.direct.value)
-				os.system("rm -f %sepg.dat" % config.plugins.lbpanel.direct.value)
-			if not os.path.exists("%sepgtmp" % config.plugins.lbpanel.direct.value):
-				os.system("mkdir -p %sepgtmp" % config.plugins.lbpanel.direct.value)
-			os.system("cp -f %sepg.dat.gz %sepgtmp" % (config.plugins.lbpanel.direct.value, config.plugins.lbpanel.direct.value))
-			os.system("gzip -df %sepg.dat.gz" % config.plugins.lbpanel.direct.value)
-			os.chmod("%sepg.dat" % config.plugins.lbpanel.direct.value, 0644)
+			os.system("wget -q http://appstore.linux-box.es/epg/epg.dat.gz -O %sepg.dat.gz" % (config.misc.epgcachepath.value))
+			if fileExists("%sepg.dat" % config.misc.epgcachepath.value):
+				os.unlink("%sepg.dat" % config.misc.epgcachepath.value)
+				os.system("rm -f %sepg.dat" % config.misc.epgcachepath.value)
+			if not os.path.exists("%sepgtmp" % config.misc.epgcachepath.value):
+				os.system("mkdir -p %sepgtmp" % config.misc.epgcachepath.value)
+			os.system("cp -f %sepg.dat.gz %sepgtmp" % (config.misc.epgcachepath.value, config.misc.epgcachepath.value))
+			os.system("gzip -df %sepg.dat.gz" % config.misc.epgcachepath.value)
+			os.chmod("%sepg.dat" % config.misc.epgcachepath.value, 0644)
 			self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 4 )
 			epgcache = new.instancemethod(_enigma.eEPGCache_load,None,eEPGCache)
 			epgcache = eEPGCache.getInstance().load()
@@ -1985,11 +1986,10 @@ class epgdn(ConfigListScreen, Screen):
 		self.close(False)
 	
 	def save(self):
-		config.misc.epgcache_filename.value = ("%sepg.dat" % config.plugins.lbpanel.direct.value)
+		config.misc.epgcache_filename.value = ("%sepg.dat" % config.misc.epgcachepath.value)
 		config.misc.epgcache_filename.save()
 		config.plugins.lbpanel.epgtime.save()
 		config.plugins.lbpanel.lang.save()
-		config.plugins.lbpanel.direct.save()
 		config.plugins.lbpanel.auto.save()
 		config.plugins.lbpanel.autosave.save()
 		config.plugins.lbpanel.autobackup.save()
@@ -2104,13 +2104,18 @@ class epgscript(ConfigListScreen, Screen):
 	        self.session.nav.playService(eServiceReference(reftozap))
 
 	def downepg(self):
-                channel = "1:0:1:75C6:422:1:C00000:0:0:0:"
-                self.zapTo(channel)
-                fo = open("/tmp/.lbepg","a+")
-                fo.close()
-
-                mt = Ttimer()
-                mt.gotSession(self.session)
+	        recordings = self.session.nav.getRecordings()
+	        rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
+	        mytime = time.time()
+	        if not recordings  or (rec_time > 0 and rec_time - mytime() < 360):
+                        channel = "1:0:1:75C6:422:1:C00000:0:0:0:"
+                        self.zapTo(channel)
+                        fo = open("/tmp/.lbepg","a+")
+                        fo.close()
+                        mt = Ttimer()
+                        mt.gotSession(self.session)
+                else:
+                        self.mbox = self.session.open(MessageBox,(_("EPG Download Cancelled - Recording active")), MessageBox.TYPE_INFO, timeout = 5 )
 
 	def cancel(self):
 		for i in self["config"].list:
@@ -2170,10 +2175,10 @@ class epgdmanual(Screen):
 ################################################################################################################
 	def reload(self):
 		try:
-			if fileExists("%sepgtmp/epg.dat.gz" % config.plugins.lbpanel.direct.value):
-				os.system("cp -f %sepgtmp/epg.dat.gz %s" % (config.plugins.lbpanel.direct.value, config.plugins.lbpanel.direct.value))
-				os.system("gzip -df %sepg.dat.gz" % config.plugins.lbpanel.direct.value)
-				os.chmod("%sepg.dat" % config.plugins.lbpanel.direct.value, 0644)
+			if fileExists("%sepgtmp/epg.dat.gz" % config.misc.epgcachepath.value):
+				os.system("cp -f %sepgtmp/epg.dat.gz %s" % (config.misc.epgcachepath.value, config.misc.epgcachepath.value))
+				os.system("gzip -df %sepg.dat.gz" % config.misc.epgcachepath.value)
+				os.chmod("%sepg.dat" % config.misc.epgcachepath.value, 0644)
 			epgcache = new.instancemethod(_enigma.eEPGCache_load,None,eEPGCache)
 			epgcache = eEPGCache.getInstance().load()
 			self.mbox = self.session.open(MessageBox,(_("epg.dat reloaded")), MessageBox.TYPE_INFO, timeout = 4 )
