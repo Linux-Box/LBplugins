@@ -89,13 +89,6 @@ def _(txt):
 		t = gettext.gettext(txt)
 	return t
 ######################################################################################
-config.misc = ConfigSubsection()
-config.misc.epgcachepath = ConfigSelection(default = "/media/hdd/", choices = [
-		("/media/hdd/", _("/media/hdd/")),
-		("/media/usb/", _("/media/usb/")),
-		("/usr/share/enigma2/", _("/usr/share/enigma2/")),
-		("/media/cf/", _("/media/cf/")),
-])
 config.plugins.lbpanel = ConfigSubsection()
 config.plugins.lbpanel.scriptpath = ConfigSelection(default = "/usr/CamEmu/script/", choices = [
 		("/usr/CamEmu/script/", _("/usr/CamEmu/script/")),
