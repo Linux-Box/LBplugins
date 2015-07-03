@@ -166,8 +166,8 @@ def lbversion():
 class LBPanel2(Screen):
 	skin = """
 <screen name="LBPanel2" position="0,0" size="1280,720" >
-<widget source="lb_version" render="Label" position="50,605" zPosition="2" size="450,30" font="Regular;15" halign="center" valign="center" backgroundColor="#d3d3d3" foregroundColor="#000000" transparent="1" />
-<widget source="menu" render="Listbox" position="592,191" scrollbarMode="showNever" foregroundColor="white" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="628,350">
+ <widget source="lb_version" render="Label" position="50,605" zPosition="2" size="450,30" font="Regular;15" halign="center" valign="center" backgroundColor="#d3d3d3" foregroundColor="#000000" transparent="1" />
+<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -175,7 +175,7 @@ class LBPanel2(Screen):
     }
    </convert>
     </widget>
-    <eLabel text="MENU" position="1115,650" size="100,30" zPosition="5" font="Regular;20" valign="center" halign="center" backgroundColor="white" foregroundColor="black" transparent="0" />
+    <eLabel text="PULSA MENU PARA DESCARGAS" position="892,650" size="320,32" zPosition="5" font="Regular;20" valign="center" halign="center" backgroundColor="white" foregroundColor="black" transparent="0" />
 <!-- colores keys -->
     <!-- rojo -->
     <eLabel text="CERRAR" position="622,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
@@ -218,8 +218,8 @@ class LBPanel2(Screen):
     <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="320,640" size="901,50" transparent="0" foregroundColor="white" backgroundColor="#929292" />
-    <eLabel position="592,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
-   </screen>"""
+    <eLabel position="591,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
+  </screen>"""
 
 	def __init__(self, session):
 		self.session = session
@@ -993,7 +993,7 @@ class installpicon(Screen):
 	def feedlist(self):
 		self.list = []
 		os.system("opkg update")
-		camdlist = os.popen("opkg list | grep piconLB")
+		camdlist = os.popen("opkg list | grep -i piconLB")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
 			try:
@@ -1095,7 +1095,7 @@ class installremove(Screen):
 		
 	def feedlist(self):
 		self.list = []
-		camdlist = os.popen("opkg list-installed | grep -e 'sorys' -e 'emucfg' -e 'piconLB'")
+		camdlist = os.popen("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'piconLB'")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
 		for line in camdlist.readlines():
 			try:
