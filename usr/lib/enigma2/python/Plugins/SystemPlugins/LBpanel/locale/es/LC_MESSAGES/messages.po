@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-05-21 17:06+0100\n"
+"PO-Revision-Date: 2015-07-03 17:20+0100\n"
 "Last-Translator: javi <javierlohe@gmail.com>\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -727,16 +727,16 @@ msgid "Madagascar"
 msgstr "Madagascar"
 
 msgid "Make swap"
-msgstr "Hacer swap"
+msgstr "Crear swap"
 
 msgid "Make swap on %s (128MB)"
-msgstr "Hacer swap en %s (128MB)"
+msgstr "Crear swap de %s (128MB)"
 
 msgid "Make swap on %s (256MB)"
-msgstr "Hqacer swap en %s (256MB)"
+msgstr "Crear swap de %s (256MB)"
 
 msgid "Make swap on %s (512MB)"
-msgstr "Hacer swap en %s (512MB)"
+msgstr "Crear swap de %s (512MB)"
 
 msgid "Malaysia"
 msgstr "Malaysia"
@@ -1184,16 +1184,16 @@ msgid "Swap file stoped"
 msgstr "Archivo swap parado"
 
 msgid "Swap off"
-msgstr "Swap off"
+msgstr "Desactiva Swap "
 
 msgid "Swap on"
-msgstr "Swap on"
+msgstr "Activa Swap"
 
 msgid "Swap on %s off (%s)"
 msgstr "Swap en %s off (%s)"
 
 msgid "Swap on %s on (%s)"
-msgstr "Swap on %s en (%s)"
+msgstr "Swap en %s en (%s)"
 
 msgid "Swap:"
 msgstr "Swap:"
@@ -1419,7 +1419,7 @@ msgid "oscam.conf Switcher: - %s"
 msgstr "oscam.conf Cambiar: - %s"
 
 msgid "press OK to enable/disable server"
-msgstr "apreta OK para  activar/descativar server"
+msgstr "Pulsa OK para  activar/desactivar server"
 
 msgid "reFresh"
 msgstr "refrescar"
