@@ -1075,7 +1075,6 @@ class NCLSwp2(Screen):
 class NCLEdit(Screen):
 	skin = """
 <screen name="NCLEdit" position="0,0" size="1280,720" title="newcamd.list editor">
- 	 
 <widget source="menu" render="Listbox" position="591,295" size="629,260" foregroundColor="#ffffff" backgroundColor="#6e6e6e" scrollbarMode="showNever" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 	{"template": [
@@ -1088,8 +1087,6 @@ class NCLEdit(Screen):
 	}
 			</convert>
 		</widget>
-		
-		
 	<eLabel position="600,210" size="290,25" font="Regular; 19" backgroundColor="#6e6e6e" transparent="1" text="CWS_CONNECT_TIMEOUT = " zPosition="1" />
 	<eLabel position="600,240" size="200,25" font="Regular; 19" backgroundColor="#6e6e6e" transparent="1" text="CWS_KEEPALIVE =" />
 	<eLabel position="920,210" size="250,25" font="Regular; 19" backgroundColor="#6e6e6e" transparent="1" text="CWS_INCOMING_PORT = " zPosition="1" />
