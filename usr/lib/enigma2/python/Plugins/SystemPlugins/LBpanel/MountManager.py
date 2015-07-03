@@ -19,9 +19,7 @@ from re import search
 class LBHddMount(Screen):
 	skin = """
 	<screen position="0,0" size="1280,720" title="Mount Manager">
-
-		<widget source="list" render="Listbox" position="592,191" scrollbarMode="showNever" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
-size="628,350">
+		<widget source="list" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
@@ -33,19 +31,19 @@ size="628,350">
 				}
 			</convert>
 		</widget>
-		<widget name="lab1" zPosition="2" position="600,400" size="600,40" font="Regular;22" halign="center" transparent="1"/>
+		<widget name="lab1" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="2" position="605,355" size="600,40" font="Regular;22" halign="center" transparent="1" />
 <!-- colores keys -->
     <!-- rojo -->
-    <eLabel position="622,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
-    <eLabel position="592,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
+    <eLabel position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel text="MOUNT" position="622,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
-    <eLabel position="592,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
+    <eLabel text="DESMONTAR" position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="SETUP MOUNT" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel text="AJUSTES MOUNT" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel text="MOUNT" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel text="MONTAR" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
@@ -76,7 +74,7 @@ size="628,350">
     <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="320,640" size="901,50" transparent="0" foregroundColor="white" backgroundColor="#929292" />
-    <eLabel position="592,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
+    <eLabel position="591,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
    </screen>"""
 	
 	def __init__(self, session):
@@ -338,15 +336,15 @@ class lbDevicePanelConf(Screen, ConfigListScreen):
 	skin = """
 	<screen position="0,0" size="1280,720" title="Choose where to mount your devices to:">
 
-		<widget position="592,191" size="628,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
-		<widget name="Linconn" position="650,400" size="580,20" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313"/>
+		<widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" zPosition="-1" />
+		<widget name="Linconn" position="617,352" size="580,30" font="Regular;18" halign="center" valign="center" foregroundColor="white" backgroundColor="#6e6e6e" />
 <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CANCELAR" position="622,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
-    <eLabel position="592,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
+    <eLabel text="CANCELAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel position="622,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
-    <eLabel position="592,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
+    <eLabel position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
     <eLabel text="GUARDAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
@@ -382,7 +380,7 @@ class lbDevicePanelConf(Screen, ConfigListScreen):
     <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="320,640" size="901,50" transparent="0" foregroundColor="white" backgroundColor="#929292" />
-    <eLabel position="592,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
+    <eLabel position="591,192" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
    </screen>"""
 	
 	def __init__(self, session):
