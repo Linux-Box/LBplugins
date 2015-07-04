@@ -386,7 +386,7 @@ if config.plugins.lbpanel.cold.value == "1":
 class ToolsScreen(Screen):
 	skin = """
 		<screen name="ToolsScreen" position="0,0" size="1280,720" title="LBpanel - Services">
-<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -522,7 +522,7 @@ class SwapScreen2(Screen):
 	skin = """
 		<screen name="SwapScreen2" position="0,0" size="1280,720" title="LBpanel - Swap Manager">
 				  
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (70, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -630,7 +630,7 @@ class SwapScreen(Screen):
 	skin = """
 		<screen name="SwapScreen" position="0,0" size="1280,720" title="LBpanel - Swap Manager">
 		  
-<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (70, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -893,7 +893,7 @@ class UsbScreen(Screen):
 class ScriptScreen(Screen):
 	skin = """
 	<screen name="ScriptScreen" position="0,0" size="1280,720" title="LBpanel - User Script" >
-	   <widget name="list" position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" scrollbarMode="showOnDemand" />
+	   <widget name="list" position="591,191" size="629,350" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" scrollbarMode="showOnDemand" />
   <!-- colores keys -->
     <!-- rojo -->
     <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
@@ -974,7 +974,7 @@ class ScriptScreen(Screen):
 class ConfigScript(ConfigListScreen, Screen):
 	skin = """
 <screen name="ConfigScript" position="0,0" size="1280,720" title="LBpanel - Config script Executer">
-		<widget name="config" position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" scrollbarMode="showOnDemand" />
+		<widget name="config" position="591,191" size="629,350" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" scrollbarMode="showOnDemand" />
 
   <!-- colores keys -->
     <!-- rojo -->
@@ -1054,7 +1054,7 @@ class ConfigScript(ConfigListScreen, Screen):
 class NTPScreen(ConfigListScreen, Screen):
 	skin = """
 <screen name="NTPScreen" position="0,0" size="1280,720" title="LBpanel - NTP Sync">
-    		<widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
+    		<widget position="591,191" size="629,350" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
  <!-- colores keys -->
     <!-- rojo -->
     <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
@@ -1267,7 +1267,7 @@ class ManualSetTime(Screen):
 class SystemScreen(Screen):
 	skin = """
 		<screen name="SystemScreen" position="0,0" size="1280,720" title="LBpanel - System utils">
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="white" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (490, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -1385,7 +1385,7 @@ class SystemScreen(Screen):
 class KernelScreen(Screen):
 	skin = """
 <screen name="KernelScreen" position="0,0" size="1280,720" title="LBpanel - Kernel Modules Manager">
- <widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
+ <widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
 size="629,350">
 	<convert type="TemplatedMultiContent">
 	{"template": [
@@ -1528,7 +1528,7 @@ class lsmodScreen(Screen):
 	skin = """
 <screen name="lsmodScreen" position="0,0" size="1280,720" title="LBpanel - List Kernel Drivers in Memory">
 
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
+	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
 size="629,350">
 	<convert type="TemplatedMultiContent">
 	{"template": [
@@ -1623,7 +1623,7 @@ class CrashLogScreen(Screen):
 	skin = """
 <screen name="CrashLogScreen" position="0,0" size="1280,720" title="LBpanel - Crashlog files">
 
-	<widget source="menu" render="Listbox" position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" scrollbarMode="showNever" backgroundColorSelected="#fd6502" transparent="1">
+	<widget source="menu" render="Listbox" position="591,191" size="629,350" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" scrollbarMode="showNever" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (70, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1882,7 +1882,7 @@ class epgdn(ConfigListScreen, Screen):
 	skin = """
 <screen name="epgdn" position="0,0" size="1280,720" title="LBpanel - EPG D+">
     
-  <widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
+  <widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
 <!-- colores keys -->
     <!-- rojo -->
     <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
@@ -2017,7 +2017,7 @@ class epgscript(ConfigListScreen, Screen):
 	skin = """
 <screen name="epgdn" position="0,0" size="1280,720" title="LBpanel - EPG D+">
     
-  <widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
+  <widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
 <!-- colores keys -->
     <!-- rojo -->
     <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
@@ -2193,7 +2193,7 @@ class CrontabMan(Screen):
 	skin = """
 <screen name="CrontabMan" position="0,0" size="1280,720" title="LBpanel - Cron Manager">
   
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
+	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
 size="629,350">
 		<convert type="TemplatedMultiContent">
 	{"template": [
@@ -2323,7 +2323,7 @@ size="629,350">
 class CrontabManAdd(ConfigListScreen, Screen):
 	skin = """
 <screen name="CrontabManAdd" position="0,0" size="1280,720" title="LBpanel - Add tabs" >
-		<widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
+		<widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
 <!-- colores keys -->
     <!-- rojo -->
     <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
@@ -2445,7 +2445,7 @@ class CrontabManAdd(ConfigListScreen, Screen):
 class Info2Screen(Screen):
 	skin = """
 <screen name="Info2Screen" position="0,0" size="1280,720" title="LBpanel - System Info">
-	<widget name="text" position="595,215" size="629,400" zPosition="2" backgroundColor="#6e6e6e" foregroundColor="#ffffff" transparent="1" font="Console;15" />
+	 <widget name="text" position="601,200" size="619,400" zPosition="2" backgroundColor="#6e6e6e" foregroundColor="#ffffff" transparent="1" font="Console;15" />
 
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
     <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
@@ -2554,7 +2554,7 @@ class Info2Screen(Screen):
 class scanhost(ConfigListScreen, Screen):
 	skin = """
 <screen name="scanhost" position="0,0" size="1280,720" title="LBpanel - Check Hosts">
-     <widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
+     <widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
 <widget name="LabelStatus" backgroundColor="#6e6e6e" foregroundColor="#ffffff" transparent="1" position="680,400" zPosition="2" size="550,40"  font="Regular;20"/>
 <ePixmap position="645,402" zPosition="1" size="25,25" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/bomb.png" transparent="1" alphatest="on" />
 <!-- colores keys -->

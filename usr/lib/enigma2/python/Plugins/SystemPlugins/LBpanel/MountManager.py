@@ -19,7 +19,7 @@ from re import search
 class LBHddMount(Screen):
 	skin = """
 	<screen position="0,0" size="1280,720" title="Mount Manager">
-		<widget source="list" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+		<widget source="list" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
@@ -336,7 +336,7 @@ class lbDevicePanelConf(Screen, ConfigListScreen):
 	skin = """
 	<screen position="0,0" size="1280,720" title="Choose where to mount your devices to:">
 
-		<widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" zPosition="-1" />
+		<widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" zPosition="-1" />
 		<widget name="Linconn" position="617,352" size="580,30" font="Regular;18" halign="center" valign="center" foregroundColor="white" backgroundColor="#6e6e6e" />
 <!-- colores keys -->
     <!-- rojo -->
