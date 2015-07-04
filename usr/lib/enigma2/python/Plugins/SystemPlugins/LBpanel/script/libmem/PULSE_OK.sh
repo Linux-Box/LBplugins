@@ -2,7 +2,7 @@
 # by: ††LUCIFER††
 echo ""
 MEMORYUSADA=`free | awk '/Mem:/ {print int(100*$3/$2) ;}'`
-DECODIFICADOR=`cat /proc/stb/info/model`
+DECODIFICADOR=`cat /etc/model`
 echo "Memoria usada por $DECODIFICADOR: $MEMORYUSADA %"
 [ $MEMORYUSADA -ge 80 ];
 sync
