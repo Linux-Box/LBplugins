@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-07-05 16:25+0100\n"
+"PO-Revision-Date: 2015-07-05 22:38+0100\n"
 "Last-Translator: javi <javierlohe@gmail.com>\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -1441,3 +1441,21 @@ msgstr "waitpid0000"
 
 msgid "yes"
 msgstr "si"
+
+msgid "LBpanel-Download spinner"
+msgstr "LBpanel-Descarga Spinners"
+
+msgid "Spinner Default Installed"
+msgstr "Spinner por defecto instalado"
+
+msgid "Download skinparts"
+msgstr "Descarga Skinparts OpenplusHD"
+
+msgid "Download spinner"
+msgstr "Descarga Spinners"
+
+msgid "LBpanel-Download skinpart"
+msgstr "LBpanel-Descarga Skinparts"
+
+msgid "LBpanel-Download skins default part"
+msgstr "LBpanel-Descarga Skinparts Default"
