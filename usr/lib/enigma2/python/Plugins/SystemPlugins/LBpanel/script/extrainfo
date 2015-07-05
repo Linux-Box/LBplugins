@@ -4,4 +4,3 @@ sed "s/, /\n/g;s/ = / -> /;s/=//g;s/^ /Used: /;s/ on /\n/;s/ECM//;s/ID /ID: /;\
 echo""
 cat /proc/meminfo | grep MemTotal 
 cat /proc/meminfo | grep MemFree
-
