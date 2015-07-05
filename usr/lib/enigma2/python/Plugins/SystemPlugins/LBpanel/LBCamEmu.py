@@ -532,7 +532,7 @@ class installCam2(Screen):
 class ECMinfo(Screen):
 	skin = """
 <screen name="ECMinfo" position="0,0" size="1280,720" title="Ecminfo">
-<!-- colores keys -->
+ <!-- colores keys -->
     <!-- rojo -->
     <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
@@ -575,7 +575,7 @@ class ECMinfo(Screen):
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="320,640" size="901,50" transparent="0" foregroundColor="white" backgroundColor="#929292" />
     <eLabel position="591,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
-      	<widget name="text" position="606,191" size="600,369" foregroundColor="#ffffff" backgroundColor="#6e6e6e" transparent="1" font="Console;15" />
+      	<widget name="text" position="606,206" size="600,343" foregroundColor="#ffffff" backgroundColor="#6e6e6e" transparent="1" font="Console;15" />
 </screen>"""
 
 	def __init__(self, session):
