@@ -1229,7 +1229,7 @@ class installspinner(Screen):
 
 	def spinnerdef(self):
 		os.system("opkg update")
-		os.system("opkg install -force-overwrite enigma2-lbspinner-openplushd_0.2_all.ipk")
+		os.system("opkg install -force-overwrite enigma2-lbspinner-openplushd")
 		self.mbox = self.session.open(MessageBox,(_("Spinner Default Installed")), MessageBox.TYPE_INFO, timeout = 4 )
 		
 	def cancel(self):
