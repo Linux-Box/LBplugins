@@ -1228,9 +1228,21 @@ class installspinner(Screen):
 		self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 
 	def spinnerdef(self):
-		os.system("opkg update")
-		os.system("opkg install -force-overwrite enigma2-lbspinner-openplushd")
-		self.mbox = self.session.open(MessageBox,(_("Spinner Default Installed")), MessageBox.TYPE_INFO, timeout = 4 )
+		
+		if self:
+			message = _("Quieres instalar spinner por defecto?")
+			ybox = self.session.openWithCallback(self.instdefect, MessageBox, message, MessageBox.TYPE_YESNO)
+			ybox.setTitle(_("Confirmacion"))
+		else:
+			self.session.open(MessageBox, _("No se instalara spinner."), MessageBox.TYPE_INFO, timeout = 10)
+
+		
+
+	def instdefect(self,answer):
+		if answer is True:
+			os.system("opkg update")
+			os.system("opkg install -force-overwrite enigma2-lbspinner-openplushd")
+			self.mbox = self.session.open(MessageBox,(_("Spinner Default Installed")), MessageBox.TYPE_INFO, timeout = 4 )
 		
 	def cancel(self):
 		self.close()
@@ -1750,5 +1762,4 @@ def Plugins(**kwargs):
 		list.append(PluginDescriptor(name=_("LBPanel"), description=_("LBTeam Panel Plugin"), where = [PluginDescriptor.WHERE_MENU], fnc=menu))
 	list.append(PluginDescriptor(name=_("LBPanel"), description=_("LBTeam Panel Plugin"), where = [PluginDescriptor.WHERE_AUTOSTART, PluginDescriptor.WHERE_SESSIONSTART], fnc = sessionstart))
 	return list
-
 
