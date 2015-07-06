@@ -2137,15 +2137,14 @@ class epgscript(ConfigListScreen, Screen):
 
 class epgdmanual(Screen):
 	skin = """
-<screen name="epgdmanual" position="center,260" size="850,50" title="LBpanel - EPG D+">
-  <ePixmap position="10,40" zPosition="1" size="165,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/red.png" alphatest="blend" />
-  <widget source="key_red" render="Label" position="10,10" zPosition="2" size="165,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-  <ePixmap position="175,40" zPosition="1" size="200,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/green.png" alphatest="blend" />
-  <widget source="key_green" render="Label" position="175,10" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-  <ePixmap position="375,40" zPosition="1" size="200,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/yellow.png" alphatest="blend" />
-  <widget source="key_yellow" render="Label" position="375,10" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-  <ePixmap position="574,40" zPosition="1" size="200,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/blue.png" alphatest="blend" />
-  <widget source="key_blue" render="Label" position="574,10" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
+<screen name="epgdmanual" position="center,260" size="785,50" title="LBpanel - EPG D+" flags="wfBorder" backgroundColor="white">
+<widget source="key_red" render="Label" position="10,15" zPosition="2" size="164,30" font="Regular;20" halign="center" valign="center" backgroundColor="red" foregroundColor="white" transparent="0" />
+
+  <widget source="key_green" render="Label" position="175,15" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="green" foregroundColor="white" transparent="0" />
+  
+  <widget source="key_yellow" render="Label" position="375,15" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="yellow" foregroundColor="white" transparent="0" />
+  
+  <widget source="key_blue" render="Label" position="575,15" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="blue" foregroundColor="white" transparent="0" />
 </screen>"""
 	def __init__(self, session):
 		self.session = session
