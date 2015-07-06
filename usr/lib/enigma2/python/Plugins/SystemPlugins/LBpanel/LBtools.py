@@ -2138,7 +2138,7 @@ class epgscript(ConfigListScreen, Screen):
 class epgdmanual(Screen):
 	skin = """
 <screen name="epgdmanual" position="center,260" size="785,50" title="LBpanel - EPG D+" flags="wfBorder" backgroundColor="white">
-<widget source="key_red" render="Label" position="10,15" zPosition="2" size="164,30" font="Regular;20" halign="center" valign="center" backgroundColor="red" foregroundColor="white" transparent="0" />
+<widget source="key_red" render="Label" position="10,15" zPosition="2" size="165,30" font="Regular;20" halign="center" valign="center" backgroundColor="red" foregroundColor="white" transparent="0" />
 
   <widget source="key_green" render="Label" position="175,15" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="green" foregroundColor="white" transparent="0" />
   
