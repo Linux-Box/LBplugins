@@ -703,7 +703,7 @@ class CamEmuPanel(Screen):
 		self.list.append((_("CCcam Info"),"com_dos", _("Plugin CCcam Info"), dospng))
 		self.list.append((_("Oscam Info"),"com_tres", _("Plugin Status emu Oscam"), trespng))
 		self.list.append((_("Gbox Suite"),"com_cuatro", _("Plugin Status emu Gbox-Mbox"), cuatropng))
-		self.list.append((_("Mbox scripts"),"com_cinco", _("ACJ Mbox Script"), cincopng))
+		#self.list.append((_("Mbox scripts"),"com_cinco", _("ACJ Mbox Script"), cincopng))
 		self.list.append((_("Mgcamd Info"),"com_seis", _("Mgcamd status information"), seispng))
 		self.list.append((_("Mgcamd Editor"),"com_siete", _("Newcamd Line Editor"), sietepng))
 		self["menu"].setList(self.list)
@@ -728,8 +728,8 @@ class CamEmuPanel(Screen):
 				self.session.open(oscaminfo.OscamInfoMenu)
 			elif returnValue is "com_cuatro":
 				self.session.open(gboxsuite.GboxSuiteMainMenu)
-			elif returnValue is "com_cinco":
-				self.session.open(MboxMan)
+			#elif returnValue is "com_cinco":
+				#self.session.open(MboxMan)
 			elif returnValue is "com_seis":
 				self.session.open(NCLSwp2)
 			elif returnValue is "com_siete":
@@ -1634,4 +1634,3 @@ class MboxMan(Screen):
 	def cancel(self):
 		self.close()
 ####################################################################
-
