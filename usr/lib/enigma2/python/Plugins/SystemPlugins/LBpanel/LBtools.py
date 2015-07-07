@@ -386,7 +386,7 @@ if config.plugins.lbpanel.cold.value == "1":
 class ToolsScreen(Screen):
 	skin = """
 		<screen name="ToolsScreen" position="0,0" size="1280,720" title="LBpanel - Services">
-<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -522,7 +522,7 @@ class SwapScreen2(Screen):
 	skin = """
 		<screen name="SwapScreen2" position="0,0" size="1280,720" title="LBpanel - Swap Manager">
 				  
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+	<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (70, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -630,7 +630,7 @@ class SwapScreen(Screen):
 	skin = """
 		<screen name="SwapScreen" position="0,0" size="1280,720" title="LBpanel - Swap Manager">
 		  
-<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (70, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -806,7 +806,7 @@ class UsbScreen(Screen):
 	<widget source="key_yellow" render="Label" position="360,458" zPosition="2" size="170,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
 	<ePixmap position="190,488" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/green.png" alphatest="blend" />
 	<ePixmap position="360,488" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/yellow.png" alphatest="blend" />
-	<widget source="menu" render="Listbox" position="20,20" size="660,450" scrollbarMode="showOnDemand">
+	<widget source="menu" render="Listboxlb" position="20,20" size="660,450" scrollbarMode="showOnDemand">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (70, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1267,7 +1267,7 @@ class ManualSetTime(Screen):
 class SystemScreen(Screen):
 	skin = """
 		<screen name="SystemScreen" position="0,0" size="1280,720" title="LBpanel - System utils">
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="white" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+	<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="white" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (490, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -1385,7 +1385,7 @@ class SystemScreen(Screen):
 class KernelScreen(Screen):
 	skin = """
 <screen name="KernelScreen" position="0,0" size="1280,720" title="LBpanel - Kernel Modules Manager">
- <widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
+ <widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
 size="629,350">
 	<convert type="TemplatedMultiContent">
 	{"template": [
@@ -1528,7 +1528,7 @@ class lsmodScreen(Screen):
 	skin = """
 <screen name="lsmodScreen" position="0,0" size="1280,720" title="LBpanel - List Kernel Drivers in Memory">
 
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
+	<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
 size="629,350">
 	<convert type="TemplatedMultiContent">
 	{"template": [
@@ -1623,7 +1623,7 @@ class CrashLogScreen(Screen):
 	skin = """
 <screen name="CrashLogScreen" position="0,0" size="1280,720" title="LBpanel - Crashlog files">
 
-	<widget source="menu" render="Listbox" position="591,191" size="629,350" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" scrollbarMode="showNever" backgroundColorSelected="#fd6502" transparent="1">
+	<widget source="menu" render="Listboxlb" position="591,191" size="629,350" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" scrollbarMode="showNever" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (70, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -2137,14 +2137,15 @@ class epgscript(ConfigListScreen, Screen):
 
 class epgdmanual(Screen):
 	skin = """
-<screen name="epgdmanual" position="center,260" size="785,50" title="LBpanel - EPG D+" flags="wfBorder" backgroundColor="white">
-<widget source="key_red" render="Label" position="10,15" zPosition="2" size="165,30" font="Regular;20" halign="center" valign="center" backgroundColor="red" foregroundColor="white" transparent="0" />
-
-  <widget source="key_green" render="Label" position="175,15" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="green" foregroundColor="white" transparent="0" />
-  
-  <widget source="key_yellow" render="Label" position="375,15" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="yellow" foregroundColor="white" transparent="0" />
-  
-  <widget source="key_blue" render="Label" position="575,15" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="blue" foregroundColor="white" transparent="0" />
+<screen name="epgdmanual" position="center,260" size="850,50" title="LBpanel - EPG D+">
+  <ePixmap position="10,40" zPosition="1" size="165,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/red.png" alphatest="blend" />
+  <widget source="key_red" render="Label" position="10,10" zPosition="2" size="165,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
+  <ePixmap position="175,40" zPosition="1" size="200,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/green.png" alphatest="blend" />
+  <widget source="key_green" render="Label" position="175,10" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
+  <ePixmap position="375,40" zPosition="1" size="200,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/yellow.png" alphatest="blend" />
+  <widget source="key_yellow" render="Label" position="375,10" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
+  <ePixmap position="574,40" zPosition="1" size="200,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/blue.png" alphatest="blend" />
+  <widget source="key_blue" render="Label" position="574,10" zPosition="2" size="200,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
 </screen>"""
 	def __init__(self, session):
 		self.session = session
@@ -2192,7 +2193,7 @@ class CrontabMan(Screen):
 	skin = """
 <screen name="CrontabMan" position="0,0" size="1280,720" title="LBpanel - Cron Manager">
   
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
+	<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1"
 size="629,350">
 		<convert type="TemplatedMultiContent">
 	{"template": [
