@@ -19,7 +19,7 @@ from re import search
 class LBHddMount(Screen):
 	skin = """
 	<screen position="0,0" size="1280,720" title="Mount Manager">
-		<widget source="list" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+		<widget source="list" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
 			<convert type="TemplatedMultiContent">
 				{"template": [
 				 MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
@@ -607,5 +607,4 @@ class DevicesPanelSummary(Screen):
 	def selectionChanged(self, name, desc):
 		self["entry"].text = name
 		self["desc"].text = desc
-
 
