@@ -111,7 +111,7 @@ os.system("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
 class emuSel2(Screen):
 	skin = """
 <screen name="emuSel2" position="0,0" size="1280,720" title="lb_title" zPosition="2">
-  <widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+  <widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
     <convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -326,7 +326,7 @@ class emuSel2(Screen):
 class installCam(Screen):
 	skin = """
 <screen name="installCam" position="0,0" size="1280,720" title="lb_title">
-    <widget source="menu" render="Listbox" position="591,191" size="628,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+    <widget source="menu" render="Listboxlb" position="591,191" size="628,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -431,7 +431,7 @@ class installCam2(Screen):
 	skin = """
 
 <screen name="installCam2" position="0,0" size="1280,720" title="lb_title">
-  <widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+  <widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -613,7 +613,7 @@ class ECMinfo(Screen):
 class CamEmuPanel(Screen):
 	skin = """
 <screen name="CamEmuPanel" position="0,0" size="1280,720" >
-<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+<widget source="menu" render="Listboxlb" position="591,191" foregroundColor="white" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -881,7 +881,7 @@ class wicconfsw(Screen):
   <widget source="key_red" render="Label" position="20,328" zPosition="2" size="170,30" font="Regular; 19" halign="center" valign="center" backgroundColor="background" foregroundColor="white" transparent="1" />
   <ePixmap position="190,358" zPosition="1" size="250,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/green.png" alphatest="blend" />
   <widget source="key_green" render="Label" position="190,328" zPosition="2" size="250,30" font="Regular; 19" halign="center" valign="center" backgroundColor="background" foregroundColor="white" transparent="1" />
-  <widget source="list" render="Listbox" position="15,10" size="720,150" scrollbarMode="showOnDemand">
+  <widget source="list" render="Listboxlb" position="15,10" size="720,150" scrollbarMode="showOnDemand">
    <convert type="TemplatedMultiContent">
    {"template": [
     MultiContentEntryText(pos = (70, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1075,7 +1075,7 @@ class NCLSwp2(Screen):
 class NCLEdit(Screen):
 	skin = """
 <screen name="NCLEdit" position="0,0" size="1280,720" title="newcamd.list editor">
-<widget source="menu" render="Listbox" position="591,295" size="629,260" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" scrollbarMode="showNever" backgroundColorSelected="#fd6502" transparent="1">
+<widget source="menu" render="Listboxlb" position="591,295" size="629,260" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" scrollbarMode="showNever" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (10, 2), size = (580, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1443,7 +1443,7 @@ class ServiceMan(Screen):
 	<ePixmap position="20,490" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/red.png" alphatest="blend" />
 	<ePixmap position="190,490" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/green.png" alphatest="blend" />
 	<ePixmap position="360,490" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/yellow.png" alphatest="blend" />
-	<widget source="menu" render="Listbox" position="20,20" size="660,350" scrollbarMode="showOnDemand">
+	<widget source="menu" render="Listboxlb" position="20,20" size="660,350" scrollbarMode="showOnDemand">
 	<convert type="TemplatedMultiContent">
 	{"template": [
 		MultiContentEntryText(pos = (150, 20), size = (580, 40), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1524,7 +1524,7 @@ class ServiceMan(Screen):
 class MboxMan(Screen):
 	skin = """
 <screen name="MboxMan" position="center,center" size="1280,720" title="LBpanel ACJ Mbox Script">
-    <widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+    <widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
