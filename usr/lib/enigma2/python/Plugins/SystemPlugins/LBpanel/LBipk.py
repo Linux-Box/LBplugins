@@ -68,7 +68,7 @@ def _(txt):
 class IPKToolsScreen(Screen):
 	skin = """
 	<screen name="IPKToolsScreen" position="0,0" size="1280,720" title="LBpanel Ipk Tools">
-	<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+	<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -192,7 +192,7 @@ class DownloadFeed(Screen):
 	skin = """
 <screen name="DownloadFeed" position="0,0" size="1280,720" title="Download extensions from feed">
 
-<widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+<widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 
 		{"template": [
@@ -322,7 +322,7 @@ class InstallAll(Screen):
 	skin = """
 <screen name="InstallAll" position="0,0" size="1280,720" title="LBpanel-Select files to install">
 
-<widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+<widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -451,7 +451,7 @@ class RemoveIPK(Screen):
 	skin = """
 <screen name="RemoveIPK" position="0,0" size="1280,720" title="LBpanel - Ipk remove">
 
-<widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+<widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 
 		{"template": [
@@ -569,7 +569,7 @@ class downfeed(Screen):
 	skin = """
 <screen name="downfeed" position="0,0" size="1280,720" title="LBpanel-Install extensions from feed">
 
-<widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+<widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColorSelected="#ffffff" foregroundColor="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 
 		{"template": [
