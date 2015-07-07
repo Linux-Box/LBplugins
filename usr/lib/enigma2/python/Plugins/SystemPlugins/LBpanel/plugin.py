@@ -167,7 +167,7 @@ class LBPanel2(Screen):
 	skin = """
 <screen name="LBPanel2" position="0,0" size="1280,720" >
   <widget source="lb_version" render="Label" position="50,605" zPosition="2" size="450,30" font="Regular;15" halign="center" valign="center" backgroundColor="#d3d3d3" foregroundColor="#000000" transparent="1" />
-<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -589,7 +589,7 @@ class ConfigExtentions(ConfigListScreen, Screen):
 class descargasScreen(Screen):
 	skin = """
 	<screen name="descargasScreen" position="0,0" size="1280,720" title="LBpanel Download">
-		<widget source="menu" render="Listbox" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
+		<widget source="menu" render="Listboxlb" position="591,191" scrollbarMode="showNever" foregroundColor="white" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
     "fonts": [gFont("Regular", 30)],
@@ -717,7 +717,7 @@ class installsorys(Screen):
 	skin = """
 <screen name="installsorys" position="0,0" size="1280,720" title="LBpanel-Download Sorys Settings">
 	    
-<widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+<widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -820,7 +820,7 @@ class installconfigemus(Screen):
 	skin = """
 
 <screen name="installconfigemus" position="0,0" size="1280,720" title="LBpanel-Download Config-Emus">
-  <widget source="menu" render="Listbox" position="591,193" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+  <widget source="menu" render="Listboxlb" position="591,193" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -923,7 +923,7 @@ class installpicon(Screen):
 	skin = """
 
 <screen name="installpicon" position="0,0" size="1280,720" title="LBpanel-Download Picon">
-    <widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+    <widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1025,7 +1025,7 @@ class installskinpart(Screen):
 	skin = """
 
 <screen name="installskinpart" position="0,0" size="1280,720" title="LBpanel-Download skinpart">
-   <widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+   <widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1131,7 +1131,7 @@ class installspinner(Screen):
 	skin = """
 
 <screen name="installspinner" position="0,0" size="1280,720" title="LBpanel-Download spinner">
-    <widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+    <widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1251,7 +1251,7 @@ class skindefaultpart(Screen):
 	skin = """
 
 <screen name="skindefaultpart" position="0,0" size="1280,720" title="LBpanel-Download skins default part">
-    <widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+    <widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
@@ -1353,7 +1353,7 @@ class installremove(Screen):
 	skin = """
 
 <screen name="installremove" position="0,0" size="1280,720" title="lb_title">
-  <widget source="menu" render="Listbox" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+  <widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
 		{"template": [
 			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
