@@ -68,6 +68,10 @@ import urllib
 ## Epg
 import Screens.Standby
 
+sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/ClearMem')
+
+import clearmen
+
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
@@ -509,7 +513,7 @@ class ToolsScreen(Screen):
 			elif returnValue is "com_six":
 				self.session.openWithCallback(self.mList, NTPScreen)
 			elif returnValue is "com_seven":
-				self.session.open(Console,title = _("Free Memory"), cmdlist = ["sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/libmem/PULSE_OK.sh"])
+				self.session.open(clearmen.SetupMenu)
 			elif returnValue is "com_dos":
 				self.session.open(RestartNetwork.RestartNetwork)
 			elif returnValue is "com_scan":
