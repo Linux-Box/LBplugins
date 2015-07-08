@@ -1001,7 +1001,7 @@ class installpicon(Screen):
 	def feedlist(self):
 		self.list = []
 		os.system("opkg update")
-		camdlist = os.popen("opkg list | grep -i piconLB")
+		camdlist = os.popen("opkg list | grep -i piconlb")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
 			try:
@@ -1104,7 +1104,7 @@ class installskinpart(Screen):
 	def feedlist(self):
 		self.list = []
 		os.system("opkg update")
-		camdlist = os.popen("opkg list | grep -i skinpartLB")
+		camdlist = os.popen("opkg list | grep -i skinpartlb")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
 			try:
@@ -1210,7 +1210,7 @@ class installspinner(Screen):
 	def feedlist(self):
 		self.list = []
 		os.system("opkg update")
-		camdlist = os.popen("opkg list | grep -i lbspinner")
+		camdlist = os.popen("opkg list | grep -i spinnerlb")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
 			try:
@@ -1329,7 +1329,7 @@ class skindefaultpart(Screen):
 	def feedlist(self):
 		self.list = []
 		os.system("opkg update")
-		camdlist = os.popen("opkg list | grep -i skindefaultLB")
+		camdlist = os.popen("opkg list | grep -i skindefaultlb")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
 			try:
@@ -1431,7 +1431,7 @@ class installremove(Screen):
 		
 	def feedlist(self):
 		self.list = []
-		camdlist = os.popen("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'piconLB' -e 'skinpartLB' -e 'lbspinner' -e 'skindefaultLB'")
+		camdlist = os.popen("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'piconlb' -e 'skinpartlb' -e 'spinnerlb' -e 'skindefaultlb'")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
 		for line in camdlist.readlines():
 			try:
