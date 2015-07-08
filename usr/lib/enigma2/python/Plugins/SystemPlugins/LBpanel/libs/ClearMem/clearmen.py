@@ -191,7 +191,7 @@ class SetupMenu(Screen, ConfigListScreen):
 				getConfigListEntry(autotext, cfg.timeout),
 				getConfigListEntry(_("Show info on screen:"), cfg.scrinfo),
 				getConfigListEntry(timetext, cfg.timescrinfo),
-				getConfigListEntry(_("Display plugin in:"), cfg.where),
+				#getConfigListEntry(_("Display plugin in:"), cfg.where),
 			))
 
 		self["config"].list = self.list
