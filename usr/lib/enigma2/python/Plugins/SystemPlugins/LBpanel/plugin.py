@@ -163,6 +163,17 @@ def sendemail(from_addr, to_addr, cc_addr,
 def lbversion():
 	return ("LBpanel_0.99_Red_Bee_r19")
 
+def Test_camemu():
+
+	found = False
+	for x in os.listdir('/etc/opkg/'):
+				
+		if 'extralbappstore.' in x:
+			found = True
+			break; 													
+	return found
+																	
+																	
 class LBPanel2(Screen):
 	skin = """
 <screen name="LBPanel2" position="0,0" size="1280,720" >
@@ -260,7 +271,8 @@ class LBPanel2(Screen):
 		cincopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/infop.png"))
 		settings = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/settings.png"))
 		#self.list.append((_("About"),"com_zero", _("About this machine, Info about software and hardware"), zeropng))
-		self.list.append((_("SoftEmus"),"com_one", _("CamEmu start-stop, Test Emu Control, Info Emus"), onepng))
+		if Test_camemu():
+			self.list.append((_("SoftEmus"),"com_one", _("CamEmu start-stop, Test Emu Control, Info Emus"), onepng))
 		self.list.append((_("Services "),"com_two", _("Epg,Ntp,scripts,info ..."), twopng ))
 		self.list.append((_("System"),"com_six", _("Kernel modules,swap,ftp,samba,crond,usb"), sixpng ))
 		#self.list.append((_("Skins LCD Selector"),"com_tres", _("LCD Skins selector"), trespng ))
@@ -671,15 +683,18 @@ class descargasScreen(Screen):
 		cincopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		seispng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		sietepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
+		ochopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		#self.list.append((_("IPK installer"),"one", _("Install ipk, bh.tgz, tar.gz, nab.tgz in /tmp"), onepng ))
 		#self.list.append((_("Feed installer"),"six", _("Feed installer"), sixpng ))
 		#self.list.append((_("Download extensions"),"five", _("Download feeds packages"), fivepng))
 		#self.list.append((_("IPK delete packages"),"four", _("Delete IPK packages"), treepng ))
 		self.list.append((_("Sorys Channel List"),"dos", _("Download Sorys Channel List"), dospng ))
-		self.list.append((_("Download config emus"),"cuatro", _("Download Config Emus"), cuatropng ))
+		if Test_camemu():
+			self.list.append((_("Download config emus"),"cuatro", _("Download Config Emus"), cuatropng ))
 		self.list.append((_("Download Picon"),"cinco", _("Download Picon"), cincopng ))
 		self.list.append((_("Download skinparts"),"seis", _("Download skinparts"), seispng ))
 		self.list.append((_("Download spinner"),"siete", _("Download spinner"), sietepng ))
+		self.list.append((_("Download bootlogo"),"ocho", _("Download bootlogo"), ochopng ))
 		self["menu"].setList(self.list)
 		
 	def exit(self):
@@ -711,6 +726,10 @@ class descargasScreen(Screen):
 			self.session.openWithCallback(self.mList,installskinpart)
 		elif item is "siete":
 			self.session.openWithCallback(self.mList,installspinner)
+		elif item is "ocho":
+			self.session.openWithCallback(self.mList,installbootlogo)
+		
+
 			
 ###############################################
 class installsorys(Screen):
@@ -1349,6 +1368,108 @@ class skindefaultpart(Screen):
 	def cancel(self):
 		self.close()
 #################################################
+class installbootlogo(Screen):
+	skin = """
+
+<screen name="installbootlogo" position="0,0" size="1280,720" title="LBpanel-Download bootlogo">
+    <widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
+	<convert type="TemplatedMultiContent">
+		{"template": [
+			MultiContentEntryText(pos = (70, 2), size = (630, 25), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 2 is the Menu Titel
+			MultiContentEntryText(pos = (80, 29), size = (630, 18), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 3 is the Description
+			MultiContentEntryPixmapAlphaTest(pos = (5, 5), size = (50, 40), png = 2), # index 4 is the pixmap
+				],
+	"fonts": [gFont("Regular", 23),gFont("Regular", 16)],
+	"itemHeight": 50
+	}
+	</convert>
+	</widget>
+	
+    
+<!-- colores keys -->
+    <!-- rojo -->
+    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
+    <!-- amarillo -->
+    <eLabel position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
+    <!-- verde -->
+    <eLabel text="INSTALAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
+    <!-- azul -->
+    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
+    <!-- fin colores keys -->
+    <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
+    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
+    <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
+      <convert type="ClockToText">Format:%-H:%M</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="900,50" size="300,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;16" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
+      <convert type="ClockToText">Date</convert>
+    </widget>
+    <widget source="session.VideoPicture" render="Pig" position="64,196" size="375,175" backgroundColor="transparent" zPosition="-1" transparent="0" />
+    <widget source="session.CurrentService" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=25,repeat=150,startdelay=1500,always=0" position="101,491" size="215,45" font="Regular; 22" transparent="1" valign="center" zPosition="2" backgroundColor="black" foregroundColor="white" noWrap="1" halign="center">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" zPosition="3" font="Regular; 22" position="66,649" size="215,50" halign="center" backgroundColor="black" transparent="1" noWrap="1" foregroundColor="white">
+      <convert type="VtiInfo">TempInfo</convert>
+    </widget>
+    <eLabel position="192,459" size="165,107" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
+    <eLabel position="251,410" size="165,107" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-2" />
+    <eLabel position="281,449" size="165,107" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-6" />
+    <eLabel position="233,499" size="165,107" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-5" />
+    <eLabel position="60,451" size="65,57" transparent="0" foregroundColor="white" backgroundColor="#ecbc13" zPosition="-6" />
+    <eLabel position="96,489" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
+    <eLabel position="0,0" size="1280,720" transparent="0" zPosition="-15" backgroundColor="#d6d6d6" />
+    <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
+    <eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="#42b3" zPosition="-10" />
+    <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
+    <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
+    <eLabel position="320,640" size="901,50" transparent="0" foregroundColor="white" backgroundColor="#929292" />
+    <eLabel position="591,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
+   </screen>"""
+	  
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.setTitle(_("LBpanel-Download bootlogo"))
+		self.session = session
+		self.list = []
+		self["menu"] = List(self.list)
+		self.feedlist()
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+			{
+				"cancel": self.cancel,
+				"ok": self.ok,
+				"green": self.setup,
+				"red": self.cancel,
+			},-1)
+		self.list = [ ]
+				
+	def feedlist(self):
+		self.list = []
+		os.system("opkg update")
+		camdlist = os.popen("opkg list | grep -i bootlogolb")
+		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
+		for line in camdlist.readlines():
+			try:
+				self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
+			except:
+				pass
+		camdlist.close()
+		self["menu"].setList(self.list)
+		
+	def ok(self):
+		self.setup()
+		
+	def setup(self):
+		os.system("opkg install -force-overwrite %s" % self["menu"].getCurrent()[0])
+		self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+		
+	def cancel(self):
+		self.close()
+#################################################
 class installremove(Screen):
 	skin = """
 
@@ -1431,7 +1552,7 @@ class installremove(Screen):
 		
 	def feedlist(self):
 		self.list = []
-		camdlist = os.popen("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'piconlb' -e 'skinpartlb' -e 'spinnerlb' -e 'skindefaultlb'")
+		camdlist = os.popen("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'piconlb' -e 'skinpartlb' -e 'spinnerlb' -e 'skindefaultlb' -e 'bootlogolb'")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
 		for line in camdlist.readlines():
 			try:
