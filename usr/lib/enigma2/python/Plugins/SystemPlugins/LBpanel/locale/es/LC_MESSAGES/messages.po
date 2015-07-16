@@ -316,6 +316,9 @@ msgstr "Descarga D+ EPG"
 msgid "Download Picon"
 msgstr "Descarga Picon"
 
+msgid "Download bootlogo"
+msgstr "Descarga bootlogo"
+
 msgid "Download Sorys Channel List"
 msgstr "Descarga  Lista de canales Sorys"
 
