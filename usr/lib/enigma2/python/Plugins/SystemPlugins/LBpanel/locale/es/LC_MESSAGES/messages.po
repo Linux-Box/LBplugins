@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-07-05 22:38+0100\n"
-"Last-Translator: javi <javierlohe@gmail.com>\n"
+"PO-Revision-Date: 2015-07-17 17:55+0200\n"
+"Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: netbook\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -30,16 +30,16 @@ msgid "%s downloaded UnSuccessfull"
 msgstr "%s  descarga fallida"
 
 msgid "%s is Error UnInstalled"
-msgstr "%s error desinstalacion"
+msgstr "%s error desinstalación"
 
 msgid "%s is UnInstalled"
-msgstr "%s esta desinstalado"
+msgstr "%s está desinstalado"
 
 msgid "%s is downloaded"
-msgstr "%s esta descargada"
+msgstr "%s está descargado"
 
 msgid "%s is installed"
-msgstr "%s esta instalado"
+msgstr "%s está instalado"
 
 msgid "%s oscam.conf"
 msgstr "%s oscam.conf"
@@ -48,7 +48,7 @@ msgid "%s.gz created in /tmp"
 msgstr "%s.gz creado en /tmp"
 
 msgid "*.tar.gz & *.bh.tgz & *.ipk removed"
-msgstr "*.tar.gz & *.bh.tgz & *.ipk borrado"
+msgstr "*.tar.gz & *.bh.tgz & *.ipk borrados"
 
 msgid "/media/cf/"
 msgstr "/media/cf/"
@@ -96,7 +96,7 @@ msgid "Add"
 msgstr "Añadir"
 
 msgid "Add own biss in keyfile"
-msgstr "Añadir propia biss en archivo de claves"
+msgstr "Añadir biss propia en archivo de claves"
 
 msgid "Add tabs"
 msgstr "Añadir pestañas"
@@ -105,13 +105,13 @@ msgid "Add-ons"
 msgstr "Complementos"
 
 msgid "Adv. UnInstall"
-msgstr "Adv. Desinstalacion"
+msgstr "Desinstalación avanzada"
 
 msgid "Angola"
 msgstr "Angola"
 
 msgid "Apply the new System time?"
-msgstr "Aplicar la nueva hora del sistema?"
+msgstr "¿Aplicar la nueva hora del sistema?"
 
 msgid "Apr."
 msgstr "Abr."
@@ -144,7 +144,7 @@ msgid "Auto download epg.dat"
 msgstr "Auto descarga epg.dat"
 
 msgid "Auto download hour"
-msgstr "Descarga automática hora"
+msgstr "Hora de descarga automática"
 
 msgid "Auto load and save EPG"
 msgstr "Carga automática y guardar EPG"
@@ -162,7 +162,7 @@ msgid "Belarus"
 msgstr "Bielorusia"
 
 msgid "Belgium"
-msgstr "Belgica"
+msgstr "Bélgica"
 
 msgid "BorraFakes"
 msgstr "BorraFakes"
@@ -204,11 +204,11 @@ msgid ""
 "Can't unmount partiton, make sure it is not being used for swap or record/"
 "timeshift paths"
 msgstr ""
-"No se puede desmontar particion, asegúrese de que no está siendo utilizado "
-"para intercambio o rutas grabar/Timeshift"
+"No se puede desmontar la partición, asegúrese de que no está siendo utilizada "
+"para intercambio o rutas de grabar/Timeshift"
 
 msgid "Canada"
-msgstr "Canada"
+msgstr "Canadá"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -217,7 +217,7 @@ msgid "Cardserver:"
 msgstr "Cardserver:"
 
 msgid "Change system time was canceled, because %s"
-msgstr "Cambio del horario del sistema fue cancelado, porque %s"
+msgstr "El cambio del horario del sistema fue cancelado, porque %s"
 
 msgid "Changelog"
 msgstr "Historial de cambios"
@@ -227,7 +227,7 @@ msgid ""
 "Restart your STB_BOX now?"
 msgstr ""
 "Los cambios necesitan que reinicies el sistema.\n"
-"Reinicia tu STB_BOX ahora?"
+"¿Reiniciar tu STB_BOX ahora?"
 
 msgid "Check host security"
 msgstr "Compruebe la seguridad del host"
@@ -239,7 +239,7 @@ msgid "China"
 msgstr "China"
 
 msgid "Choose where to mount your devices to:"
-msgstr "Elija dónde montar sus dispositivos a:"
+msgstr "Elija dónde montar sus dispositivos:"
 
 msgid "Clear /tmp"
 msgstr "Borrar /tmp"
@@ -254,28 +254,28 @@ msgid "Config"
 msgstr "Config"
 
 msgid "Configuration is saved"
-msgstr "Configuracion guardada"
+msgstr "Configuración guardada"
 
 msgid "Configure"
 msgstr "Configurar"
 
 msgid "Configure and press blue key to check"
-msgstr "Configurar y pulse la tecla azul para comprobar"
+msgstr "Configure y pulse la tecla azul para comprobar"
 
 msgid "Cron Manager"
 msgstr "Administrador de Cron"
 
 msgid "Czech Republic"
-msgstr "Czech Republic"
+msgstr "República Checa"
 
 msgid "Daemons"
 msgstr "Daemons"
 
 msgid "Day of month"
-msgstr "Dia del mes"
+msgstr "Día del mes"
 
 msgid "Day of week"
-msgstr "Dia de la semana"
+msgstr "Día de la semana"
 
 msgid "Dec."
 msgstr "Dic."
@@ -290,13 +290,16 @@ msgid "Detected NIMs:"
 msgstr "NIMs Detectados:"
 
 msgid "Device: "
+msgstr "Dispositivo: "
+
+msgid "Device:"
 msgstr "Dispositivo:"
 
 msgid "Devices:"
 msgstr "Dispositivos:"
 
 msgid "Disable Faulty Lines?"
-msgstr "Desactivar lineas defectuosas?"
+msgstr "¿Desactivar líneas defectuosas?"
 
 msgid "Download"
 msgstr "Descargar"
@@ -308,28 +311,28 @@ msgid "Download -nodeps"
 msgstr "Descarga -nodeps"
 
 msgid "Download Config Emus"
-msgstr "Descargar Config de emus"
+msgstr "Config. de emus"
 
 msgid "Download D+ EPG"
-msgstr "Descargar D+ EPG"
+msgstr "Descargar EPG D+"
 
 msgid "Download Picon"
-msgstr "Descargar Picon"
+msgstr "Picon"
 
 msgid "Download bootlogo"
-msgstr "Descargar bootlogo"
+msgstr "Bootlogos"
 
 msgid "Download Sorys Channel List"
-msgstr "Descargar Lista de canales Sorys"
+msgstr "Lista de canales Sorys"
 
 msgid "Download config emus"
-msgstr "Descargar config de emus"
+msgstr "Config. de emus"
 
 msgid "Download extensions"
 msgstr "Descargar extensiones"
 
 msgid "Download extensions from feed"
-msgstr "Descarga extensiones desde el feed"
+msgstr "Descargar extensiones desde el feed"
 
 msgid "Download feeds packages"
 msgstr "Descargar paquetes del feed"
@@ -338,7 +341,7 @@ msgid "Driver Version:"
 msgstr "Driver Version:"
 
 msgid "EPG Download"
-msgstr "EPG Descarga"
+msgstr "Descarga EPG"
 
 msgid "EPG downloaded"
 msgstr "EPG descargado"
@@ -347,7 +350,7 @@ msgid "Edit"
 msgstr "Editar"
 
 msgid "Enable Softcam check?"
-msgstr "Habilitar comprobacion Softcam"
+msgstr "Habilitar comprobación Softcam"
 
 msgid "Epg,Ntp,scripts,info ..."
 msgstr "Epg,Ntp,scripts,info ..."
@@ -362,10 +365,10 @@ msgid "Exit"
 msgstr "Salir"
 
 msgid "Failed remove"
-msgstr "Fallo borrado"
+msgstr "Borrado fallido"
 
 msgid "Fast"
-msgstr "Rapido"
+msgstr "Rápido"
 
 msgid "Feb."
 msgstr "Feb."
@@ -383,7 +386,7 @@ msgid "Flash:"
 msgstr "Flash:"
 
 msgid "Forced Install"
-msgstr "Forzar instalacion"
+msgstr "Forzar instalación"
 
 msgid "Fr"
 msgstr "Vie"
@@ -437,7 +440,7 @@ msgid "Hour"
 msgstr "Hora"
 
 msgid "Hungary"
-msgstr "Hungria"
+msgstr "Hungría"
 
 msgid "IPK delete packages"
 msgstr "Borrar paquetes IPK"
@@ -461,7 +464,7 @@ msgid "Install"
 msgstr "Instalar"
 
 msgid "Install /uninstall ipk,tar.gz en /tmp"
-msgstr "Instala /desinstala ipk,tar.gz en /tmp"
+msgstr "Instalar/desinstalar ipk,tar.gz en /tmp"
 
 msgid "Install ipk, bh.tgz, tar.gz, nab.tgz in /tmp"
 msgstr "Instalar ipk, bh.tgz, tar.gz, nab.tgz in /tmp"
@@ -476,7 +479,7 @@ msgid "Installing Sorys Settings"
 msgstr "Instalar Canales Sorys"
 
 msgid "Iran"
-msgstr "Iran"
+msgstr "Irán"
 
 msgid "Ireland"
 msgstr "Irlanda"
@@ -488,7 +491,7 @@ msgid "Jan."
 msgstr "Ene."
 
 msgid "Japan"
-msgstr "Japan"
+msgstr "Japón"
 
 msgid "Jul"
 msgstr "Jun."
@@ -497,16 +500,16 @@ msgid "Jun."
 msgstr "Jun."
 
 msgid "Kazakhstan"
-msgstr "Kazakhstan"
+msgstr "Kazajstán"
 
 msgid "Kernel Version:"
 msgstr "Kernel Version:"
 
 msgid "Kernel modules,swap,ftp,samba,crond,usb"
-msgstr "Modulos de Kernel,swap,ftp,samba,crond,usb"
+msgstr "Módulos de Kernel,swap,ftp,samba,crond,usb"
 
 msgid "Korea"
-msgstr "Korea"
+msgstr "Corea"
 
 msgid "LB-Crashlog viewer"
 msgstr "LB-Crashlog visor"
@@ -515,10 +518,10 @@ msgid "LB-Installer"
 msgstr "LB-Instalador"
 
 msgid "LB-Newcamd.list switcher"
-msgstr " Selector LB-Newcamd.list "
+msgstr "Selector LB-Newcamd.list "
 
 msgid "LB-Script Executer"
-msgstr "LB-Ëjecutor Script"
+msgstr "LB-Ejecutor Script"
 
 msgid "LB-Unmount USB"
 msgstr "LB-Desmonta USB"
@@ -548,7 +551,7 @@ msgid "LBpanel - Config script Executer"
 msgstr "LBpanel - Ejecutor script de configuración"
 
 msgid "LBpanel - Configuration"
-msgstr "LBpanel - Configuracion"
+msgstr "LBpanel - Configuración"
 
 msgid "LBpanel - Crashlog files"
 msgstr "LBpanel - Archivos Crashlog"
@@ -557,10 +560,10 @@ msgid "LBpanel - Cron Manager"
 msgstr "LBpanel - Administrador Cron"
 
 msgid "LBpanel - D+ EPG"
-msgstr "LBpanel - D+ EPG"
+msgstr "LBpanel - EPG D+"
 
 msgid "LBpanel - D+ SAT EPG"
-msgstr "LBpanel - D+ SAT EPG"
+msgstr "LBpanel - EPG D+ SAT"
 
 msgid "LBpanel - EPG D+"
 msgstr "LBpanel - EPG D+"
@@ -572,16 +575,19 @@ msgid "LBpanel - Ipk Remove"
 msgstr "LBpanel - Borrar Ipk "
 
 msgid "LBpanel - Kernel Modules Manager"
-msgstr "LBpanel -  Administrador  Módulos de Kernel"
+msgstr "LBpanel -  Administrador Módulos de Kernel"
 
 msgid "LBpanel - LinuxBox Feeds Download"
 msgstr "LBpanel - LinuxBox Feeds Descargas"
 
+msgid "LBpanel - LinuxBox Feeds installed"
+msgstr "LBpanel - LinuxBox Feeds instalados"
+
 msgid "LBpanel - List Kernel Drivers in Memory"
-msgstr "LBpanel - Drivers Lista del kernel en memoria"
+msgstr "LBpanel - Lista de drivers del kernel en memoria"
 
 msgid "LBpanel - NTP Sync"
-msgstr "LBpanel - NTP Sync"
+msgstr "LBpanel - Sincronización NTP"
 
 msgid "LBpanel - Red Bee"
 msgstr "LBpanel - Red Bee"
@@ -602,16 +608,16 @@ msgid "LBpanel - SoftEmus"
 msgstr "LBpanel - SoftEmus"
 
 msgid "LBpanel - Swap Manager"
-msgstr "LBpanel - Swap Manager"
+msgstr "LBpanel - Administrador Swap"
 
 msgid "LBpanel - System Info"
-msgstr "LBpanel -  Info del Sistema"
+msgstr "LBpanel - Info del Sistema"
 
 msgid "LBpanel - System Utils"
-msgstr "LBpanel - Utilidades de sistema"
+msgstr "LBpanel - Utilidades del sistema"
 
 msgid "LBpanel - Unmount manager"
-msgstr "LBpanel - administrador para Desmontar"
+msgstr "LBpanel - Administrador de desmontaje"
 
 msgid "LBpanel - User Script"
 msgstr "LBpanel - Script usuario"
@@ -629,7 +635,7 @@ msgid "LBpanel CamEmu: %s"
 msgstr "LBpanel CamEmu: %s"
 
 msgid "LBpanel Global Parameters"
-msgstr "Parametros globales LBpanel"
+msgstr "Parámetros globales LBpanel"
 
 msgid "LBpanel Ipk Tools"
 msgstr "LBpanel Ipk Tools"
@@ -667,23 +673,22 @@ msgstr "LBpanel oscam.conf cambiar: - %s"
 msgid ""
 "LBpanel settings has been updated, restart Enigma2 to activate your changes."
 msgstr ""
-"Ajustes LBpanel se ha actualizado, reinicie Enigma2 para activar los cambios."
+"Se han actualizado los ajustes de LBpanel, reinicie Enigma2 para activar los cambios."
 
 msgid "LBpanel-Download Config Emus"
-msgstr "LBpanel-Descargar Config Emus"
+msgstr "LBpanel - Descargar Config Emus"
 
 msgid "LBpanel-Download Sorys Settings"
-msgstr "LBpanel-Descargar Canales Sorys"
+msgstr "LBpanel - Descargar lista de canales Sorys"
 
 msgid "LBpanel-Download picon"
-msgstr "LBpanel-Descargar picon"
+msgstr "LBpanel - Descargar picon"
 
 msgid "LBpanel-Install extensions from feed"
-msgstr "LBpanel-Instalar extensiones desde feed"
-
+msgstr "LBpanel - Instalar extensiones desde feed"
 
 msgid "Last Upgrade:"
-msgstr "Ultima actualizacion:"
+msgstr "Última actualización:"
 
 msgid "Latvia"
 msgstr "Letonia"
@@ -734,16 +739,16 @@ msgid "Make swap"
 msgstr "Crear swap"
 
 msgid "Make swap on %s (128MB)"
-msgstr "Crear swap de %s (128MB)"
+msgstr "Crear swap en %s (128MB)"
 
 msgid "Make swap on %s (256MB)"
-msgstr "Crear swap de %s (256MB)"
+msgstr "Crear swap en %s (256MB)"
 
 msgid "Make swap on %s (512MB)"
-msgstr "Crear swap de %s (512MB)"
+msgstr "Crear swap en %s (512MB)"
 
 msgid "Malaysia"
-msgstr "Malaysia"
+msgstr "Malasia"
 
 msgid "Manage Swap on %s"
 msgstr "Administrar swap en %s"
@@ -770,7 +775,7 @@ msgid "Memory:"
 msgstr "Memoria"
 
 msgid "Mexico"
-msgstr "Mejico"
+msgstr "México"
 
 msgid "Mgcamd Editor"
 msgstr "Mgcamd Editor"
@@ -779,7 +784,7 @@ msgid "Mgcamd Info"
 msgstr "Mgcamd Info"
 
 msgid "Mgcamd status information"
-msgstr "Informacion del estado Mgcamd"
+msgstr "Información del estado Mgcamd"
 
 msgid "Min"
 msgstr "Min"
@@ -797,13 +802,13 @@ msgid "Mount Manager"
 msgstr "Administrador de montajes"
 
 msgid "Mount failed"
-msgstr "Montaje fallado"
+msgstr "Montaje fallido"
 
 msgid "Mount: "
-msgstr "Mount: "
+msgstr "Montaje: "
 
 msgid "NTP Sync"
-msgstr "NTP Sync"
+msgstr "Sincronización NTP"
 
 msgid "Name of keyfile"
 msgstr "Nombre de archivo de claves"
@@ -818,7 +823,7 @@ msgid "New Zealand"
 msgstr "Nueva Zelanda"
 
 msgid "Newcamd Line Editor"
-msgstr "Editor lineas Mgcamd"
+msgstr "Editor líneas Mgcamd"
 
 msgid "No"
 msgstr "No"
@@ -839,7 +844,7 @@ msgid "Nov."
 msgstr "Nov."
 
 msgid "Ntp sync: 30 min,60 min,120 min, 240"
-msgstr "Ntp sync: 30 min,60 min,120 min, 240"
+msgstr "Sinc. Ntp: 30 min,60 min,120 min, 240"
 
 msgid "Oct."
 msgstr "Oct."
@@ -857,10 +862,10 @@ msgid "Package install"
 msgstr "Instalar paquetes"
 
 msgid "Pakistan"
-msgstr "Pakistan"
+msgstr "Pakistán"
 
 msgid "Panama"
-msgstr "Panama"
+msgstr "Panamá"
 
 msgid "Password"
 msgstr "Contraseña"
@@ -872,22 +877,22 @@ msgid "PeerResolver"
 msgstr "PeerResolver"
 
 msgid "Philippines"
-msgstr "Philippines"
+msgstr "Filipinas"
 
 msgid "Please wait while your network is restarting..."
-msgstr "Por favor Espere mientras la red está reiniciando ..."
+msgstr "Por favor, espere mientras la red se está reiniciando ..."
 
 msgid "Please wait, restarting %s"
-msgstr "Por favor espera, reiniciando  %s"
+msgstr "Por favor, espera. Reiniciando  %s"
 
 msgid "Please wait, starting %s"
-msgstr "Por favor espera, iniciando %s"
+msgstr "Por favor, espera. Iniciando %s"
 
 msgid "Please wait, stoping softcam or cardserver"
-msgstr "Por favor espera, parando softcam o cardserver"
+msgstr "Por favor, espera. Parando softcam o cardserver"
 
 msgid "Please wait."
-msgstr "Por Favor respera."
+msgstr "Por favor, espera."
 
 msgid "Plugin CCcam Info"
 msgstr "Plugin CCcam Info"
@@ -899,7 +904,7 @@ msgid "Plugin Status emu Oscam"
 msgstr "Plugin Estado emu Oscam"
 
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "Complementos"
 
 msgid "Poland"
 msgstr "Polonia"
@@ -929,31 +934,31 @@ msgid "Remove swap"
 msgstr "Borrar swap"
 
 msgid "Remove swap on %s (%s)"
-msgstr "Borrar swap on %s (%s)"
+msgstr "Borrar swap en %s (%s)"
 
 msgid "Remove tabs"
 msgstr "Borrar pestañas"
 
 msgid "Removed %s"
-msgstr "Borrado %s"
+msgstr "%s borrado"
 
 msgid "Removed All Crashlog Files"
-msgstr "Borrar todos archivos Crashlog"
+msgstr "Borrar todos los archivos Crashlog"
 
 msgid "Restart GUI"
 msgstr "Reiniciar GUI"
 
 msgid "Restart STB_BOX."
-msgstr "Reinicia STB_BOX."
+msgstr "Reiniciar STB_BOX."
 
 msgid "Restart Softcam"
-msgstr "Rei nciar Softcam"
+msgstr "Reiniciar Softcam"
 
 msgid "Restart network"
 msgstr "Reiniciar Red"
 
 msgid "Restarting %s service"
-msgstr "Reiniciando %s servicio"
+msgstr "Reiniciando servicio %s"
 
 msgid "Restarting ..."
 msgstr "Reiniciando"
@@ -962,19 +967,19 @@ msgid "Restore epg.dat"
 msgstr "Restaurar epg.dat"
 
 msgid "Romania"
-msgstr "Romania"
+msgstr "Rumanía"
 
 msgid "Run"
 msgstr "Corre"
 
 msgid "Russian Federation"
-msgstr "Federacion Rusa"
+msgstr "Federación Rusa"
 
 msgid "SAT Down D+ EPG"
-msgstr "SAT Descarga D+ EPG"
+msgstr "Descargar EPG D+ SAT"
 
 msgid "Sa"
-msgstr "Sab"
+msgstr "Sáb"
 
 msgid "Save"
 msgstr "Guardar"
@@ -986,19 +991,19 @@ msgid "Save epg.dat"
 msgstr "Guartdar epg.dat"
 
 msgid "Scan Peer Security"
-msgstr "Analisis de seguridad de Peer"
+msgstr "Análisis de seguridad de peer"
 
 msgid "Scan peer"
 msgstr "Escaneo de peer"
 
 msgid "Scan type"
-msgstr "Tipo de busqueda"
+msgstr "Tipo de búsqueda"
 
 msgid "Scaning hosts, please wait"
-msgstr "Escaneado de host, por favor espere"
+msgstr "Escaneando hosts. Por favor, espere"
 
 msgid "Select D+ epg"
-msgstr "Seleccionar D+ epg"
+msgstr "Seleccionar epg D+"
 
 msgid "Select SoftCam or CardServer: - %s"
 msgstr "Selecciona Softcam o CardServer: - %s"
@@ -1013,10 +1018,10 @@ msgid "Select where to save epg.dat"
 msgstr "Seleccionar dónde guardar epg.dat"
 
 msgid "Send email on error/report to user?"
-msgstr "Enviar correo electrónico en caso de error/informe al usuario?"
+msgstr "¿Enviar correo electrónico en caso de error/informe al usuario?"
 
 msgid "Send email only in danger lines?"
-msgstr "Enviar correo electrónico sólo de líneas peligrosas?"
+msgstr "¿Enviar correo electrónico sólo de líneas peligrosas?"
 
 msgid "Send errors/reports to: (email)"
 msgstr "Enviar informes/errores a: (correo electrónico)"
@@ -1034,7 +1039,7 @@ msgid "Services "
 msgstr "Servicios "
 
 msgid "Set script path"
-msgstr "Establecer ruta script "
+msgstr "Establecer ruta script"
 
 msgid "Set time of transponder"
 msgstr "Establecer hora de transpondedor"
@@ -1049,58 +1054,61 @@ msgid "Settings of LBpanel"
 msgstr "Ajustes LBpanel"
 
 msgid "Setup Mounts"
-msgstr "Configuracion de  Mounts"
+msgstr "Configuracion de montajes"
 
 msgid "Show CamEmu Manager in Extension Menu"
-msgstr "Mostrar Manager CamEmu en Menú Extensión"
+msgstr "Mostrar Manager CamEmu en el menú de extensiones"
 
 msgid "Show LB-CrashLog viewr in ExtensionMenu"
-msgstr "Mostrar LB-crashlog viewr en ExtensionMenu"
+msgstr "Mostrar LB-crashlog visor en el menú de extensiones"
 
 msgid "Show LB-Installer in Extension Menu"
-msgstr "Mostrar LB-instalador en el Menú de Extensión"
+msgstr "Mostrar LB-instalador en el menú de extensiones"
 
 msgid "Show LB-NewCamd.list switcher in Extension Menu"
-msgstr "Mostrar LB-newcamd.list conmutador en el Menú de Extensión"
+msgstr "Mostrar LB-newcamd.list conmutador en el menú de extensiones"
 
 msgid "Show LB-Script Executter in Extension Menu"
-msgstr "Mostrar LB-Script Executter en Menú Extensión"
+msgstr "Mostrar LB-Script Ejecutor en el menú de extensiones"
 
 msgid "Show LB-Usb Unmount in Extension Menu"
-msgstr "Mostrar LB-Usb Desmontar en el menú de Extensión"
+msgstr "Mostrar LB-Desmontar Usb en el menú de extensiones"
 
 msgid "Show LB-Wicardd.conf switcher in Extension Menu"
-msgstr "Mostrar LB-Wicardd.conf conmutador en el Menú de Extensión"
+msgstr "Mostrar LB-Wicardd.conf conmutador en el menú de extensiones"
 
 msgid "Show LBPanel in Extension Menu"
-msgstr "Mostrar LBPanel en Menú Extensión"
+msgstr "Mostrar LBPanel en el menú de extensiones"
 
 msgid "Show LBPanel in Main Menu"
 msgstr "Mostrar LBPanel en Menú Principal"
 
 msgid "Show PluginBrowser in LBPanel Main Menu"
-msgstr "Mostrar PluginBrowser en el Menú Principal LBPanel"
+msgstr "Mostrar PluginBrowser en el Menú Principal de LBPanel"
 
 msgid "Singapore"
-msgstr "Singapore"
+msgstr "Singapur"
 
 msgid "Size: "
-msgstr "Tamañp:"
+msgstr "Tamaño: "
 
 msgid "Slovakia"
-msgstr "Slovaquia"
+msgstr "Eslovaquia"
 
 msgid "Slovenia"
-msgstr "Slovenia"
+msgstr "Eslovenia"
 
 msgid "Smtp password"
-msgstr "Smtp contraseña"
+msgstr "Contraseña Smtp"
 
 msgid "Smtp server"
-msgstr "Smtp server"
+msgstr "Servidor Smtp"
 
 msgid "Smtp user"
-msgstr "Smtp usuario"
+msgstr "Usuario Smtp"
+
+msgid "Smtp protocol"
+msgstr "Protocolo Smtp"
 
 msgid "SoftEmus"
 msgstr "SoftEmus"
@@ -1109,32 +1117,32 @@ msgid "Softcam"
 msgstr "Softcam"
 
 msgid "Softcam Init, Stop and Restart"
-msgstr "Softcam, iniciar, detener y reiniciar"
+msgstr "Iniciar, detener y reiniciar Softcam"
 
 msgid "Softcam Restarted"
-msgstr "Softcam reinciado"
+msgstr "Softcam reiniciado"
 
 msgid "Softcam:"
 msgstr "Softcam:"
 
 msgid "Sorry, EPG download error"
-msgstr "Lo sentimos, error descarga EPG "
+msgstr "Error descargando EPG"
 
 msgid "Sorry, I can not find lbscan.py"
-msgstr "Lo sentimos, pero no puedo encontrar lbscan.py"
+msgstr "Imposible encontrar lbscan.py"
 
 msgid "Sorry, I can not find scan data, scan first"
 msgstr ""
-"Lo sentimos, pero no puedo encontrar los datos de escaneo, buscar primero"
+"Imposible encontrar datos de escaneo, realiza una búsqueda primero"
 
 msgid "Sorry, the EPG download error"
-msgstr "Lo sentimos, error al descargar   EPG "
+msgstr "Error al descargar EPG"
 
 msgid "Sorys Channel List"
-msgstr "Sorys Lista de canales"
+msgstr "Lista de canales Sorys"
 
 msgid "South Africa"
-msgstr "South Africa"
+msgstr "Sudáfrica"
 
 msgid "Spain"
 msgstr "España"
@@ -1155,7 +1163,7 @@ msgid "Start, Stop, Restart Sofcam/Cardserver"
 msgstr "Iniciar, Parar, Reiniciar Sofcam/Cardserver"
 
 msgid "Starting %s service"
-msgstr "Iniciando %s servicio"
+msgstr "Iniciando servicio %s"
 
 msgid "Starting %s..."
 msgstr "Iniciando %s..."
@@ -1164,7 +1172,7 @@ msgid "Stop"
 msgstr "Parar"
 
 msgid "Stoping %s service"
-msgstr "Parando %s servicio"
+msgstr "Parando servicio %s"
 
 msgid "Stoping %s..."
 msgstr "Parando %s..."
@@ -1188,16 +1196,16 @@ msgid "Swap file stoped"
 msgstr "Archivo swap parado"
 
 msgid "Swap off"
-msgstr "Desactiva Swap "
+msgstr "Desactivar Swap"
 
 msgid "Swap on"
-msgstr "Activa Swap"
+msgstr "Activar Swap"
 
 msgid "Swap on %s off (%s)"
-msgstr "Swap en %s off (%s)"
+msgstr "Swap en %s desactivada (%s)"
 
 msgid "Swap on %s on (%s)"
-msgstr "Swap en %s en (%s)"
+msgstr "Swap en %s activada (%s)"
 
 msgid "Swap:"
 msgstr "Swap:"
@@ -1215,10 +1223,16 @@ msgid "Switzerland"
 msgstr "Suiza"
 
 msgid "Sync NTP"
-msgstr "Sync NTP"
+msgstr "Sincronización NTP"
 
 msgid "Sync on boot"
 msgstr "Sincronización en el arranque"
+
+msgid "My IP"
+msgstr "Mi IP"
+
+msgid "Your public IP is: %s"
+msgstr "Tu IP pública es: %s"
 
 msgid "System"
 msgstr "Sistema"
@@ -1227,7 +1241,7 @@ msgid "System Info"
 msgstr "Informacion del Sistema"
 
 msgid "System info (free, dh -f)"
-msgstr "Informacion del Sistema (libre, dh -f)"
+msgstr "Informacion del Sistema (free, dh -f)"
 
 msgid "TB"
 msgstr "TB"
@@ -1263,13 +1277,13 @@ msgid "TestSbox"
 msgstr "TestSbox"
 
 msgid "Testing daemons status..."
-msgstr "Prueba estado Daemons"
+msgstr "Comprobando estado Daemons..."
 
 msgid "Th"
 msgstr "Jue"
 
 msgid "Thailand"
-msgstr "Thailand"
+msgstr "Tailandia"
 
 msgid ""
 "The cam %s appears to malfunction.\n"
@@ -1293,10 +1307,10 @@ msgid "Tu"
 msgstr "Mar"
 
 msgid "Turkey"
-msgstr "Turkey"
+msgstr "Turquía"
 
 msgid "Type: "
-msgstr "Tipo"
+msgstr "Tipo: "
 
 msgid "Ukraine"
 msgstr "Ucrania"
@@ -1305,7 +1319,7 @@ msgid "UnInstall"
 msgstr "Desinstalar"
 
 msgid "UnLoaded %s"
-msgstr "Sin carga%s"
+msgstr "%s descargados"
 
 msgid "UnMount"
 msgstr "Desmontar"
@@ -1317,7 +1331,7 @@ msgid "UnSuccessfull"
 msgstr "Fallido"
 
 msgid "United Arab Emirates"
-msgstr "United Arab Emirates"
+msgstr "Emiratos Árares Unidos"
 
 msgid "United Kingdom"
 msgstr "Reino Unido"
@@ -1329,7 +1343,7 @@ msgid "Unmount usb devices"
 msgstr "Desmontar los dispositivos USB"
 
 msgid "Unmounted %s"
-msgstr "Desmontado %s"
+msgstr "%s desmontado"
 
 msgid "Update"
 msgstr "Actualizar"
@@ -1338,7 +1352,7 @@ msgid "Update Now"
 msgstr "Actualizar ahora"
 
 msgid "Updating mount locations."
-msgstr "Actualización ubicaciones de montaje."
+msgstr "Actualizando ubicaciones de montaje."
 
 msgid "Use as HDD"
 msgstr "Usar como HDD"
@@ -1350,10 +1364,10 @@ msgid "User Scripts"
 msgstr "Scripts de usuario"
 
 msgid "Uzbekistan"
-msgstr "Uzbekistan"
+msgstr "Uzbekistán"
 
 msgid "Version: %s"
-msgstr "Version: %s"
+msgstr "Versión: %s"
 
 msgid "Vietnam"
 msgstr "Vietnam"
@@ -1362,11 +1376,11 @@ msgid "View"
 msgstr "Ver"
 
 msgid "Wait please while scanning for devices..."
-msgstr "Espere por favor, mientras que escaneo los dispositivos ..."
+msgstr "Por favor, espere mientras se buscan dispositivos..."
 
 msgid "Wait please while scanning your STB_BOX devices..."
 msgstr ""
-"Espere por favor mientras que escaneo los dispositivos de su STB_BOX ..."
+"Por favor, espere mientras se buscan los dispositivos de su STB_BOX..."
 
 msgid "We"
 msgstr "Mie"
@@ -1408,7 +1422,7 @@ msgid "install & forced install ipk, bh.tgz, tar.gz, nab.tgz from /tmp"
 msgstr "instala & fuerza instalar ipk, bh.tgz, tar.gz, nab.tgz desde /tmp"
 
 msgid "new time not available"
-msgstr "nuevo tiempo no disponible"
+msgstr "nueva hora no disponible"
 
 msgid "no"
 msgstr "no"
@@ -1423,13 +1437,13 @@ msgid "oscam.conf Switcher: - %s"
 msgstr "oscam.conf Cambiar: - %s"
 
 msgid "press OK to enable/disable server"
-msgstr "Pulsa OK para  activar/desactivar server"
+msgstr "Pulsa OK para activar/desactivar servidor"
 
 msgid "reFresh"
 msgstr "refrescar"
 
 msgid "reload epg.dat failed"
-msgstr "recarga epg.dat fallada"
+msgstr "recarga epg.dat fallida"
 
 msgid "size: %s  %s"
 msgstr "tamaño: %s  %s"
@@ -1447,25 +1461,40 @@ msgid "yes"
 msgstr "si"
 
 msgid "LBpanel-Download spinner"
-msgstr "LBpanel-Descargar Spinners"
+msgstr "LBpanel - Descargar spinners"
 
 msgid "Spinner Default Installed"
 msgstr "Spinner por defecto instalado"
 
 msgid "Download skinparts"
-msgstr "Descargar Skinparts OpenplusHD"
+msgstr "Skinparts OpenplusHD"
 
 msgid "Download spinner"
-msgstr "Descargar Spinners"
+msgstr "Spinners"
 
 msgid "LBpanel-Download skinpart"
-msgstr "LBpanel-Descargar Skinparts"
+msgstr "LBpanel - Descargar skinparts"
 
 msgid "LBpanel-Download skins default part"
-msgstr "LBpanel-Descargar Skinparts Default"
+msgstr "LBpanel - Descargar skinparts default"
 
 msgid "LBpanel-Download bootlogo"
-msgstr "LBpanel-Descargar bootlogos"
+msgstr "LBpanel - Descargar bootlogos"
 
 msgid "Download Bee"
 msgstr "Descargas"
+
+msgid "Timeout downloading epg"
+msgstr "Tiempo descargando EPG (en segundos)"
+
+msgid "Run every hour on standby?"
+msgstr "¿Ejecutar cada hora en modo de espera?"
+
+msgid "Lbpanel-Mount Manager"
+msgstr "LBpanel - Administrador de montajes"
+
+msgid "Send email on report by local to user?"
+msgstr "¿Enviar e-mail al usuario?"
+
+msgid "Send email on report by proxy to user?"
+msgstr "¿Enviar e-mail via proxy al usuario?"
