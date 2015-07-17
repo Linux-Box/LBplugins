@@ -1348,7 +1348,7 @@ class skindefaultpart(Screen):
 	def feedlist(self):
 		self.list = []
 		os.system("opkg update")
-		camdlist = os.popen("opkg list | grep -i skindefaultlb")
+		camdlist = os.popen('opkg list | awk "/skinpartlb/ && /default/"')
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
 			try:
