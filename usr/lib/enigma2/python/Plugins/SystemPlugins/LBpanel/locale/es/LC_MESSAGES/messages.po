@@ -308,22 +308,22 @@ msgid "Download -nodeps"
 msgstr "Descarga -nodeps"
 
 msgid "Download Config Emus"
-msgstr "Descargas Config de emus"
+msgstr "Descargar Config de emus"
 
 msgid "Download D+ EPG"
-msgstr "Descarga D+ EPG"
+msgstr "Descargar D+ EPG"
 
 msgid "Download Picon"
-msgstr "Descarga Picon"
+msgstr "Descargar Picon"
 
 msgid "Download bootlogo"
-msgstr "Descarga bootlogo"
+msgstr "Descargar bootlogo"
 
 msgid "Download Sorys Channel List"
-msgstr "Descarga  Lista de canales Sorys"
+msgstr "Descargar Lista de canales Sorys"
 
 msgid "Download config emus"
-msgstr "Descargas config de emus"
+msgstr "Descargar config de emus"
 
 msgid "Download extensions"
 msgstr "Descargar extensiones"
@@ -670,16 +670,17 @@ msgstr ""
 "Ajustes LBpanel se ha actualizado, reinicie Enigma2 para activar los cambios."
 
 msgid "LBpanel-Download Config Emus"
-msgstr "LBpanel-Descargas Config Emus"
+msgstr "LBpanel-Descargar Config Emus"
 
 msgid "LBpanel-Download Sorys Settings"
-msgstr "LBpanel-Descarga Canales Sorys"
+msgstr "LBpanel-Descargar Canales Sorys"
 
 msgid "LBpanel-Download picon"
-msgstr "LBpanel-Descarga de picon"
+msgstr "LBpanel-Descargar picon"
 
 msgid "LBpanel-Install extensions from feed"
 msgstr "LBpanel-Instalar extensiones desde feed"
+
 
 msgid "Last Upgrade:"
 msgstr "Ultima actualizacion:"
@@ -1446,19 +1447,25 @@ msgid "yes"
 msgstr "si"
 
 msgid "LBpanel-Download spinner"
-msgstr "LBpanel-Descarga Spinners"
+msgstr "LBpanel-Descargar Spinners"
 
 msgid "Spinner Default Installed"
 msgstr "Spinner por defecto instalado"
 
 msgid "Download skinparts"
-msgstr "Descarga Skinparts OpenplusHD"
+msgstr "Descargar Skinparts OpenplusHD"
 
 msgid "Download spinner"
-msgstr "Descarga Spinners"
+msgstr "Descargar Spinners"
 
 msgid "LBpanel-Download skinpart"
-msgstr "LBpanel-Descarga Skinparts"
+msgstr "LBpanel-Descargar Skinparts"
 
 msgid "LBpanel-Download skins default part"
-msgstr "LBpanel-Descarga Skinparts Default"
+msgstr "LBpanel-Descargar Skinparts Default"
+
+msgid "LBpanel-Download bootlogo"
+msgstr "LBpanel-Descargar bootlogos"
+
+msgid "Download Bee"
+msgstr "Descargas"
