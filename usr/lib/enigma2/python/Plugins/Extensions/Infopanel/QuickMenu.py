@@ -1,6 +1,3 @@
-# for localized messages
-from . import _
-
 from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Components.ActionMap import ActionMap
@@ -48,6 +45,23 @@ from time import sleep
 from re import search
 
 import NavigationInstance
+
+from Components.Language import language
+from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
+import gettext, os
+
+lang = language.getLanguage()
+os.environ["LANGUAGE"] = lang[:2]
+gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
+gettext.textdomain("messages")
+gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/Infopanel/locale/"))
+
+def _(txt):
+	t = gettext.dgettext("messages", txt)
+	if t == txt:
+		t = gettext.gettext(txt)
+	return t
+
 
 plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
 
