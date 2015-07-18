@@ -1,3 +1,5 @@
+# for localized messages
+from . import _
 
 from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
