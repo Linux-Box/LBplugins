@@ -1238,10 +1238,10 @@ msgid "System"
 msgstr "Sistema"
 
 msgid "System Info"
-msgstr "Informacion del Sistema"
+msgstr "Información del sistema"
 
 msgid "System info (free, dh -f)"
-msgstr "Informacion del Sistema (free, dh -f)"
+msgstr "Información del sistema (free, dh -f)"
 
 msgid "TB"
 msgstr "TB"
@@ -1507,3 +1507,6 @@ msgstr "%s del EPG descargado"
 
 msgid "EPG Download Cancelled - Recording active"
 msgstr "Descarga de EPG cancelada - Grabación activa"
+
+msgid "SAT Download EPG"
+msgstr "Descarga EPG D+ SAT"
