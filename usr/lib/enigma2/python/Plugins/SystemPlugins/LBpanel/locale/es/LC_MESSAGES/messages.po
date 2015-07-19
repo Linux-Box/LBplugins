@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-07-17 17:55+0200\n"
+"PO-Revision-Date: 2015-07-19 17:55+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -1498,3 +1498,12 @@ msgstr "¿Enviar e-mail al usuario?"
 
 msgid "Send email on report by proxy to user?"
 msgstr "¿Enviar e-mail via proxy al usuario?"
+
+msgid "Please, wait while the EPG download"
+msgstr "Por favor, espera mientras se descarga el EPG"
+
+msgid "%s Epg Downloaded"
+msgstr "%s del EPG descargado"
+
+msgid "EPG Download Cancelled - Recording active"
+msgstr "Descarga de EPG cancelada - Grabación activa"
