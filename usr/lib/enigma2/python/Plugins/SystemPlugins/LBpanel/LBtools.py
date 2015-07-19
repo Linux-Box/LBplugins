@@ -2003,10 +2003,16 @@ class epgdn(ConfigListScreen, Screen):
 ## Timer especific function for epg
 class Ttimer(Screen):
         
-        skin = """<screen name="Ttimer" position="160,180" zPosition="10" size="900,70" title="SAT Download EPG" backgroundColor="#31000000" flags="wfNoBorder" >
-                        <widget name="srclabel" font="Regular;20" position="10,10" zPosition="2" valign="center" halign="center" size="880,30" foregroundColor="white" backgroundColor="black" transparent="0" />
-                        <widget source="progress" render="Progress" position="10,50" size="880,10" />
-                        </screen>"""
+        skin = """<screen name="Ttimer" position="center,center" zPosition="10" size="1280,720" title="SAT Download EPG" backgroundColor="white" flags="wfNoBorder">
+                        <widget name="srclabel" font="Regular; 15" position="424,614" zPosition="2" valign="center" halign="center" size="500,30" foregroundColor="black" backgroundColor="white" transparent="0" />
+                        <widget source="progress" render="Progress" position="322,577" foregroundColor="iplusPink" size="700,20" borderWidth="1" borderColor="grey" backgroundColor="black" />
+			<ePixmap pixmap="openplusHD/epg/epgdes.png" position="379,252" size="610,295" alphatest="blend" zPosition="1" />
+                      <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="openplusHD/marcotvepg.png" transparent="0" alphatest="off" />
+ <widget source="session.VideoPicture" render="Pig" position="64,196" size="375,175" backgroundColor="transparent" zPosition="-1" transparent="0" />
+<eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="un42b3" zPosition="-10" />
+ <eLabel text="PERSONALIZACION" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="un140b1" />
+<widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="800,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
+<eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" /></screen>"""
 
         def __init__(self, session):
                 global count
