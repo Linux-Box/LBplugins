@@ -2019,6 +2019,7 @@ class Ttimer(Screen):
                 self.skin = Ttimer.skin
                 Screen.__init__(self, session)
                 self['srclabel'] = Label(_("Please, wait while the EPG download"))
+                self.setTitle(_("SAT Download EPG"))
                 self["progress"] = Progress(int(count))
                 self['progress'].setRange(int(config.plugins.lbpanel.epgmhw2wait.value-5))
                 self.session = session
