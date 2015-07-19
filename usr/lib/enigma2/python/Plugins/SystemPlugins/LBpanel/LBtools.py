@@ -67,11 +67,12 @@ import RestartNetwork
 import urllib
 ## Epg
 import Screens.Standby
+from Components.Sources.Progress import Progress
 
-sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/ClearMem')
+#sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/ClearMem')
 
-import clearmen
-
+#import clearmen
+count = 0
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
@@ -2000,22 +2001,54 @@ class epgdn(ConfigListScreen, Screen):
 ################################################################################################################
 
 ## Timer especific function for epg
-class Ttimer():
+class Ttimer(Screen):
+        
+        skin = """<screen name="Ttimer" position="160,180" zPosition="10" size="900,70" title="SAT Download EPG" backgroundColor="#31000000" flags="wfNoBorder" >
+                        <widget name="srclabel" font="Regular;20" position="10,10" zPosition="2" valign="center" halign="center" size="880,30" foregroundColor="white" backgroundColor="black" transparent="0" />
+                        <widget source="progress" render="Progress" position="10,50" size="880,10" />
+                        </screen>"""
+
+        def __init__(self, session):
+                global count
+                self.skin = Ttimer.skin
+                Screen.__init__(self, session)
+                self['srclabel'] = Label(_("Please, wait while the EPG download"))
+                self["progress"] = Progress(int(count))
+                self['progress'].setRange(int(config.plugins.lbpanel.epgmhw2wait.value-5))
+                self.session = session
+                self.ctimer = enigma.eTimer()
+                count = 0
+                self.ctimer.callback.append(self.__run)
+                self.ctimer.start(1000,0)
+                                                                                                
+        def __run(self):
+                global count
+                count += 1
+                print ("%s Epg Downloaded") % count
+                self['progress'].setValue(count)
+                if count > config.plugins.lbpanel.epgmhw2wait.value:
+                        self.ctimer.stop()
+                        self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
+                        rDialog.stopDialog(self.session)
+                        self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 5 )
+                        self.close()
+pdialog = ""
+
+class runDialog():
         def __init__(self):
                 self.dialog = None
                         
-        def gotSession(self, session):
-                self.session = session
-                self.timer = enigma.eTimer() 
-                self.timer.callback.append(self.run)
-                self.timer.start(3000, True)
-                                                                                                
-        def run(self):
-                self.timer.stop()
-                time.sleep(float(config.plugins.lbpanel.epgmhw2wait.value))
-                self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
-                self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 5 )                                                                                                                                        
-
+        def startDialog(self, session):
+                global pdialog
+                pdialog = session.instantiateDialog(Ttimer)
+                pdialog.show()
+                                
+        def stopDialog(self, session):
+                global pdialog
+                pdialog.hide()
+                                                                                                                                                                        
+rDialog = runDialog()
+                                                                                                                                                                        
 
 class epgscript(ConfigListScreen, Screen):
 	skin = """
@@ -2099,16 +2132,17 @@ class epgscript(ConfigListScreen, Screen):
 	        self.session.nav.playService(eServiceReference(reftozap))
 
 	def downepg(self):
+	        global count
 	        recordings = self.session.nav.getRecordings()
 	        rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 	        mytime = time.time()
 	        if not recordings  or (rec_time > 0 and rec_time - mytime() < 360):
-                        channel = "1:0:1:75C6:422:1:C00000:0:0:0:"
+	                channel = "1:0:1:75C6:422:1:C00000:0:0:0:"
                         self.zapTo(channel)
-                        fo = open("/tmp/.lbepg","a+")
-                        fo.close()
-                        mt = Ttimer()
-                        mt.gotSession(self.session)
+	                ## Crea y muestra la barra de dialogo
+	                diag = runDialog()
+	                diag.startDialog(self.session) 
+                        
                 else:
                         self.mbox = self.session.open(MessageBox,(_("EPG Download Cancelled - Recording active")), MessageBox.TYPE_INFO, timeout = 5 )
 
