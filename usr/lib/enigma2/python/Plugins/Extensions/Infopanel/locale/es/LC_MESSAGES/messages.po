@@ -1290,7 +1290,7 @@ msgstr "Administrador de dispositivos"
 
 #: QuickMenu.py:480
 msgid "Download Softcams"
-msgstr "escaragr Softcam"
+msgstr "Descargar Softcam"
 
 #: QuickMenu.py:483
 msgid "Video Settings"
