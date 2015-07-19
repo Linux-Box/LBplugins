@@ -2006,8 +2006,8 @@ class Ttimer(Screen):
         skin = """<screen name="Ttimer" position="center,center" zPosition="10" size="1280,720" title="SAT Download EPG" backgroundColor="white" flags="wfNoBorder">
                         <widget name="srclabel" font="Regular; 15" position="424,614" zPosition="2" valign="center" halign="center" size="500,30" foregroundColor="black" backgroundColor="white" transparent="0" />
                         <widget source="progress" render="Progress" position="322,577" foregroundColor="iplusPink" size="700,20" borderWidth="1" borderColor="grey" backgroundColor="black" />
-			<ePixmap pixmap="openplusHD/epg/epgdes.png" position="379,252" size="610,295" alphatest="blend" zPosition="1" />
-                      <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="openplusHD/marcotvepg.png" transparent="0" alphatest="off" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/epgdes.png" position="379,252" size="610,295" alphatest="blend" zPosition="1" />
+                      <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotvepg.png" transparent="0" alphatest="off" />
  <widget source="session.VideoPicture" render="Pig" position="64,196" size="375,175" backgroundColor="transparent" zPosition="-1" transparent="0" />
 <eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="un42b3" zPosition="-10" />
  <eLabel text="PERSONALIZACION" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="un140b1" />
