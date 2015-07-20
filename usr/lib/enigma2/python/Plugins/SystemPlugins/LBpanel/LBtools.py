@@ -2663,7 +2663,7 @@ class libmemori(ConfigListScreen, Screen):
     <eLabel position="60,451" size="65,57" transparent="0" foregroundColor="white" backgroundColor="#ecbc13" zPosition="-6" />
     <eLabel position="96,489" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="0,0" size="1280,720" transparent="0" zPosition="-15" backgroundColor="#d6d6d6" />
-    <ePixmap position="38,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
+    <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
     <eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="#42b3" zPosition="-10" />
     <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
