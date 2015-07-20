@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: Infopanel\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-17 00:53+0200\n"
-"PO-Revision-Date: 2015-07-18 15:32+0100\n"
-"Last-Translator: VillaK\n"
+"PO-Revision-Date: 2015-07-20 16:40+0200\n"
+"Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: LANGUAGE <lala@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.8.2\n"
 
 #: CamStart.py:10
 msgid "0 (disabled)"
@@ -35,7 +35,7 @@ msgstr "5 (predeterminado)"
 
 #: CamStart.py:14
 msgid "10"
-msgstr "16:10"
+msgstr "10"
 
 #: CamStart.py:18
 msgid "5"
@@ -47,15 +47,15 @@ msgstr "10 (predeterminado)"
 
 #: CamStart.py:20
 msgid "20"
-msgstr "20 minutos"
+msgstr "20"
 
 #: CamStart.py:21
 msgid "30"
-msgstr "30 días"
+msgstr "30"
 
 #: CamStart.py:22
 msgid "60"
-msgstr "60 minutos"
+msgstr "0"
 
 #: CamStart.py:23
 msgid "120"
@@ -183,8 +183,8 @@ msgid ""
 "Are you sure you want to delete this:\n"
 " "
 msgstr ""
-"¿Seguro que quieres borrar este historial?\n"
-"  "
+"¿Seguro que quieres borrar esto?\n"
+" "
 
 #: CronManager.py:245
 msgid "Remove Confirmation"
@@ -232,11 +232,11 @@ msgstr "Usar como HDD"
 
 #: MountManager.py:91 QuickMenu.py:738
 msgid "Wait please while scanning for devices..."
-msgstr "Por favor, espera mientras se buscan dispositivos..."
+msgstr "Por favor, espera mientras se buscan dispositivos…"
 
 #: MountManager.py:166 MountManager.py:408 QuickMenu.py:795
 msgid "HARD DISK: "
-msgstr "Disco duro en modo de espera tras"
+msgstr "Disco duro: "
 
 #: MountManager.py:194 MountManager.py:196 MountManager.py:200
 #: MountManager.py:202 MountManager.py:420 QuickMenu.py:820 QuickMenu.py:822
@@ -264,24 +264,24 @@ msgstr "TB"
 #: MountManager.py:212 MountManager.py:225 MountManager.py:431
 #: MountManager.py:444 QuickMenu.py:836 QuickMenu.py:847
 msgid "GB"
-msgstr "%d Gb"
+msgstr "GB"
 
 #: MountManager.py:214 MountManager.py:227 MountManager.py:433
 #: MountManager.py:446 QuickMenu.py:838 QuickMenu.py:849
 msgid "MB"
-msgstr "%d Mb"
+msgstr "MB"
 
 #: MountManager.py:236 QuickMenu.py:858
 msgid "Mount: "
-msgstr "Montaje"
+msgstr "Montaje: "
 
 #: MountManager.py:236 QuickMenu.py:858
 msgid "Device: "
-msgstr "Dispositivo actual: "
+msgstr "Dispositivo: "
 
 #: MountManager.py:236 QuickMenu.py:858
 msgid "Type: "
-msgstr "Tipo"
+msgstr "Tipo: "
 
 #: MountManager.py:258
 msgid "Mount failed"
@@ -314,11 +314,11 @@ msgstr "Por favor, espero mientras se buscan dispositivos en tu receptor…"
 
 #: MountManager.py:476
 msgid "Updating mount locations."
-msgstr "Actualizando ruta de montaje"
+msgstr "Actualizando ubicación de montaje."
 
 #: MountManager.py:478
 msgid "Please wait."
-msgstr "Por favor, espera..."
+msgstr "Por favor, espera."
 
 #: MountManager.py:481, python-format
 msgid ""
@@ -366,7 +366,7 @@ msgstr "Predeterminado (grabaciones instantáneas)"
 
 #: plugin.py:57 plugin.py:59
 msgid "Infopanel"
-msgstr "Proteger InfoPanel"
+msgstr "InfoPanel"
 
 #: plugin.py:57 plugin.py:59
 msgid "Timer List"
@@ -390,7 +390,7 @@ msgstr "Predeterminado (Timeshift)"
 
 #: plugin.py:75
 msgid "Toggle Pillarbox <> Pan&Scan"
-msgstr "Pan&scan"
+msgstr "Cambiar entre Columnas <> Pan&Scan"
 
 #: plugin.py:75
 msgid "Teletext"
@@ -402,23 +402,23 @@ msgstr "Off"
 
 #: plugin.py:85
 msgid "1 min."
-msgstr "%d min"
+msgstr "1 min."
 
 #: plugin.py:85
 msgid "5 min."
-msgstr "5"
+msgstr "5 min."
 
 #: plugin.py:85
 msgid "10 min."
-msgstr "%d min"
+msgstr "10 min."
 
 #: plugin.py:85
 msgid "15 min."
-msgstr "%d min"
+msgstr "15 min."
 
 #: plugin.py:85
 msgid "30 min."
-msgstr "%d min"
+msgstr "30 min."
 
 #: plugin.py:337
 msgid "SoftcamPanel"
@@ -486,7 +486,7 @@ msgstr "MultiQuickButton"
 
 #: plugin.py:537
 msgid "InfoPanel"
-msgstr "Proteger InfoPanel"
+msgstr "InfoPanel"
 
 #: plugin.py:538
 msgid "Image-Version"
@@ -510,7 +510,7 @@ msgstr "Red"
 
 #: plugin.py:543 plugin.py:997
 msgid "Ram"
-msgstr "RAM libre: %s MB"
+msgstr "RAM"
 
 #: plugin.py:544
 msgid "SystemInfo"
@@ -534,7 +534,7 @@ msgstr "Mtd"
 
 #: plugin.py:558 plugin.py:1033
 msgid "Module"
-msgstr "Iniciar módulo"
+msgstr "Módulo"
 
 #: plugin.py:559 plugin.py:1051
 msgid "Partitions"
@@ -542,7 +542,7 @@ msgstr "Particiones"
 
 #: plugin.py:560 plugin.py:1060
 msgid "Swap"
-msgstr "Swap libre:"
+msgstr "Swap"
 
 #: plugin.py:561 plugin.py:1015
 msgid "Top"
@@ -991,7 +991,7 @@ msgstr "Selecciona tu idioma para Audio/Subtítulos"
 
 #: QuickMenu.py:314
 msgid "VideoEnhancement Setup"
-msgstr "Configuración de la mejora de vídeo"
+msgstr "Configurar mejora de vídeo"
 
 #: QuickMenu.py:321
 msgid "Setup tuner(s)"
@@ -1174,7 +1174,7 @@ msgstr "Convertir sistema de archivos ext3 a ext4"
 
 #: QuickMenu.py:388
 msgid "Softcam"
-msgstr "Panel Softcam"
+msgstr "Softcam"
 
 #: QuickMenu.py:391
 msgid "AV Setup"
@@ -1210,43 +1210,43 @@ msgstr "Servicios de red"
 
 #: QuickMenu.py:427
 msgid "Samba"
-msgstr "Configurar Samba"
+msgstr "Samba"
 
 #: QuickMenu.py:429
 msgid "NFS"
-msgstr "Configurar NFS"
+msgstr "NFS"
 
 #: QuickMenu.py:431
 msgid "FTP"
-msgstr "Configurar FTP"
+msgstr "FTP"
 
 #: QuickMenu.py:433
 msgid "AFP"
-msgstr "Configurar AFP"
+msgstr "AFP"
 
 #: QuickMenu.py:435
 msgid "OpenVPN"
-msgstr "Configurar OpenVPN"
+msgstr "OpenVPN"
 
 #: QuickMenu.py:437
 msgid "MiniDLNA"
-msgstr "Configurar MiniDLNA"
+msgstr "MiniDLNA"
 
 #: QuickMenu.py:439
 msgid "Inadyn"
-msgstr "Historial Inadyn"
+msgstr "Inadyn"
 
 #: QuickMenu.py:441
 msgid "SABnzbd"
-msgstr "Configurar SABnzbd"
+msgstr "SABnzbd"
 
 #: QuickMenu.py:443
 msgid "uShare"
-msgstr "Historial de uShare"
+msgstr "uShare"
 
 #: QuickMenu.py:445
 msgid "Telnet"
-msgstr "Interfaz Telnet"
+msgstr "Telnet"
 
 #: QuickMenu.py:447
 msgid "RemoteTuner"
@@ -1306,7 +1306,7 @@ msgstr "Idioma automático"
 
 #: QuickMenu.py:489
 msgid "Audio Sync"
-msgstr "Configurar sincronización de audio"
+msgstr "Sincronización de audio"
 
 #: QuickMenu.py:491
 msgid "VideoEnhancement"
@@ -1354,7 +1354,7 @@ msgstr ""
 
 #: QuickMenu.py:528
 msgid "Select Backup files"
-msgstr "Archivos de copia de seguridad"
+msgstr "Selecciona archivos de copia de seguridad"
 
 #: QuickMenu.py:530
 msgid "Software Manager Setup"
@@ -1390,7 +1390,7 @@ msgstr "Inicialización"
 
 #: QuickMenu.py:552
 msgid "Filesystem Check"
-msgstr "Comprobar sistema de ficheros"
+msgstr "Comprobar sistema de archivos"
 
 #: QuickMenu.py:554
 msgid "Convert ext3 to ext4"
@@ -1425,7 +1425,7 @@ msgstr ""
 
 #: QuickMenu.py:762
 msgid "No Devices Found !!"
-msgstr "No se han encontrado dispositivos de almacenamiento"
+msgstr "No se han encontrado dispositivos."
 
 #: RestartNetwork.py:14
 msgid "Please wait while your network is restarting..."
@@ -1437,7 +1437,7 @@ msgstr "Reiniciar adaptador de red"
 
 #: ScriptRunner.py:35
 msgid "Job Manager"
-msgstr "Ver Trabajo"
+msgstr "Administrador de tareas"
 
 #: ScriptRunner.py:48 SoftcamPanel.py:744
 msgid "Close"
@@ -1453,7 +1453,7 @@ msgstr "Selecciona el script a ejecutar:"
 
 #: ScriptRunner.py:67
 msgid "Are you ready to run the script ?"
-msgstr "Selecciona el script a ejecutar:"
+msgstr "¿Estás listo para ejecutar el script?"
 
 #: ScriptRunner.py:69
 msgid "Run Confirmation"
@@ -1461,7 +1461,7 @@ msgstr "Ejecutar"
 
 #: ScriptRunner.py:71
 msgid "You have no script to run."
-msgstr "Selecciona el script a ejecutar:"
+msgstr "No hay scripts a ejecutar."
 
 #: SoftcamPanel.py:95 SoftcamPanel.py:315 SoftcamPanel.py:564
 msgid "Restart"
@@ -1496,7 +1496,7 @@ msgstr "Panel Softcam"
 #: SoftcamPanel.py:205 SoftcamPanel.py:253 SoftcamPanel.py:255
 #: SoftcamPanel.py:259 SoftcamPanel.py:265
 msgid "no cam"
-msgstr "CAM activa: "
+msgstr "No hay CAM"
 
 #: SoftcamPanel.py:250 SoftcamPanel.py:350
 msgid "Select Cam 1"
@@ -1508,11 +1508,11 @@ msgstr "Seleccionar Cam 2"
 
 #: SoftcamPanel.py:271
 msgid "CCcamInfo"
-msgstr "Mostrar CCcamInfo en el menú de extensiones"
+msgstr "CCcamInfo"
 
 #: SoftcamPanel.py:274
 msgid "OscamInfo"
-msgstr "Mostrar OscamInfo en el menú de extensiones"
+msgstr "OscamInfo"
 
 #: SoftcamPanel.py:316 SoftcamPanel.py:535
 msgid "active CAM 1: "
@@ -1558,7 +1558,7 @@ msgstr "Creando script de arrnaque de cam"
 
 #: SoftcamPanel.py:574
 msgid "Waiting..."
-msgstr "Esperando"
+msgstr "Esperando…"
 
 #: SoftcamPanel.py:590
 msgid "Starting Cam 2: "
@@ -1582,11 +1582,11 @@ msgstr "¿Quieres instalar el paquete?\n"
 
 #: SoftcamPanel.py:773
 msgid "Install Failed !!"
-msgstr "Fallido"
+msgstr "Instalación fallida."
 
 #: SoftcamPanel.py:775
 msgid "Install Finished."
-msgstr "Instalación o borrado terminado."
+msgstr "Instalación finalizada."
 
 #: SoftcamPanel.py:787
 msgid "Install Softcams"
@@ -1602,11 +1602,11 @@ msgstr "Intentando descargar una nueva lista de paquetes. Espera…"
 
 #: SoftcamPanel.py:799
 msgid "Package list"
-msgstr "Actualización de lista de paquetes"
+msgstr "Lista de paquetes"
 
 #: SoftcamPanel.py:799
 msgid "Getting Softcam list. Please wait..."
-msgstr "Leyendo información del complemento. Espere…"
+msgstr "Obteniendo lista de Softcams. Espere…"
 
 #: SoftcamPanel.py:803 SoftwarePanel.py:166
 msgid "Error"
@@ -1620,7 +1620,7 @@ msgstr ""
 
 #: SoftwarePanel.py:21
 msgid "Software Panel"
-msgstr "Software"
+msgstr "Panel Software"
 
 #: SoftwarePanel.py:62
 msgid "Update"
@@ -1660,11 +1660,11 @@ msgstr "Nada que actualizar"
 
 #: SoftwarePanel.py:169
 msgid "There are no updates available."
-msgstr "Actualizaciones disponibles:"
+msgstr "No hay actualizaciones disponibles."
 
 #: sundtek.py:30
 msgid "DVB-S/SVB-S2"
-msgstr "DVB-S"
+msgstr "DVB-S/SVB-S2"
 
 #: sundtek.py:30
 msgid "DVB-C"
@@ -1724,11 +1724,11 @@ msgstr "USB/Red"
 
 #: sundtek.py:105
 msgid "Network IP"
-msgstr "Habilitar la comprobación de IPs de la red"
+msgstr "IP de red"
 
 #: sundtek.py:116 sundtek.py:235
 msgid "Sundtek Control Center"
-msgstr "Centrar"
+msgstr "Sundtek Control Center"
 
 #: sundtek.py:119 sundtek.py:222
 msgid ""
@@ -1762,11 +1762,11 @@ msgstr ""
 
 #: sundtek.py:225, python-format
 msgid "comand line: %s"
-msgstr "Una línea"
+msgstr "Línea de comando: %s"
 
 #: sundtek.py:241 sundtek.py:242 sundtek.py:243
 msgid "sundtek control center plugin"
-msgstr "sundtek control center plugin"
+msgstr "Complemento Sundtek Control Center"
 
 #: sundtek.py:241 sundtek.py:242 sundtek.py:243
 msgid "installs the sundtek driver and runs related shellscripts"
@@ -1786,7 +1786,7 @@ msgstr "Tamaño Swap:"
 
 #: SwapManager.py:100
 msgid "Status:"
-msgstr "Estado"
+msgstr "Estado:"
 
 #: SwapManager.py:101 SwapManager.py:225
 msgid "Inactive"
@@ -1830,30 +1830,23 @@ msgstr ""
 
 #: SwapManager.py:283
 msgid "32 Mb"
-msgstr "%d Mb"
+msgstr "32 Mb"
 
 #: SwapManager.py:283
 msgid "64 Mb"
-msgstr ""
-"Este complemento crea un pendrive USB que puede utilizarse para actualizar "
-"el firmware de tu %s %s sin necesidad de red o conexión WLAN.\n"
-"Primero, se preparará la memoria USB para que sea arrancable.\n"
-"Después, puede descargarse una imagen NFI desde el servidor de "
-"actualizaciones y guardarse en la memoria.\n"
-"Si ya tienes una memoria USB arrancable, insértala ahora.  De lo contrario, "
-"inserta una memoria USB con un tamaño mínimo de 64 MB."
+msgstr "64 Mb"
 
 #: SwapManager.py:283
 msgid "128 Mb"
-msgstr "%d Mb"
+msgstr "128 Mb"
 
 #: SwapManager.py:283
 msgid "256 Mb"
-msgstr "%d Mb"
+msgstr "256 Mb"
 
 #: SwapManager.py:283
 msgid "512 Mb"
-msgstr "%d Mb"
+msgstr "512 Mb"
 
 #: SwapManager.py:284
 msgid "Select the Swap File Size:"
