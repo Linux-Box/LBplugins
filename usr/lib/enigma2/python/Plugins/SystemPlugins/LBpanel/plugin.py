@@ -743,7 +743,7 @@ class installsorys(Screen):
 			MultiContentEntryText(pos = (80, 29), size = (630, 18), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 3 is the Description
 			MultiContentEntryPixmapAlphaTest(pos = (5, 5), size = (50, 40), png = 2), # index 4 is the pixmap
 				],
-	"fonts": [gFont("Regular", 23),gFont("Regular", 16)],
+	"fonts": [gFont("Regular", 15),gFont("Regular", 13)],
 	"itemHeight": 50
 	}
 	</convert>
@@ -846,7 +846,7 @@ class installconfigemus(Screen):
 			MultiContentEntryText(pos = (80, 29), size = (630, 18), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 3 is the Description
 			MultiContentEntryPixmapAlphaTest(pos = (5, 5), size = (50, 40), png = 2), # index 4 is the pixmap
 				],
-	"fonts": [gFont("Regular", 23),gFont("Regular", 16)],
+	"fonts": [gFont("Regular", 17),gFont("Regular", 13)],
 	"itemHeight": 50
 	}
 	</convert>
@@ -949,7 +949,7 @@ class installpicon(Screen):
 			MultiContentEntryText(pos = (80, 29), size = (630, 18), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 3 is the Description
 			MultiContentEntryPixmapAlphaTest(pos = (5, 5), size = (50, 40), png = 2), # index 4 is the pixmap
 				],
-	"fonts": [gFont("Regular", 23),gFont("Regular", 16)],
+	"fonts": [gFont("Regular", 15),gFont("Regular", 13)],
 	"itemHeight": 50
 	}
 	</convert>
@@ -979,8 +979,7 @@ class installpicon(Screen):
     <widget source="global.CurrentTime" render="Label" position="900,50" size="300,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;16" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Date</convert>
     </widget>
-    <widget source="session.VideoPicture" render="Pig" position="64,196" size="375,175" backgroundColor="transparent" zPosition="-1" transparent="0" />
-    <widget source="session.CurrentService" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=25,repeat=150,startdelay=1500,always=0" position="101,491" size="215,45" font="Regular; 22" transparent="1" valign="center" zPosition="2" backgroundColor="black" foregroundColor="white" noWrap="1" halign="center">
+   <ePixmap position="78,207" zPosition="-1" size="352,124" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/preview.png" transparent="0" alphatest="blend" /> <widget source="session.CurrentService" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=25,repeat=150,startdelay=1500,always=0" position="101,491" size="215,45" font="Regular; 22" transparent="1" valign="center" zPosition="2" backgroundColor="black" foregroundColor="white" noWrap="1" halign="center">
       <convert type="ServiceName">Name</convert>
     </widget>
     <widget source="session.CurrentService" render="Label" zPosition="3" font="Regular; 22" position="66,649" size="215,50" halign="center" backgroundColor="black" transparent="1" noWrap="1" foregroundColor="white">
@@ -993,7 +992,7 @@ class installpicon(Screen):
     <eLabel position="60,451" size="65,57" transparent="0" foregroundColor="white" backgroundColor="#ecbc13" zPosition="-6" />
     <eLabel position="96,489" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="0,0" size="1280,720" transparent="0" zPosition="-15" backgroundColor="#d6d6d6" />
-    <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
+    <ePixmap position="46,180" zPosition="-2" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv1.png" transparent="0" />
     <eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="#42b3" zPosition="-10" />
     <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
@@ -1051,7 +1050,7 @@ class installskinpart(Screen):
 			MultiContentEntryText(pos = (80, 29), size = (630, 18), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 3 is the Description
 			MultiContentEntryPixmapAlphaTest(pos = (5, 5), size = (50, 40), png = 2), # index 4 is the pixmap
 				],
-	"fonts": [gFont("Regular", 23),gFont("Regular", 16)],
+	"fonts": [gFont("Regular", 17),gFont("Regular", 13)],
 	"itemHeight": 50
 	}
 	</convert>
@@ -1081,8 +1080,7 @@ class installskinpart(Screen):
     <widget source="global.CurrentTime" render="Label" position="900,50" size="300,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;16" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Date</convert>
     </widget>
-    <widget source="session.VideoPicture" render="Pig" position="64,196" size="375,175" backgroundColor="transparent" zPosition="-1" transparent="0" />
-    <widget source="session.CurrentService" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=25,repeat=150,startdelay=1500,always=0" position="101,491" size="215,45" font="Regular; 22" transparent="1" valign="center" zPosition="2" backgroundColor="black" foregroundColor="white" noWrap="1" halign="center">
+    <ePixmap position="46,180" zPosition="-2" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv1.png" transparent="0" alphatest="blend" />  <widget source="session.CurrentService" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=25,repeat=150,startdelay=1500,always=0" position="101,491" size="215,45" font="Regular; 22" transparent="1" valign="center" zPosition="2" backgroundColor="black" foregroundColor="white" noWrap="1" halign="center">
       <convert type="ServiceName">Name</convert>
     </widget>
     <widget source="session.CurrentService" render="Label" zPosition="3" font="Regular; 22" position="66,649" size="215,50" halign="center" backgroundColor="black" transparent="1" noWrap="1" foregroundColor="white">
@@ -1095,7 +1093,7 @@ class installskinpart(Screen):
     <eLabel position="60,451" size="65,57" transparent="0" foregroundColor="white" backgroundColor="#ecbc13" zPosition="-6" />
     <eLabel position="96,489" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="0,0" size="1280,720" transparent="0" zPosition="-15" backgroundColor="#d6d6d6" />
-    <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
+    <ePixmap position="78,207" zPosition="-1" size="352,124" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/preview.png" transparent="0" alphatest="blend" />
     <eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="#42b3" zPosition="-10" />
     <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
@@ -1267,7 +1265,6 @@ class installspinner(Screen):
 #################################################
 class skindefaultpart(Screen):
 	skin = """
-
 <screen name="skindefaultpart" position="0,0" size="1280,720" title="LBpanel-Download skins default part">
     <widget source="menu" render="Listboxlb" position="591,191" size="629,350" scrollbarMode="showNever" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1">
 	<convert type="TemplatedMultiContent">
@@ -1347,7 +1344,7 @@ class skindefaultpart(Screen):
 	def feedlist(self):
 		self.list = []
 		os.system("opkg update")
-		camdlist = os.popen("opkg list | grep -i skindefaultlb")
+		camdlist = os.popen('opkg list | awk "/skinpartlb/ && /default/"')
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
 			try:
@@ -1378,7 +1375,7 @@ class installbootlogo(Screen):
 			MultiContentEntryText(pos = (80, 29), size = (630, 18), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 3 is the Description
 			MultiContentEntryPixmapAlphaTest(pos = (5, 5), size = (50, 40), png = 2), # index 4 is the pixmap
 				],
-	"fonts": [gFont("Regular", 23),gFont("Regular", 16)],
+	"fonts": [gFont("Regular", 19),gFont("Regular", 13)],
 	"itemHeight": 50
 	}
 	</convert>
@@ -1408,8 +1405,7 @@ class installbootlogo(Screen):
     <widget source="global.CurrentTime" render="Label" position="900,50" size="300,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;16" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Date</convert>
     </widget>
-    <widget source="session.VideoPicture" render="Pig" position="64,196" size="375,175" backgroundColor="transparent" zPosition="-1" transparent="0" />
-    <widget source="session.CurrentService" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=25,repeat=150,startdelay=1500,always=0" position="101,491" size="215,45" font="Regular; 22" transparent="1" valign="center" zPosition="2" backgroundColor="black" foregroundColor="white" noWrap="1" halign="center">
+    <ePixmap position="78,207" zPosition="-1" size="352,124" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/preview.png" transparent="0" alphatest="blend" /> <widget source="session.CurrentService" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=25,repeat=150,startdelay=1500,always=0" position="101,491" size="215,45" font="Regular; 22" transparent="1" valign="center" zPosition="2" backgroundColor="black" foregroundColor="white" noWrap="1" halign="center">
       <convert type="ServiceName">Name</convert>
     </widget>
     <widget source="session.CurrentService" render="Label" zPosition="3" font="Regular; 22" position="66,649" size="215,50" halign="center" backgroundColor="black" transparent="1" noWrap="1" foregroundColor="white">
@@ -1422,7 +1418,7 @@ class installbootlogo(Screen):
     <eLabel position="60,451" size="65,57" transparent="0" foregroundColor="white" backgroundColor="#ecbc13" zPosition="-6" />
     <eLabel position="96,489" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="0,0" size="1280,720" transparent="0" zPosition="-15" backgroundColor="#d6d6d6" />
-    <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
+    <ePixmap position="46,180" zPosition="-2" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv1.png" transparent="0" />
     <eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="#42b3" zPosition="-10" />
     <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
@@ -1480,7 +1476,7 @@ class installremove(Screen):
 			MultiContentEntryText(pos = (80, 29), size = (630, 18), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 3 is the Description
 			MultiContentEntryPixmapAlphaTest(pos = (5, 5), size = (50, 40), png = 2), # index 4 is the pixmap
 				],
-	"fonts": [gFont("Regular", 23),gFont("Regular", 16)],
+	"fonts": [gFont("Regular", 19),gFont("Regular", 13)],
 	"itemHeight": 50
 	}
 	</convert>
