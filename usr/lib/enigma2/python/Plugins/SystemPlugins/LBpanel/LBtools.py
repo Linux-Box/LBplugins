@@ -31,6 +31,7 @@ from Components.Sources.StaticText import StaticText
 from Components.config import config, getConfigListEntry, ConfigText, ConfigPassword, ConfigClock, ConfigNumber, ConfigSelection, ConfigSubsection, ConfigYesNo,  config, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.Harddisk import harddiskmanager
+from Components.Console import Console as iConsole
 from Components.Pixmap import Pixmap
 from Components.Sources.List import List
 from Components.Input import Input
@@ -93,6 +94,45 @@ def _(txt):
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
+
+def remove_line(filename, what):
+	if fileExists(filename):
+		file_read = open(filename).readlines()
+		file_write = open(filename, 'w')
+		for line in file_read:
+			if what not in line:
+				file_write.write(line)
+		file_write.close()
+
+def insert_line(filename, what, numberline):
+    if fileExists(filename):
+        count_line = 1
+        file_in = open(filename).readlines()
+        file_out = open(filename, 'w')
+        for line in file_in:
+            if count_line is numberline:
+                file_out.write(what)
+            file_out.write(line)
+            count_line += 1
+        file_out.close()
+
+def add_line(filename, what):
+	if os.path.isfile(filename):
+		with open(filename, 'a') as file_out:
+			file_out.write(what)
+			file_out.close()
+
+def cronpath():
+	path = "/etc/cron/crontabs/root"
+	if fileExists("/etc/cron/crontabs"):
+		return "/etc/cron/crontabs/root"
+	elif fileExists("/etc/bhcron"):
+		return "/etc/bhcron/root"
+	elif fileExists("/etc/crontabs"):
+		return "/etc/crontabs/root"
+	elif fileExists("/var/spool/cron/crontabs"):
+		return "/var/spool/cron/crontabs/root"
+	return path
 ######################################################################################
 config.plugins.lbpanel = ConfigSubsection()
 config.plugins.lbpanel.scriptpath = ConfigSelection(default = "/usr/CamEmu/script/", choices = [
@@ -333,6 +373,20 @@ config.plugins.lbpanel.cold = ConfigSelection(default = "0", choices = [
 		("0", _("No")),
 		("1", _("Yes")),
 		])
+config.plugins.lbpanel.droptime = ConfigSelection(default = '0', choices = [
+		('0', _("Off")),
+		('15', _("15 min")),
+		('30', _("30 min")),
+		('45', _("45 min")),
+		('1', _("60 min")),
+		('2', _("120 min")),
+		('3', _("180 min")),
+		])
+config.plugins.lbpanel.dropmode = ConfigSelection(default = '1', choices = [
+		('1', _("free pagecache")),
+		('2', _("free dentries and inodes")),
+		('3', _("free pagecache, dentries and inodes")),
+		])
 config.plugins.lbpanel.autosave = ConfigSelection(default = '0', choices = [
 		('0', _("Off")),
 		('29', _("30 min")),
@@ -514,7 +568,7 @@ class ToolsScreen(Screen):
 			elif returnValue is "com_six":
 				self.session.openWithCallback(self.mList, NTPScreen)
 			elif returnValue is "com_seven":
-				self.session.open(clearmen.SetupMenu)
+				self.session.open(libmemori)
 			elif returnValue is "com_dos":
 				self.session.open(RestartNetwork.RestartNetwork)
 			elif returnValue is "com_scan":
@@ -1452,9 +1506,12 @@ size="629,350">
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel - Kernel Modules Manager"))
+		self.iConsole = iConsole()
+		self.index = 0
+		self.runmodule = ''
+		self.module_list()
+		self.setTitle(_("Kernel Modules Manager"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
-
 		{
 			"ok": self.Ok,
 			"cancel": self.exit,
@@ -1470,61 +1527,69 @@ size="629,350">
 		self["key_blue"] = StaticText(_("Reboot"))
 		self.list = []
 		self["menu"] = List(self.list)
-		self.CfgMenu()
+		
+	def module_list(self):
+		self.iConsole.ePopen('find /lib/modules/*/kernel/drivers/ | grep .ko', self.IsRunnigModDig)
 		
 	def BlueKey(self):
-		os.system("reboot")
+		self.session.open(TryQuitMainloop, 2)
 		
 	def YellowKey(self):
-		self.session.openWithCallback(self.CfgMenu,lsmodScreen)
+		self.session.open(lsmodScreen)
 		
-	def IsRunnigModDig(self, what):
-		modrun = os.popen ("lsmod | grep %s" % (what[:-4]))
-		for line in modrun:
-			if line.find(what[:-4]) > -1:
-				return 1
-				break
-		return 0
+	def IsRunnigModDig(self, result, retval, extra_args):
+		self.iConsole.ePopen('lsmod', self.run_modules_list, result)
 		
-	def CfgMenu(self):
+	def run_modules_list(self, result, retval, extra_args):
+		self.runmodule = ''
+		if retval is 0:
+			for line in result.splitlines():
+				self.runmodule += line.split()[0].replace('-','_') + ' '
+		self.CfgMenu(extra_args)
+					
+	def CfgMenu(self, result):
 		self.list = []
-		if  os.path.exists("/etc/modutils"):
-			DvrName = os.popen("modprobe -l -t drivers")
-		else:
-			DvrName = os.popen("modprobe -l | grep  drivers")
-		for line in DvrName:
-			kernDrv = line.split("/")
-			if self.IsRunnigModDig(kernDrv[-1]) == 1:
-				minipng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/kernelminimem.png"))
-				self.list.append((kernDrv[-1],line,minipng, "1"))
-			else:
-				minipng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/kernelmini.png"))
-				self.list.append((kernDrv[-1],line,minipng, "0"))
-		self["menu"].setList(self.list)
+		minipngmem = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/kernelminimem.png"))
+		minipng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/kernelmini.png"))
+		if result:
+			for line in result.splitlines():
+				if line.split('/')[-1][:-3].replace('-','_') in self.runmodule.replace('-','_'):
+					self.list.append((line.split('/')[-1], line.split('kernel')[-1], minipngmem, line, True))
+				else:
+					self.list.append((line.split('/')[-1], line.split('kernel')[-1], minipng, line, False))
+			self["menu"].setList(self.list)
+			self["menu"].setIndex(self.index)
 		self["actions"] = ActionMap(["OkCancelActions"], {"ok": self.Ok, "cancel": self.close}, -1)
 
 	def Ok(self):
-		item = self["menu"].getCurrent()
-		isrunning = item[3]
-		nlist = item[0]
-		if item[3] == "0":
-			os.system(("modprobe %s" % (nlist[:-4])))
-			if  os.path.exists("/etc/modutils"):	
-				os.system(("echo %s>/etc/modutils/%s" % (nlist[:-4],nlist[:-4])))
-			else:
-				os.system(("echo %s>/etc/modules-load.d/%s.conf" % (nlist[:-4],nlist[:-4])))
-			os.chmod(("/etc/modules-load.d/%s.conf" % (nlist[:-4])), 0644)
-			os.system("update-modules")
-			self.mbox = self.session.open(MessageBox,(_("Loaded %s") % (nlist)), MessageBox.TYPE_INFO, timeout = 4 )
+		module_name = ''
+		module_name =  self["menu"].getCurrent()[-2].split('/')[-1][:-3]
+		if not self["menu"].getCurrent()[-1]:
+			self.load_module(module_name)
 		else:
-			os.system(("rmmod %s" % ( nlist[:-4])))
-			if  os.path.exists("/etc/modutils"):
-				os.system(("rm /etc/modutils/%s" % (nlist[:-4])))
-			else:
-				os.system(("rm /etc/modules-load.d/%s.conf" % (nlist[:-4])))
-			os.system("update-modules")
-			self.mbox = self.session.open(MessageBox,(_("UnLoaded %s") % (nlist)), MessageBox.TYPE_INFO, timeout = 4 )
-		self.CfgMenu()
+			self.unload_modele(module_name)
+		self.index = self["menu"].getIndex()
+		
+	def unload_modele(self, module_name):
+		self.iConsole.ePopen("modprobe -r %s" % module_name, self.rem_conf, module_name)
+		
+	def rem_conf(self, result, retval, extra_args):
+		self.iConsole.ePopen('rm -f /etc/modules-load.d/%s.conf' % extra_args, self.info_mess, extra_args)
+		
+	def info_mess(self, result, retval, extra_args):
+		self.mbox = self.session.open(MessageBox,_("UnLoaded %s.ko") % extra_args, MessageBox.TYPE_INFO, timeout = 4 )
+		self.module_list()
+		
+	def load_module(self, module_name):
+		self.iConsole.ePopen("modprobe %s" % module_name, self.write_conf, module_name)
+		
+	def write_conf(self, result, retval, extra_args):
+		if retval is 0:
+			with open('/etc/modules-load.d/%s.conf' % extra_args, 'w') as autoload_file:
+				autoload_file.write('%s' % extra_args)
+				autoload_file.close()
+			self.mbox = self.session.open(MessageBox,_("Loaded %s.ko") % extra_args, MessageBox.TYPE_INFO, timeout = 4 )
+			self.module_list()
 		
 	def exit(self):
 		self.close()
@@ -1595,9 +1660,9 @@ size="629,350">
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel - List Kernel Drivers in Memory"))
+		self.iConsole = iConsole()
+		self.setTitle(_("Kernel Drivers in Memory"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
-
 		{
 			"cancel": self.exit,
 			"back": self.exit,
@@ -1607,17 +1672,22 @@ size="629,350">
 		self.list = []
 		self["menu"] = List(self.list)
 		self.CfgMenu()
-		
+
 	def CfgMenu(self):
+		self.iConsole.ePopen('lsmod', self.run_modules_list)
+		
+	def run_modules_list(self, result, retval, extra_args):
 		self.list = []
-		DvrName = os.popen("lsmod")
+		aliasname = ''
 		minipng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/kernelminimem.png"))
-		for line in DvrName:
-			item = line.split(" ")
-			size = line[:28].split(" ")
-			minipng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/kernelminimem.png"))
-			if line.find("Module") != 0:
-				self.list.append((item[0],( _("size: %s  %s") % (size[-1], item[-1])), minipng))
+		if retval is 0:
+			for line in result.splitlines():
+				if len(line.split()) > 3:
+					aliasname = line.split()[-1]
+				else: 
+					aliasname = ' '
+				if 'Module' not in line:
+					self.list.append((line.split()[0],( _("size: %s  %s") % (line.split()[1], aliasname)), minipng))
 		self["menu"].setList(self.list)
 		self["actions"] = ActionMap(["OkCancelActions"], { "cancel": self.close}, -1)
 
@@ -2551,45 +2621,145 @@ class Info2Screen(Screen):
 			list = " "
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions"], { "cancel": self.close, "up": self["text"].pageUp, "left": self["text"].pageUp, "down": self["text"].pageDown, "right": self["text"].pageDown,}, -1)
 ######################################################################################
-#class Libermen(Screen):
-#	skin = """
-#	<screen name="ScriptScreen" position="center,160" size="1150,500" title="LBpanel - Free Memory" >
-#	    <ePixmap position="715,10" zPosition="1" size="450,700" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/#fondo12.png" alphatest="blend" transparent="1" />
-#			<widget name="list" position="20,10" size="660,450" scrollbarMode="showOnDemand" />
-#		<ePixmap position="20,488" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/red.png" alphatest="blend" />
-#		<widget source="key_red" render="Label" position="20,458" zPosition="2" size="170,30" font="Regular;20" halign="center" #valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-#		</screen>"""
+######################################################################################
+class libmemori(ConfigListScreen, Screen):
+	skin = """
+<screen name="libmemori" position="0,0" size="1280,720" title="cache flush">
+    
+  <widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
+<!-- colores keys -->
+    <!-- rojo -->
+    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
+    <!-- amarillo -->
+    <eLabel text="FLUSH NOW" position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
+    <!-- verde -->
+    <eLabel text="GUARDAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
+    <!-- azul -->
+    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
+    <!-- fin colores keys -->
+    <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
+    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
+    <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
+      <convert type="ClockToText">Format:%-H:%M</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="900,50" size="300,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;16" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
+      <convert type="ClockToText">Date</convert>
+    </widget>
+    <widget source="session.VideoPicture" render="Pig" position="64,196" size="375,175" backgroundColor="transparent" zPosition="-1" transparent="0" />
+    <widget source="session.CurrentService" render="RunningText" options="movetype=running,startpoint=0,direction=left,steptime=25,repeat=150,startdelay=1500,always=0" position="101,491" size="215,45" font="Regular; 22" transparent="1" valign="center" zPosition="2" backgroundColor="black" foregroundColor="white" noWrap="1" halign="center">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" zPosition="3" font="Regular; 22" position="66,649" size="215,50" halign="center" backgroundColor="black" transparent="1" noWrap="1" foregroundColor="white">
+      <convert type="VtiInfo">TempInfo</convert>
+    </widget>
+    <eLabel position="192,459" size="165,107" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
+    <eLabel position="251,410" size="165,107" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-2" />
+    <eLabel position="281,449" size="165,107" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-6" />
+    <eLabel position="233,499" size="165,107" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-5" />
+    <eLabel position="60,451" size="65,57" transparent="0" foregroundColor="white" backgroundColor="#ecbc13" zPosition="-6" />
+    <eLabel position="96,489" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
+    <eLabel position="0,0" size="1280,720" transparent="0" zPosition="-15" backgroundColor="#d6d6d6" />
+    <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
+    <eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="#42b3" zPosition="-10" />
+    <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
+    <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
+    <eLabel position="320,640" size="901,50" transparent="0" foregroundColor="white" backgroundColor="#929292" />
+    <eLabel position="591,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
+    <widget source="MemoryLabel" render="Label" position="55,235" size="150,22" font="Regular; 20" halign="right" foregroundColor="#aaaaaa" />
+	<widget source="memTotal" render="Label" position="220,235" zPosition="2" size="450,22" font="Regular;20" halign="left" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
+	<widget source="bufCache" render="Label" position="220,260" zPosition="2" size="450,22" font="Regular;20" halign="left" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
+   </screen>"""
 
-#	def __init__(self, session):
-#		Screen.__init__(self, session)
-#		self.session = session
-#		self.setTitle(_("LBpanel - Free Memory"))
-#		self.scrpit_menu()
-#		self["key_red"] = StaticText(_("Close"))
-#		self["actions"] = ActionMap(["OkCancelActions","ColorActions"], {"ok": self.run, "red": self.exit, "cancel": self.close}, -1)
-#		
-#	def scrpit_menu(self):
-#		list = []
-#		try:
-#			list = os.listdir("%s" % config.plugins.lbpanel.scriptpath1.value[:-1])
-#			list = [x[:-3] for x in list if x.endswith('.sh')]
-#		except:
-#			list = []
-#		list.sort()
-#		self["list"] = MenuList(list)
-#		
-#	def run(self):
-#		script = self["list"].getCurrent()
-#		if script is not None:
-#			name = ("%s%s.sh" % (config.plugins.lbpanel.scriptpath1.value, script))
-#			os.chmod(name, 0755)
-#			self.session.open(Console, script.replace("_", " "), cmdlist=[name])
-#			
-#	def config_path(self):
-#		self.session.open(ConfigScript)
+	def __init__(self, session):
+		self.session = session
+		Screen.__init__(self, session)
+		self.list = []
+		self.iConsole = iConsole()
+		self.path = cronpath()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_yellow"] = StaticText(_("Flush Now"))
+		self["memTotal"] = StaticText()
+		self["bufCache"] = StaticText()
+		self["MemoryLabel"] = StaticText(_("Memory:"))
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "EPGSelectActions"],
+		{
+			"red": self.cancel,
+			"cancel": self.cancel,
+			"green": self.save_values,
+			"yellow": self.ClearNow,
+			"ok": self.save_values
+		}, -2)
+		self.list.append(getConfigListEntry(_("Autotime cache flush"), config.plugins.lbpanel.droptime))
+		self.list.append(getConfigListEntry(_("Set cache flush mode"), config.plugins.lbpanel.dropmode))
+		ConfigListScreen.__init__(self, self.list)
+		self.onShow.append(self.Title)
+		
+	def Title(self):
+		self.setTitle(_("Cache Flush"))
+		self.infomem()
 
-#	def exit(self):
-#		self.close()
+	def cancel(self):
+		for i in self["config"].list:
+			i[1].cancel()
+		self.close()
+		
+	def infomem(self):
+		memtotal = memfree = buffers = cached = ''
+		persent = 0
+		if fileExists('/proc/meminfo'):
+			for line in open('/proc/meminfo'):
+				if 'MemTotal:' in line:
+					memtotal = line.split()[1]
+				elif 'MemFree:' in line:
+					memfree = line.split()[1]
+				elif 'Buffers:' in line:
+					buffers = line.split()[1]
+				elif 'Cached:' in line:
+					cached = line.split()[1]
+			if '' is not memtotal and '' is not memfree:
+				persent = int(memfree) / (int(memtotal) / 100)
+			self["memTotal"].text = _("Total: %s Kb  Free: %s Kb (%s %%)") % (memtotal, memfree, persent)
+			self["bufCache"].text = _("Buffers: %s Kb  Cached: %s Kb") % (buffers, cached)
+
+	def save_values(self):
+		if not fileExists(self.path):
+			open(self.path, 'a').close()
+		for i in self["config"].list:
+			i[1].save()
+		configfile.save()
+		if fileExists(self.path):
+			remove_line(self.path, 'drop_caches')
+		if config.plugins.lbpanel.droptime.value is not '0':
+			self.cron_setup()
+		self.mbox = self.session.open(MessageBox,(_("configuration is saved")), MessageBox.TYPE_INFO, timeout = 4 )
+
+	def cron_setup(self):
+		if config.plugins.lbpanel.droptime.value is not '0':
+			with open(self.path, 'a') as cron_root:
+				if config.plugins.lbpanel.droptime.value not in ('1', '2', '3'):
+					cron_root.write('*/%s * * * * echo %s > /proc/sys/vm/drop_caches\n' % (config.plugins.lbpanel.droptime.value, config.plugins.lbpanel.dropmode.value))
+				else:
+					cron_root.write('1 */%s * * * echo %s > /proc/sys/vm/drop_caches\n' % (config.plugins.lbpanel.droptime.value, config.plugins.lbpanel.dropmode.value))
+				cron_root.close()
+			with open('%scron.update' % self.path[:-4], 'w') as cron_update:
+				cron_update.write('root')
+				cron_update.close()
+
+	def ClearNow(self):
+		self.iConsole.ePopen("echo %s > /proc/sys/vm/drop_caches" % config.plugins.lbpanel.dropmode.value, self.Finish)
+		
+	def Finish(self, result, retval, extra_args):
+		if retval is 0:
+			self.mbox = self.session.open(MessageBox,(_("Cache flushed")), MessageBox.TYPE_INFO, timeout = 4 )
+		else:
+			self.mbox = self.session.open(MessageBox,(_("error...")), MessageBox.TYPE_INFO, timeout = 4 )
+		self.infomem()
 
 ######################################################################################
 class scanhost(ConfigListScreen, Screen):
