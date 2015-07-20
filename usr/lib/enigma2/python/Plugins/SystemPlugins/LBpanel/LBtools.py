@@ -2625,20 +2625,19 @@ class Info2Screen(Screen):
 class libmemori(ConfigListScreen, Screen):
 	skin = """
 <screen name="libmemori" position="0,0" size="1280,720" title="cache flush">
-    
   <widget position="591,191" size="629,350" foregroundColor="#ffffff" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" zPosition="-2" />
 <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel text="MANUAL" position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="GUARDAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_yellow" render="Label" position="621,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="912,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
@@ -2664,7 +2663,7 @@ class libmemori(ConfigListScreen, Screen):
     <eLabel position="60,451" size="65,57" transparent="0" foregroundColor="white" backgroundColor="#ecbc13" zPosition="-6" />
     <eLabel position="96,489" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="0,0" size="1280,720" transparent="0" zPosition="-15" backgroundColor="#d6d6d6" />
-    <ePixmap position="53,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
+    <ePixmap position="38,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotv.png" transparent="0" />
     <eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="#42b3" zPosition="-10" />
     <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />

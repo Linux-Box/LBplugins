@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-07-19 17:55+0200\n"
-"Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
+"PO-Revision-Date: 2015-07-20 19:12+0100\n"
+"Last-Translator: VillaK\n"
 "Language-Team: netbook\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -204,8 +204,8 @@ msgid ""
 "Can't unmount partiton, make sure it is not being used for swap or record/"
 "timeshift paths"
 msgstr ""
-"No se puede desmontar la partición, asegúrese de que no está siendo utilizada "
-"para intercambio o rutas de grabar/Timeshift"
+"No se puede desmontar la partición, asegúrese de que no está siendo "
+"utilizada para intercambio o rutas de grabar/Timeshift"
 
 msgid "Canada"
 msgstr "Canadá"
@@ -673,7 +673,8 @@ msgstr "LBpanel oscam.conf cambiar: - %s"
 msgid ""
 "LBpanel settings has been updated, restart Enigma2 to activate your changes."
 msgstr ""
-"Se han actualizado los ajustes de LBpanel, reinicie Enigma2 para activar los cambios."
+"Se han actualizado los ajustes de LBpanel, reinicie Enigma2 para activar los "
+"cambios."
 
 msgid "LBpanel-Download Config Emus"
 msgstr "LBpanel - Descargar Config Emus"
@@ -1132,8 +1133,7 @@ msgid "Sorry, I can not find lbscan.py"
 msgstr "Imposible encontrar lbscan.py"
 
 msgid "Sorry, I can not find scan data, scan first"
-msgstr ""
-"Imposible encontrar datos de escaneo, realiza una búsqueda primero"
+msgstr "Imposible encontrar datos de escaneo, realiza una búsqueda primero"
 
 msgid "Sorry, the EPG download error"
 msgstr "Error al descargar EPG"
@@ -1379,8 +1379,7 @@ msgid "Wait please while scanning for devices..."
 msgstr "Por favor, espere mientras se buscan dispositivos..."
 
 msgid "Wait please while scanning your STB_BOX devices..."
-msgstr ""
-"Por favor, espere mientras se buscan los dispositivos de su STB_BOX..."
+msgstr "Por favor, espere mientras se buscan los dispositivos de su STB_BOX..."
 
 msgid "We"
 msgstr "Mie"
@@ -1510,3 +1509,33 @@ msgstr "Descarga de EPG cancelada - Grabación activa"
 
 msgid "SAT Download EPG"
 msgstr "Descarga EPG D+ SAT"
+
+msgid "Cache Flush"
+msgstr "Liberar memoria"
+
+msgid "Cache flushed"
+msgstr "Caché vaciado"
+
+msgid "Total: %s Kb  Free: %s Kb (%s %%)"
+msgstr "Total: %s Kb  Libre: %s Kb (%s %%)"
+
+msgid "Buffers: %s Kb  Cached: %s Kb"
+msgstr "Bufers: %s Kb  En caché: %s Kb"
+
+msgid "Flush Now"
+msgstr "Vaciar ahora"
+
+msgid "Autotime cache flush"
+msgstr "Vaciar caché auto"
+
+msgid "Set cache flush mode"
+msgstr "Modo de vaciado caché"
+
+msgid "free pagecache"
+msgstr "pagecache liberar"
+
+msgid "free dentries and inodes"
+msgstr "dentries e inodes liberar"
+
+msgid "free pagecache, dentries and inodes"
+msgstr "dentries e inodes y pagecache liberar"
