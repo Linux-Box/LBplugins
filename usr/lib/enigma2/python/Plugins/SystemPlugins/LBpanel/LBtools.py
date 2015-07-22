@@ -2006,7 +2006,7 @@ class epgdn(ConfigListScreen, Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel - EPG Movistar+ download epg.dat"))
+		self.setTitle(_("LBpanel - EPG Movistar+ Internet"))
 		self.list = []
 		#self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
 		#self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
@@ -2175,7 +2175,7 @@ class epgscript(ConfigListScreen, Screen):
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="320,640" size="901,50" transparent="0" foregroundColor="white" backgroundColor="#929292" />
     <eLabel position="591,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
-    <eLabel text="PULSA MENU DESCARGA INTERNET" position="780,650" size="390,32" zPosition="5" font="Regular;20" valign="center" halign="center" backgroundColor="white" foregroundColor="black" transparent="0" />
+    <eLabel text="PULSE MENU PARA DESCARGA INTERNET" position="812,650" size="400,32" zPosition="5" font="Regular;20" valign="center" halign="center" backgroundColor="white" foregroundColor="black" transparent="0" />
     <widget name="LabelStatus" backgroundColor="#6e6e6e" foregroundColor="#BDBDBD" transparent="1" position="630,500" zPosition="2" size="550,60"  font="Regular;20"/>
     <ePixmap position="595,502" zPosition="1" size="25,25" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/bomb.png" transparent="1" alphatest="on" />
         <widget name="LabelStatus1" backgroundColor="#6e6e6e" foregroundColor="#BDBDBD" transparent="1" position="630,450" zPosition="2" size="550,60"  font="Regular;20"/>
@@ -2212,8 +2212,8 @@ class epgscript(ConfigListScreen, Screen):
 			"ok": self.save
 			
 		}, -2)
-		self["LabelStatus"] = Label(_("Pulse menu si quiere descargar epg desde servidor internet"))
-		self["LabelStatus1"] = Label(_("Pulse info si quiere ver equivalencias epg"))
+		self["LabelStatus"] = Label(_("Press MENU to download EPG from Internet"))
+		self["LabelStatus1"] = Label(_("Press INFO to show EPG equivalences file"))
 	
 	def zapTo(self, reftozap):
 	        self.session.nav.playService(eServiceReference(reftozap))

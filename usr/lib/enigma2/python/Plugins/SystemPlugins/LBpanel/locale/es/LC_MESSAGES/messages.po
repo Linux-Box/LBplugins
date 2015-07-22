@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-07-21 20:43+0200\n"
+"PO-Revision-Date: 2015-07-22 21:14+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.8.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "%s"
@@ -310,11 +310,11 @@ msgstr "Descarga -deps"
 msgid "Download -nodeps"
 msgstr "Descarga -nodeps"
 
+msgid "Download D+ EPG"
+msgstr "Descargar EPG Movistar+"
+
 msgid "Download Config Emus"
 msgstr "Config. de emus"
-
-msgid "Download D+ EPG"
-msgstr "Descargar EPG D+"
 
 msgid "Download Picon"
 msgstr "Picon"
@@ -558,15 +558,6 @@ msgstr "LBpanel - Archivos Crashlog"
 
 msgid "LBpanel - Cron Manager"
 msgstr "LBpanel - Administrador Cron"
-
-msgid "LBpanel - D+ EPG"
-msgstr "LBpanel - EPG D+"
-
-msgid "LBpanel - D+ SAT EPG"
-msgstr "LBpanel - EPG D+ SAT"
-
-msgid "LBpanel - EPG D+"
-msgstr "LBpanel - EPG D+"
 
 msgid "LBpanel - Free Memory"
 msgstr "LBpanel - Memoria Libre"
@@ -976,9 +967,6 @@ msgstr "Corre"
 msgid "Russian Federation"
 msgstr "Federación Rusa"
 
-msgid "SAT Down D+ EPG"
-msgstr "Descargar EPG D+ SAT"
-
 msgid "Sa"
 msgstr "Sáb"
 
@@ -1002,9 +990,6 @@ msgstr "Tipo de búsqueda"
 
 msgid "Scaning hosts, please wait"
 msgstr "Escaneando hosts. Por favor, espere"
-
-msgid "Select D+ epg"
-msgstr "Seleccionar epg D+"
 
 msgid "Select SoftCam or CardServer: - %s"
 msgstr "Selecciona Softcam o CardServer: - %s"
@@ -1507,9 +1492,6 @@ msgstr "%s del EPG descargado"
 msgid "EPG Download Cancelled - Recording active"
 msgstr "Descarga de EPG cancelada - Grabación activa"
 
-msgid "SAT Download EPG"
-msgstr "Descarga EPG D+ SAT"
-
 msgid "Cache Flush"
 msgstr "Liberar memoria"
 
@@ -1539,3 +1521,15 @@ msgstr "Liberar dentries e inodes"
 
 msgid "free pagecache, dentries and inodes"
 msgstr "Liberar pagecache, dentries e inodes"
+
+msgid "LBpanel - EPG Movistar+"
+msgstr "LBpanel - EPG Movistar+"
+
+msgid "LBpanel - EPG Movistar+ Internet"
+msgstr "LBpanel - EPG Movistar+ Internet"
+
+msgid "Press MENU to download EPG from Internet"
+msgstr "Pulse MENU para descargar EPG desde Internet"
+
+msgid "Press INFO to show EPG equivalences file"
+msgstr "Pulse INFO para ver el archivo de equivalencias EPG"
