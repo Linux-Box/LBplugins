@@ -2143,7 +2143,7 @@ class epgscript(ConfigListScreen, Screen):
     <eLabel text="GUARDAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel text="MANUAL" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel text="EQUIVALENCIAS" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
@@ -2178,8 +2178,7 @@ class epgscript(ConfigListScreen, Screen):
     <eLabel text="PULSE MENU PARA DESCARGA INTERNET" position="812,650" size="400,32" zPosition="5" font="Regular;20" valign="center" halign="center" backgroundColor="white" foregroundColor="black" transparent="0" />
     <widget name="LabelStatus" backgroundColor="#6e6e6e" foregroundColor="#BDBDBD" transparent="1" position="630,500" zPosition="2" size="550,60"  font="Regular;20"/>
     <ePixmap position="595,502" zPosition="1" size="25,25" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/bomb.png" transparent="1" alphatest="on" />
-        <widget name="LabelStatus1" backgroundColor="#6e6e6e" foregroundColor="#BDBDBD" transparent="1" position="630,450" zPosition="2" size="550,60"  font="Regular;20"/>
-    <ePixmap position="595,452" zPosition="1" size="25,25" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/bomb.png" transparent="1" alphatest="on" />
+        
    </screen>"""
 
 	def __init__(self, session):
@@ -2199,21 +2198,20 @@ class epgscript(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("EPG Download"))
-		self["key_blue"] = StaticText(_("Manual"))
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "CCcamInfoActions"],
+		self["key_blue"] = StaticText(_("Equivalencias"))
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
-			"info": self.mhw,
 			"menu": self.keyMenu,
 			"red": self.cancel,
 			"cancel": self.cancel,
 			"green": self.save,
 			"yellow": self.downepg,
-			"blue": self.manual,
+			"blue": self.mhw,
 			"ok": self.save
 			
 		}, -2)
 		self["LabelStatus"] = Label(_("Press MENU to download EPG from Internet"))
-		self["LabelStatus1"] = Label(_("Press INFO to show EPG equivalences file"))
+		
 	
 	def zapTo(self, reftozap):
 	        self.session.nav.playService(eServiceReference(reftozap))
@@ -2258,8 +2256,8 @@ class epgscript(ConfigListScreen, Screen):
 		configfile.save()
 		self.mbox = self.session.open(MessageBox,(_("configuration is saved")), MessageBox.TYPE_INFO, timeout = 4 )
 ################################################################################################################
-	def manual(self):
-		self.session.open(epgdmanual)
+	#def manual(self):
+		#self.session.open(epgdmanual)
 ################################################################################################################
 	def restart(self):
 		self.session.open(TryQuitMainloop, 3)
