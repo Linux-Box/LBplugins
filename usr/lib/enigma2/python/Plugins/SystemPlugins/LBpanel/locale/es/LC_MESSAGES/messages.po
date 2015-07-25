@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-07-25 10:22+0200\n"
+"PO-Revision-Date: 2015-07-25 15:28+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -566,7 +566,13 @@ msgid "LBpanel - Ipk Remove"
 msgstr "LBpanel - Eliminar IPK"
 
 msgid "LBpanel - Kernel Modules Manager"
-msgstr "LBpanel - Administrador Módulos de Kernel"
+msgstr "LBpanel - Administrador módulos del kernel"
+
+msgid "Kernel Modules Manager"
+msgstr "LBpanel - Administrador módulos del kernel"
+
+msgid "Kernel Drivers in Memory"
+msgstr "LBpanel - Drivers del kernel en memoria"
 
 msgid "LBpanel - LinuxBox Feeds Download"
 msgstr "LBpanel - LinuxBox Feeds Descargas"
