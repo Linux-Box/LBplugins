@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-07-24 21:21+0200\n"
+"PO-Revision-Date: 2015-07-25 10:22+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -503,7 +503,7 @@ msgid "Kazakhstan"
 msgstr "Kazajstán"
 
 msgid "Kernel Version:"
-msgstr "Kernel Version:"
+msgstr "Versión de kernel:"
 
 msgid "Kernel modules,swap,ftp,samba,crond,usb"
 msgstr "Módulos de Kernel,swap,ftp,samba,crond,usb"
@@ -512,13 +512,13 @@ msgid "Korea"
 msgstr "Corea"
 
 msgid "LB-Crashlog viewer"
-msgstr "LB-Crashlog visor"
+msgstr "LB-Visor de historial de errores"
 
 msgid "LB-Installer"
 msgstr "LB-Instalador"
 
 msgid "LB-Newcamd.list switcher"
-msgstr "Selector LB-Newcamd.list "
+msgstr "LB-Selector Newcamd.list"
 
 msgid "LB-Script Executer"
 msgstr "LB-Ejecutor Script"
@@ -527,7 +527,7 @@ msgid "LB-Unmount USB"
 msgstr "LB-Desmonta USB"
 
 msgid "LB-Wicardd.conf switcher"
-msgstr "LB-Wicard.conf selector"
+msgstr "LB-Selector Wicardd.conf"
 
 msgid "LBPanel"
 msgstr "LBPanel"
@@ -566,7 +566,7 @@ msgid "LBpanel - Ipk Remove"
 msgstr "LBpanel - Eliminar IPK"
 
 msgid "LBpanel - Kernel Modules Manager"
-msgstr "LBpanel -  Administrador Módulos de Kernel"
+msgstr "LBpanel - Administrador Módulos de Kernel"
 
 msgid "LBpanel - LinuxBox Feeds Download"
 msgstr "LBpanel - LinuxBox Feeds Descargas"
@@ -617,13 +617,13 @@ msgid "LBpanel - View Crashlog file"
 msgstr "LBpanel - Ver archivo crashlog"
 
 msgid "LBpanel ACJ Mbox Script"
-msgstr "LBpanel ACJ Mbox Script"
+msgstr "LBpanel - ACJ Mbox Script"
 
 msgid "LBpanel CamEmu"
-msgstr "LBpanel CamEmu"
+msgstr "LBpanel - CamEmu"
 
 msgid "LBpanel CamEmu: %s"
-msgstr "LBpanel CamEmu: %s"
+msgstr "LBpanel - CamEmu: %s"
 
 msgid "LBpanel Global Parameters"
 msgstr "Parámetros globales LBpanel"
@@ -638,16 +638,16 @@ msgid "LBpanel Menu/Extensionmenu config"
 msgstr "LBpanel Menu/Extensionmenu config"
 
 msgid "LBpanel Mgcamd Info"
-msgstr "LBpanel Mgcamd Info"
+msgstr "LBpanel - Mgcamd Info"
 
 msgid "LBpanel Server Edit"
-msgstr "LBpanel Editor de Servidor"
+msgstr "LBpanel - Editor de Servidor"
 
 msgid "LBpanel Sofcam Key Updater"
-msgstr "LBpanel Sofcam Actualizador de claves"
+msgstr "LBpanel - Actualizador de claves Softcam"
 
 msgid "LBpanel SoftEmu Control"
-msgstr "LBpanel SoftEmu Control"
+msgstr "LBpanel - SoftEmu Control"
 
 msgid "LBpanel Ver: 1.1"
 msgstr "LBpanel Ver: 1.1"
@@ -656,7 +656,7 @@ msgid "LBpanel has been updated, restart Enigma2 to activate your changes."
 msgstr "LBpanel se ha actualizado, reinicie Enigma2 para activar los cambios."
 
 msgid "LBpanel newcamd.list editor"
-msgstr "LBpanel newcamd.list editor"
+msgstr "LBpanel - Editor newcamd.list"
 
 msgid "LBpanel oscam.conf Switcher: - %s"
 msgstr "LBpanel oscam.conf cambiar: - %s"
@@ -770,7 +770,7 @@ msgid "Mexico"
 msgstr "México"
 
 msgid "Mgcamd Editor"
-msgstr "Mgcamd Editor"
+msgstr "Editor Mgcamd"
 
 msgid "Mgcamd Info"
 msgstr "Mgcamd Info"
@@ -992,7 +992,7 @@ msgid "Scaning hosts, please wait"
 msgstr "Escaneando hosts. Por favor, espere"
 
 msgid "Select SoftCam or CardServer: - %s"
-msgstr "Selecciona Softcam o CardServer: - %s"
+msgstr "Seleccione Softcam o CardServer: - %s"
 
 msgid "Select ntp server"
 msgstr "Seleccione el servidor NTP"
@@ -1376,22 +1376,22 @@ msgid "bad day %s"
 msgstr "dia malo %s"
 
 msgid "bad format"
-msgstr "formato malo"
+msgstr "Formato erróneo"
 
 msgid "bad hour %s"
-msgstr "hora mala %s"
+msgstr "Hora mala %s"
 
 msgid "bad minute %s"
-msgstr "minuto malo %s"
+msgstr "Minuto malo %s"
 
 msgid "bad month %s"
-msgstr "mes malo %s"
+msgstr "Mes malo %s"
 
 msgid "bad year %s"
-msgstr "año malo %s"
+msgstr "Año malo %s"
 
 msgid "configuration is saved"
-msgstr "configuración guardada"
+msgstr "Configuración guardada"
 
 msgid "epg.dat reloaded"
 msgstr "epg.dat recargado"
@@ -1403,19 +1403,19 @@ msgid "epg.dat saved"
 msgstr "epg.dat guardado"
 
 msgid "install & forced install ipk, bh.tgz, tar.gz, nab.tgz from /tmp"
-msgstr "instala & fuerza instalar ipk, bh.tgz, tar.gz, nab.tgz desde /tmp"
+msgstr "Instala & fuerza instalar ipk, bh.tgz, tar.gz, nab.tgz desde /tmp"
 
 msgid "new time not available"
-msgstr "nueva hora no disponible"
+msgstr "Nueva hora no disponible"
 
 msgid "no"
-msgstr "no"
+msgstr "No"
 
 msgid "none"
-msgstr "ninguno"
+msgstr "Ninguno"
 
 msgid "not confirmed"
-msgstr "no confirmado"
+msgstr "No confirmado"
 
 msgid "oscam.conf Switcher: - %s"
 msgstr "oscam.conf Cambiar: - %s"
@@ -1424,19 +1424,19 @@ msgid "press OK to enable/disable server"
 msgstr "Pulsa OK para activar/desactivar servidor"
 
 msgid "reFresh"
-msgstr "refrescar"
+msgstr "Refrescar"
 
 msgid "reload epg.dat failed"
-msgstr "recarga epg.dat fallida"
+msgstr "Recarga epg.dat fallida"
 
 msgid "size: %s  %s"
-msgstr "tamaño: %s  %s"
+msgstr "Tamaño: %s  %s"
 
 msgid "spain d+"
 msgstr "españa d+"
 
 msgid "unavailable"
-msgstr "no disponible"
+msgstr "No disponible"
 
 msgid "waitpid0000"
 msgstr "waitpid0000"
