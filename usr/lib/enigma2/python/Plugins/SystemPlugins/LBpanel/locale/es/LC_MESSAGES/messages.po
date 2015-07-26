@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-07-25 15:28+0200\n"
+"PO-Revision-Date: 2015-07-26 10:03+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -141,7 +141,7 @@ msgid "Auto Update Settings"
 msgstr "Auto actualizar ajustes"
 
 msgid "Auto download epg.dat"
-msgstr "Auto descarga epg.dat"
+msgstr "Descarga automática epg.dat"
 
 msgid "Auto download hour"
 msgstr "Hora de descarga automática"
@@ -848,10 +848,10 @@ msgid "Oct."
 msgstr "Oct."
 
 msgid "Off"
-msgstr "Off"
+msgstr "No"
 
 msgid "On"
-msgstr "On"
+msgstr "Si"
 
 msgid "Oscam Info"
 msgstr "Oscam Info"
@@ -983,7 +983,7 @@ msgid "Save copy in ../epgtmp.gz"
 msgstr "Guardar copia en ../epgtmp.gz"
 
 msgid "Save epg.dat"
-msgstr "Guartdar epg.dat"
+msgstr "Guardar epg.dat"
 
 msgid "Scan Peer Security"
 msgstr "Análisis de seguridad de peer"
@@ -1500,6 +1500,9 @@ msgstr "Descarga de EPG cancelada - Grabación activa"
 
 msgid "Cache Flush"
 msgstr "Liberar memoria"
+
+msgid "LBpanel - Cache Flush"
+msgstr "LBpanel - Liberar Memoria"
 
 msgid "Cache flushed"
 msgstr "Caché vaciada"

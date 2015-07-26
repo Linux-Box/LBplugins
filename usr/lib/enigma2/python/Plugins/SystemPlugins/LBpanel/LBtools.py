@@ -2316,7 +2316,7 @@ class epgdmanual(Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel - EPG D+"))
+		self.setTitle(_("LBpanel - EPG Movistar+ Internet"))
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save epg.dat"))
 		self["key_yellow"] = StaticText(_("Restore epg.dat"))
@@ -2735,9 +2735,9 @@ class libmemori(ConfigListScreen, Screen):
 		self.list = []
 		self.iConsole = iConsole()
 		self.path = cronpath()
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Save"))
-		self["key_yellow"] = StaticText(_("Flush Now"))
+		self["key_red"] = StaticText(_("CERRAR"))
+		self["key_green"] = StaticText(_("GUARDAR"))
+		self["key_yellow"] = StaticText(_("VACIAR AHORA"))
 		self["memTotal"] = StaticText()
 		self["bufCache"] = StaticText()
 		self["MemoryLabel"] = StaticText(_("Memory:"))
@@ -2755,7 +2755,7 @@ class libmemori(ConfigListScreen, Screen):
 		self.onShow.append(self.Title)
 		
 	def Title(self):
-		self.setTitle(_("Cache Flush"))
+		self.setTitle(_("LBpanel - Cache Flush"))
 		self.infomem()
 
 	def cancel(self):
