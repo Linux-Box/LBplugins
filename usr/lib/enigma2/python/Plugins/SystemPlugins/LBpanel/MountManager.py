@@ -393,36 +393,39 @@ class lbDevicePanelConf(Screen, ConfigListScreen):
 		self.updateList()
 
 	def updateList(self):
-		self.list = []
-		list2 = []
-		self.Console = Console()
-		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
-		sleep(0.5)
-		f = open('/tmp/devices.tmp', 'r')
-		swapdevices = f.read()
-		f.close()
-		if path.exists('/tmp/devices.tmp'):
-			remove('/tmp/devices.tmp')
-		swapdevices = swapdevices.replace('\n','')
-		swapdevices = swapdevices.split('/')
-		f = open('/proc/partitions', 'r')
-		for line in f.readlines():
-			parts = line.strip().split()
-			if not parts:
-				continue
-			device = parts[3]
-			if not search('sd[a-z][1-9]',device):
-				continue
-			if device in list2:
-				continue
-			if device in swapdevices:
-				continue
-			self.buildMy_rec(device)
-			list2.append(device)
-		f.close()
-		self['config'].list = self.list
-		self['config'].l.setList(self.list)
-		self['Linconn'].hide()
+		try:
+			self.list = []
+			list2 = []
+			self.Console = Console()
+			self.Console.ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}' >/tmp/devices.tmp")
+			sleep(0.5)
+			f = open('/tmp/devices.tmp', 'r')
+			swapdevices = f.read()
+			f.close()
+			if path.exists('/tmp/devices.tmp'):
+				remove('/tmp/devices.tmp')
+			swapdevices = swapdevices.replace('\n','')
+			swapdevices = swapdevices.split('/')
+			f = open('/proc/partitions', 'r')
+			for line in f.readlines():
+				parts = line.strip().split()
+				if not parts:
+					continue
+				device = parts[3]
+				if not search('sd[a-z][1-9]',device):
+					continue
+				if device in list2:
+					continue
+				if device in swapdevices:
+					continue
+				self.buildMy_rec(device)
+				list2.append(device)
+			f.close()
+			self['config'].list = self.list
+			self['config'].l.setList(self.list)
+			self['Linconn'].hide()
+		except:
+			print "Not mounts units detected"
 
 	def buildMy_rec(self, device):
 		try:

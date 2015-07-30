@@ -70,9 +70,6 @@ import urllib
 import Screens.Standby
 from Components.Sources.Progress import Progress
 
-#sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/ClearMem')
-
-#import clearmen
 count = 0
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
@@ -161,15 +158,6 @@ config.plugins.lbpanel.epgtime = ConfigClock(default = ((16*60) + 15) * 60) # 18
 config.plugins.lbpanel.epgtime2 = ConfigClock(default = ((16*60) + 15) * 60)
 config.plugins.lbpanel.epgmhw2wait = ConfigNumber(default = 240 ) # Four minutes default
 config.plugins.lbpanel.runeveryhour = ConfigYesNo(default = False)
-#config.plugins.lbpanel.weekday = ConfigSelection(default = "01", choices = [
-#		("00", _("Mo")),
-#		("01", _("Tu")),
-#		("02", _("We")),
-#		("03", _("Th")),
-#		("04", _("Fr")),
-#		("05", _("Sa")),
-#		("06", _("Su")),
-#		])
 ######################################################################
 config.plugins.lbpanel.min = ConfigSelection(default = "*", choices = [
 		("*", "*"),
@@ -1407,7 +1395,7 @@ class SystemScreen(Screen):
 		treepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/unusb.png"))
 		self.list.append((_("Manager Kernel Modules"),"1", _("Load & unload Kernel Modules"), onepng))
 		self.list.append((_("Cron Manager"),"5", _("Cron Manager"), fivepng))
-		self.list.append((_("Mount Manager"),"6", _("HArd Disc Manager"), seispng))
+		self.list.append((_("Mount Manager"),"6", _("Hard Disc Manager"), seispng))
 		self.list.append((_("Swap Manager"),"4", _("Start, Stop, Create, Remove Swap Files"), fourpng ))
 		self.list.append((_("My IP"),"3", _("Public IP"), treepng ))
 		self["menu"].setList(self.list)
