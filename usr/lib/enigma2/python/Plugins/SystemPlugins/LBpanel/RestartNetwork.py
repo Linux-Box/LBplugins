@@ -2,6 +2,21 @@ from Components.Network import iNetwork
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Components.Label import Label
+from Components.Language import language
+from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
+import gettext, os
+
+lang = language.getLanguage()
+os.environ["LANGUAGE"] = lang[:2]
+gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
+gettext.textdomain("enigma2")
+gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
+
+def _(txt):
+        t = gettext.dgettext("messages", txt)
+        if t == txt:
+                t = gettext.gettext(txt)
+        return t
 
 class RestartNetwork(Screen):
     def __init__(self, session):

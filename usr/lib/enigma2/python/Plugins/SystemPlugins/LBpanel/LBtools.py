@@ -518,8 +518,8 @@ class ToolsScreen(Screen):
 		eightpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/scan.png"))
 		self.list.append((_("Tools Crashlog"),"com_one", _("Manage crashlog files"), onepng ))
 		self.list.append((_("System Info"),"com_two", _("System info (free, dh -f)"), twopng ))
-		self.list.append((_("Download D+ EPG"),"com_tree", _("Download D+ EPG"), treepng ))
-		self.list.append((_("SAT Down D+ EPG"),"com_four", _("Download D+ EPG"), treepng ))
+		#self.list.append((_("Download D+ EPG"),"com_tree", _("Download D+ EPG"), treepng ))
+		self.list.append((_("EPG Movistar+"),"com_four", _("Download D+ EPG"), treepng ))
 		self.list.append((_("Scan Peer Security"),"com_scan", _("Check host security"), eightpng ))
 		self.list.append((_("NTP Sync"),"com_six", _("Ntp sync: 30 min,60 min,120 min, 240"), sixpng ))
 		self.list.append((_("User Scripts"),"com_five", _("User Scripts"), fivepng ))
@@ -547,8 +547,8 @@ class ToolsScreen(Screen):
 				self.session.openWithCallback(self.mList,CrashLogScreen)
 			elif returnValue is "com_two":
 				self.session.openWithCallback(self.mList,Info2Screen)
-			elif returnValue is "com_tree":
-				self.session.open(epgdn)
+			#elif returnValue is "com_tree":
+				#self.session.open(epgdn)
 			elif returnValue is "com_four":
 				self.session.open(epgscript)
 			elif returnValue is "com_five":
@@ -1994,7 +1994,7 @@ class epgdn(ConfigListScreen, Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel - D+ EPG"))
+		self.setTitle(_("LBpanel - EPG Movistar+ Internet"))
 		self.list = []
 		#self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
 		#self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
@@ -2063,12 +2063,12 @@ class Ttimer(Screen):
         
         skin = """<screen name="Ttimer" position="center,center" zPosition="10" size="1280,720" title="SAT Download EPG" backgroundColor="white" flags="wfNoBorder">
                         <widget name="srclabel" font="Regular; 15" position="424,614" zPosition="2" valign="center" halign="center" size="500,30" foregroundColor="black" backgroundColor="white" transparent="0" />
-                        <widget source="progress" render="Progress" position="322,577" foregroundColor="iplusPink" size="700,20" borderWidth="1" borderColor="grey" backgroundColor="black" />
+                        <widget source="progress" render="Progress" position="322,577" foregroundColor="#a61d4d" size="700,20" borderWidth="1" borderColor="grey" backgroundColor="black" />
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/epgdes.png" position="379,252" size="610,295" alphatest="blend" zPosition="1" />
                       <ePixmap position="46,180" zPosition="0" size="413,210" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/marcotvepg.png" transparent="0" alphatest="off" />
  <widget source="session.VideoPicture" render="Pig" position="64,196" size="375,175" backgroundColor="transparent" zPosition="-1" transparent="0" />
-<eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="un42b3" zPosition="-10" />
- <eLabel text="PERSONALIZACION" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="un140b1" />
+<eLabel position="60,30" size="1160,68" transparent="0" foregroundColor="white" backgroundColor="#42b3" zPosition="-10" />
+ <eLabel text="PERSONALIZACION" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
 <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="800,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
 <eLabel position="60,120" size="1160,50" transparent="0" foregroundColor="white" backgroundColor="black" /></screen>"""
 
@@ -2131,7 +2131,7 @@ class epgscript(ConfigListScreen, Screen):
     <eLabel text="GUARDAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel text="MANUAL" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel text="EQUIVALENCIAS" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
@@ -2163,12 +2163,16 @@ class epgscript(ConfigListScreen, Screen):
     <eLabel position="60,640" size="229,50" transparent="0" foregroundColor="white" backgroundColor="black" />
     <eLabel position="320,640" size="901,50" transparent="0" foregroundColor="white" backgroundColor="#929292" />
     <eLabel position="591,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
+    <eLabel text="PULSE MENU PARA DESCARGA INTERNET" position="812,650" size="400,32" zPosition="5" font="Regular;20" valign="center" halign="center" backgroundColor="white" foregroundColor="black" transparent="0" />
+    <widget name="LabelStatus" backgroundColor="#6e6e6e" foregroundColor="#BDBDBD" transparent="1" position="630,500" zPosition="2" size="550,60"  font="Regular;20"/>
+    <ePixmap position="595,502" zPosition="1" size="25,25" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/bomb.png" transparent="1" alphatest="on" />
+        
    </screen>"""
 
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel - D+ SAT EPG"))
+		self.setTitle(_("LBpanel - EPG Movistar+"))
 		self.list = []
 #		self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
 #		self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
@@ -2182,16 +2186,20 @@ class epgscript(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("EPG Download"))
-		self["key_blue"] = StaticText(_("Manual"))
+		self["key_blue"] = StaticText(_("Equivalencias"))
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
+			"menu": self.keyMenu,
 			"red": self.cancel,
 			"cancel": self.cancel,
 			"green": self.save,
 			"yellow": self.downepg,
-			"blue": self.manual,
+			"blue": self.mhw,
 			"ok": self.save
+			
 		}, -2)
+		self["LabelStatus"] = Label(_("Press MENU to download EPG from Internet"))
+		
 	
 	def zapTo(self, reftozap):
 	        self.session.nav.playService(eServiceReference(reftozap))
@@ -2210,6 +2218,12 @@ class epgscript(ConfigListScreen, Screen):
                         
                 else:
                         self.mbox = self.session.open(MessageBox,(_("EPG Download Cancelled - Recording active")), MessageBox.TYPE_INFO, timeout = 5 )
+
+	def keyMenu (self):
+		self.session.open(epgdn)
+
+	def mhw (self):
+		self.session.open(Viewmhw)
 
 	def cancel(self):
 		for i in self["config"].list:
@@ -2230,12 +2244,53 @@ class epgscript(ConfigListScreen, Screen):
 		configfile.save()
 		self.mbox = self.session.open(MessageBox,(_("configuration is saved")), MessageBox.TYPE_INFO, timeout = 4 )
 ################################################################################################################
-	def manual(self):
-		self.session.open(epgdmanual)
+	#def manual(self):
+		#self.session.open(epgdmanual)
 ################################################################################################################
 	def restart(self):
 		self.session.open(TryQuitMainloop, 3)
 #####################################################
+######################################################################################
+class Viewmhw(Screen):
+	skin = """
+<screen name="Viewmhw" position="center,80" size="1170,600" title="View mhw2equiv.conf (/etc/mhw2equiv.conf">
+	<ePixmap position="20,590" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/red.png" alphatest="blend" />
+	<widget source="key_red" render="Label" position="20,560" zPosition="2" size="170,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
+	<widget name="text" position="20,10" size="1130,542" font="Console;22" />
+</screen>"""
+
+	def __init__(self, session):
+		self.session = session
+		Screen.__init__(self, session)
+		self.setTitle(_("View mhw2equiv.conf (/etc/mhw2equiv.conf)"))
+		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
+		{
+			"cancel": self.exit,
+			"back": self.exit,
+			"red": self.exit,
+			})
+		self["key_red"] = StaticText(_("Close"))
+		self["text"] = ScrollLabel("")
+		self.viewmhw2()
+		
+	def exit(self):
+		self.close()
+		
+	def viewmhw2(self):
+		list = ''
+		if fileExists("/etc/mhw2equiv.conf"):
+			for line in open("/etc/mhw2equiv.conf"):
+				list += line
+		self["text"].setText(list)
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions"],
+			{
+			"cancel": self.close,
+			"up": self["text"].pageUp,
+			"left": self["text"].pageUp,
+			"down": self["text"].pageDown,
+			"right": self["text"].pageDown,
+			},
+			-1)
 ################################################################################################################
 
 class epgdmanual(Screen):
@@ -2249,7 +2304,7 @@ class epgdmanual(Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel - EPG D+"))
+		self.setTitle(_("LBpanel - EPG Movistar+ Internet"))
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save epg.dat"))
 		self["key_yellow"] = StaticText(_("Restore epg.dat"))
@@ -2668,9 +2723,9 @@ class libmemori(ConfigListScreen, Screen):
 		self.list = []
 		self.iConsole = iConsole()
 		self.path = cronpath()
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Save"))
-		self["key_yellow"] = StaticText(_("Flush Now"))
+		self["key_red"] = StaticText(_("CERRAR"))
+		self["key_green"] = StaticText(_("GUARDAR"))
+		self["key_yellow"] = StaticText(_("VACIAR AHORA"))
 		self["memTotal"] = StaticText()
 		self["bufCache"] = StaticText()
 		self["MemoryLabel"] = StaticText(_("Memory:"))
@@ -2688,7 +2743,7 @@ class libmemori(ConfigListScreen, Screen):
 		self.onShow.append(self.Title)
 		
 	def Title(self):
-		self.setTitle(_("Cache Flush"))
+		self.setTitle(_("LBpanel - Cache Flush"))
 		self.infomem()
 
 	def cancel(self):

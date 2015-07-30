@@ -170,10 +170,10 @@ class emuSel2(Screen):
     <eLabel position="591,191" size="629,370" transparent="0" foregroundColor="white" backgroundColor="#6e6e6e" zPosition="-10" />
    </screen>"""
 
-  	skin = skin.replace("lb_title", _("LBpanel CamEmu"))
+  	skin = skin.replace("lb_title", _("LBpanel - CamEmu"))
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel CamEmu Activa: %s") % config.plugins.lbpanel.activeemu.value)
+		self.setTitle(_("LBpanel - CamEmu Activa: %s") % config.plugins.lbpanel.activeemu.value)
 		self.session = session
 		self.list = []
 		self.indexpos = None
@@ -581,7 +581,7 @@ class ECMinfo(Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("CamEmu Extra Info"))
+		self.setTitle(_("LBpanel - CamEmu Extra Info"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
 		{
 			"cancel": self.exit,

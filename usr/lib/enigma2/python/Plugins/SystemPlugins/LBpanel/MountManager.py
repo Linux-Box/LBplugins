@@ -15,7 +15,22 @@ from Tools.LoadPixmap import LoadPixmap
 from os import system, rename, path, mkdir, remove
 from time import sleep
 from re import search
+from Components.Language import language
+from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
+import gettext, os
 
+lang = language.getLanguage()
+os.environ["LANGUAGE"] = lang[:2]
+gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
+gettext.textdomain("enigma2")
+gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
+
+def _(txt):
+	t = gettext.dgettext("messages", txt)
+	if t == txt:
+		t = gettext.gettext(txt)
+	return t
+	
 class LBHddMount(Screen):
 	skin = """
 	<screen position="0,0" size="1280,720" title="Mount Manager">
