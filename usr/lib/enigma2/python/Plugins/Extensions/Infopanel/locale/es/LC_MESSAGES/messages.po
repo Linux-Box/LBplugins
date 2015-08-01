@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: Infopanel\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-17 00:53+0200\n"
-"PO-Revision-Date: 2015-07-20 16:40+0200\n"
+"PO-Revision-Date: 2015-08-01 11:46+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: LANGUAGE <lala@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.8.3\n"
 
 #: CamStart.py:10
 msgid "0 (disabled)"
@@ -165,8 +165,7 @@ msgstr "Añadir"
 msgid "Delete"
 msgstr "Borrar"
 
-#: CronManager.py:63 CronManager.py:147 SoftcamPanel.py:339
-#: SoftcamPanel.py:516
+#: CronManager.py:63 CronManager.py:147 SoftcamPanel.py:339 SoftcamPanel.py:516
 msgid "Start"
 msgstr "Inicio"
 
@@ -251,8 +250,8 @@ msgstr "No disponible"
 #: MountManager.py:210 MountManager.py:212 MountManager.py:214
 #: MountManager.py:223 MountManager.py:225 MountManager.py:227
 #: MountManager.py:429 MountManager.py:431 MountManager.py:433
-#: MountManager.py:442 MountManager.py:444 MountManager.py:446
-#: QuickMenu.py:836 QuickMenu.py:838 QuickMenu.py:847 QuickMenu.py:849
+#: MountManager.py:442 MountManager.py:444 MountManager.py:446 QuickMenu.py:836
+#: QuickMenu.py:838 QuickMenu.py:847 QuickMenu.py:849
 msgid "Size: "
 msgstr "Tamaño: "
 
@@ -310,7 +309,10 @@ msgstr "Cancelar"
 
 #: MountManager.py:343, python-format
 msgid "Wait please while scanning your %s %s devices..."
-msgstr "Por favor, espero mientras se buscan dispositivos en tu receptor…"
+msgstr "Por favor, espere mientras se buscan dispositivos en tu receptor…"
+
+msgid "Wait please while scanning your devices..."
+msgstr "Por favor, espere mientras se buscan dispositivos…"
 
 #: MountManager.py:476
 msgid "Updating mount locations."
@@ -327,6 +329,13 @@ msgid ""
 msgstr ""
 "Los cambios requieren que se reinicie el sistema para surtir efecto.\n"
 "¿Reiniciar tu %s %s ahora?"
+
+msgid ""
+"Changes need a system restart to take effect.\n"
+"Restart now?"
+msgstr ""
+"Los cambios requieren que se reinicie el sistema para surtir efecto.\n"
+"¿Reiniciar ahora?"
 
 #: MountManager.py:483, python-format
 msgid "Restart %s %s."

@@ -340,7 +340,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("Choose where to mount your devices to:"))
 		self['key_green'] = Label(_("Save"))
 		self['key_red'] = Label(_("Cancel"))
-		self['Linconn'] = Label(_("Wait please while scanning yours devices..."))
+		self['Linconn'] = Label(_("Wait please while scanning your devices..."))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'green': self.saveMypoints, 'red': self.close, 'back': self.close})
 		self.updateList()
 
@@ -478,7 +478,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		ybox.setTitle(_("Please wait."))
 
 	def delay(self, val):
-		message = _("Changes need a system restart to take effect.\nRestart now?"))
+		message = _("Changes need a system restart to take effect.\nRestart now?")
 		ybox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
 		ybox.setTitle(_("Restart."))
 
