@@ -43,11 +43,11 @@ import sys
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("messages")
-gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale"))
+gettext.textdomain("lbpanel")
+gettext.bindtextdomain("lbpanel", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale"))
 
 def _(txt):
-        t = gettext.dgettext("messages", txt)
+        t = gettext.dgettext("lbpanel", txt)
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t

@@ -60,16 +60,15 @@ import cccaminfo
 import oscaminfo
 
 pluginpath = "/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/"
-ownbiss = "own.biss"
 
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("messages")
-gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale"))
+gettext.textdomain("lbpanel")
+gettext.bindtextdomain("lbpanel", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale"))
 
 def _(txt):
-	t = gettext.dgettext("messages", txt)
+	t = gettext.dgettext("lbpanel", txt)
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
@@ -398,7 +397,6 @@ class installCam(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		os.system("opkg update")
 		camdlist = os.popen("opkg list | grep lbcam")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():

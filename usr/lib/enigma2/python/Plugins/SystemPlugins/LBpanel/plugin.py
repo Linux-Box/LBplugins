@@ -22,7 +22,7 @@
 # Internet: www.linux-box.es
 # Based on original source by epanel for openpli
 
-from enigma import *
+#from enigma import *
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.List import List
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CURRENT_SKIN
@@ -81,11 +81,11 @@ cronvar = 85
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("messages")
-gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
+gettext.textdomain("lbpanel")
+gettext.bindtextdomain("lbpanel", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
 
 def _(txt):
-	t = gettext.dgettext("messages", txt)
+	t = gettext.dgettext("lbpanel", txt)
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
@@ -785,7 +785,6 @@ class installsorys(Screen):
 		
 	def feedlist(self):
 		self.list = []
-		os.system("opkg update")
 		camdlist = os.popen("opkg list | grep sorys")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
@@ -887,7 +886,6 @@ class installconfigemus(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		os.system("opkg update")
 		camdlist = os.popen("opkg list | grep emucfg")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
@@ -989,7 +987,6 @@ class installpicon(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		os.system("opkg update")
 		camdlist = os.popen("opkg list | grep -i piconlb")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
@@ -1091,7 +1088,6 @@ class installskinpart(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		os.system("opkg update")
 		camdlist = os.popen("opkg list | grep -i skinpartlb")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
@@ -1196,7 +1192,6 @@ class installspinner(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		os.system("opkg update")
 		camdlist = os.popen("opkg list | grep -i spinnerlb")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
@@ -1227,7 +1222,6 @@ class installspinner(Screen):
 
 	def instdefect(self,answer):
 		if answer is True:
-			os.system("opkg update")
 			os.system("opkg install -force-overwrite enigma2-lbspinner-openplushd")
 			self.mbox = self.session.open(MessageBox,(_("Spinner Default Installed")), MessageBox.TYPE_INFO, timeout = 4 )
 		
@@ -1314,7 +1308,6 @@ class skindefaultpart(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		os.system("opkg update")
 		camdlist = os.popen('opkg list | awk "/skinpartlb/ && /default/"')
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
@@ -1415,7 +1408,6 @@ class installbootlogo(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		os.system("opkg update")
 		camdlist = os.popen("opkg list | grep -i bootlogolb")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in camdlist.readlines():
@@ -1655,8 +1647,9 @@ class lbCron():
 		cronvar += 1
 		## Check for updates
 		print "Executing update LBpanel in %s minutes" % (90 - cronvar)
-		if (cronvar == 90 ):
+		if (cronvar == 60 ):
 			cronvar = 0
+			os.system("opkg update &")
 #			if (config.plugins.lbpanel.update.value):
 #				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testupdate &")
 			if (config.plugins.lbpanel.updatesettings.value):

@@ -54,13 +54,13 @@ elif fileExists("/var/lib/opkg/status"):
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("messages")
-gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
+gettext.textdomain("lbpanel")
+gettext.bindtextdomain("lbpanel", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
 
 
 
 def _(txt):
-	t = gettext.dgettext("messages", txt)
+	t = gettext.dgettext("lbpanel", txt)
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
@@ -268,7 +268,6 @@ class DownloadFeed(Screen):
 			os.system("mv /usr/lib/opkg/status /usr/lib/opkg/status.tmp")
 		elif fileExists("/var/lib/opkg/status"):
 			os.system("mv /var/lib/opkg/status /var/lib/opkg/status.tmp")
-		os.system("opkg update")
 		camdlist = os.popen("opkg list")
 		softpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipkmini.png"))
 		if camdlist:
@@ -638,7 +637,6 @@ class downfeed(Screen):
 		
 	def nList(self):
 		self.list = []
-		os.system("opkg update")
 		try:
 			ipklist = os.popen("opkg list")
 		except:
