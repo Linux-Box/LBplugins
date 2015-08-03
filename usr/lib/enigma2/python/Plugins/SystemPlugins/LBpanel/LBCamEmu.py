@@ -59,14 +59,13 @@ import gboxsuite
 import cccaminfo
 import oscaminfo
 
-address = "http://gisclub.tv/gi/softcam/SoftCam.Key"
 pluginpath = "/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/"
 ownbiss = "own.biss"
 
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("enigma2")
+gettext.textdomain("messages")
 gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale"))
 
 def _(txt):
@@ -235,7 +234,6 @@ class emuSel2(Screen):
 					typeemu = 'camemu'
 					print "EMU: %s - %s" % (line, config.plugins.lbpanel.activeemu.value)
     					if line == config.plugins.lbpanel.activeemu.value : 
-					#self.emuversion('camemu'):
 						softpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/%s" % 'ico_crypt_on.png'))
 					else:
 						softpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/%s" % 'ico_crypt_off.png'))
@@ -247,7 +245,6 @@ class emuSel2(Screen):
 						softpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/%s" % 'cardmini.png'))
 				try:
 					if line.find('camemu.') > -1 or line.find('cardserver.') > -1:
-						#line = self.line.replace("camemu.", "")
 						self.list.append((line, self.emuversion(line), softpng, typeemu))
 				except:
 					pass
@@ -304,7 +301,6 @@ class emuSel2(Screen):
 	def restart(self):
 		try:
 			emutype = self["menu"].getCurrent()[3]
-			#if self.emuversion(emutype) != " ":
 			os.system("/usr/CamEmu/%s restart" % config.plugins.lbpanel.activeemu.value)
 			self.mbox = self.session.open(MessageBox,_("Please wait, restarting %s")% self.emuversion(emutype), MessageBox.TYPE_INFO, timeout = 4 )
 			self.indexpos = self["menu"].getIndex()
@@ -698,12 +694,9 @@ class CamEmuPanel(Screen):
 		seispng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/mgcami.png"))
 		sietepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/mgcamedi.png"))
 		self.list.append((_("Softcam"),"com_one", _("Softcam Init, Stop and Restart"), onepng))
-		#self.list.append((_("Softcam control"),"com_five", _("Testin Softcam status"), fivepng))
-		#self.list.append((_("Descarga SoftCam.Key"),"com_tree", _("Descarga Softcam.key de internet"), treepng))
 		self.list.append((_("CCcam Info"),"com_dos", _("Plugin CCcam Info"), dospng))
 		self.list.append((_("Oscam Info"),"com_tres", _("Plugin Status emu Oscam"), trespng))
 		self.list.append((_("Gbox Suite"),"com_cuatro", _("Plugin Status emu Gbox-Mbox"), cuatropng))
-		#self.list.append((_("Mbox scripts"),"com_cinco", _("ACJ Mbox Script"), cincopng))
 		self.list.append((_("Mgcamd Info"),"com_seis", _("Mgcamd status information"), seispng))
 		self.list.append((_("Mgcamd Editor"),"com_siete", _("Newcamd Line Editor"), sietepng))
 		self["menu"].setList(self.list)
@@ -716,8 +709,6 @@ class CamEmuPanel(Screen):
 			returnValue = self["menu"].getCurrent()[1]
 			if returnValue is "com_one":
 				self.session.openWithCallback(self.mList,emuSel2)
-			#elif returnValue is "com_tree":
-				#self.session.open(SoftcamUpd)
 			elif returnValue is "com_two":
 				self.session.open(wicconfsw)
 			elif returnValue is "com_five":
@@ -728,8 +719,6 @@ class CamEmuPanel(Screen):
 				self.session.open(oscaminfo.OscamInfoMenu)
 			elif returnValue is "com_cuatro":
 				self.session.open(gboxsuite.GboxSuiteMainMenu)
-			#elif returnValue is "com_cinco":
-				#self.session.open(MboxMan)
 			elif returnValue is "com_seis":
 				self.session.open(NCLSwp2)
 			elif returnValue is "com_siete":
@@ -748,82 +737,7 @@ class CamEmuPanel(Screen):
 			os.system("/usr/CamEmu/camemu start")
 		if fileExists("/usr/CamEmu/camemu") or fileExists("/etc/init.d/cardserver"):
 			self.mbox = self.session.open(MessageBox, _("Restarting ..."), MessageBox.TYPE_INFO, timeout = 4 )
-###############################################################################################
-class SoftcamUpd(ConfigListScreen, Screen):
-	skin = """
-<screen name="SoftcamUpd" position="center,160" size="750,370" title="lb_title">
-		<widget position="15,10" size="720,300" name="config" scrollbarMode="showOnDemand" />
-		<ePixmap position="10,358" zPosition="1" size="165,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/red.png" alphatest="blend" />
-		<widget source="key_red" render="Label" position="10,328" zPosition="2" size="165,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-		<ePixmap position="175,358" zPosition="1" size="165,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/green.png" alphatest="blend" />
-		<widget source="key_green" render="Label" position="175,328" zPosition="2" size="165,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-		<ePixmap position="340,358" zPosition="1" size="165,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/yellow.png" alphatest="blend" />
-		<widget source="key_yellow" render="Label" position="340,328" zPosition="2" size="165,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-		<ePixmap position="505,358" zPosition="1" size="165,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/blue.png" alphatest="blend" />
-		<widget source="key_blue" render="Label" position="505,328" zPosition="2" size="165,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-</screen>"""
-	skin = skin.replace("lb_title", _("LBpanel Sofcam Key Updater"))
-	def __init__(self, session):
-		self.session = session
-		Screen.__init__(self, session)
-		self.list = []
-		self.list.append(getConfigListEntry(_("Path to save keyfile"), config.plugins.lbpanel.path))
-		self.list.append(getConfigListEntry(_("Name of keyfile"), config.plugins.lbpanel.keyname))
-		self.list.append(getConfigListEntry(_("Add own biss in keyfile"), config.plugins.lbpanel.addbiss))
-		ConfigListScreen.__init__(self, self.list)
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Save"))
-		self["key_yellow"] = StaticText(_("Download"))
-		self["key_blue"] = StaticText(_("Changelog"))
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "EPGSelectActions"],
-		{
-			"red": self.cancel,
-			"cancel": self.cancel,
-			"green": self.save,
-			"yellow": self.downkey,
-			"blue": self.keyBlue,
-			"ok": self.save
-		}, -2)
 		
-	def cancel(self):
-		for i in self["config"].list:
-			i[1].cancel()
-		self.close(False)
-	
-	def save(self):
-		config.plugins.lbpanel.addbiss.save()
-		config.plugins.lbpanel.path.save()
-		config.plugins.lbpanel.keyname.save()
-		configfile.save()
-		self.mbox = self.session.open(MessageBox,(_("configuration is saved")), MessageBox.TYPE_INFO, timeout = 4 )
-		
-	def keyBlue (self):
-		self.session.open(ChangelogScreen)
-		
-	def downkey(self):
-		try:
-			os.system("wget -P /tmp %s" % ( address))
-			if config.plugins.lbpanel.addbiss.value == "1":
-				if fileExists("%s%s" % (pluginpath,ownbiss)):
-					os.system("cp %s%s /tmp/%s" % (pluginpath, ownbiss, ownbiss))
-					os.system("cat /tmp/%s /tmp/SoftCam.Key > /tmp/keyfile.tmp" % (ownbiss))
-					os.system("rm /tmp/SoftCam.Key")
-			else:
-				os.system("mv /tmp/SoftCam.Key /tmp/keyfile.tmp")
-			if fileExists("%s%s" % (config.plugins.lbpanel.path.value, config.plugins.lbpanel.keyname.value)):
-				if config.plugins.lbpanel.keyname.value == "SoftCam.Key":
-					os.system("cp %s%s %s%s.old" % (config.plugins.lbpanel.path.value, config.plugins.lbpanel.keyname.value, config.plugins.lbpanel.path.value, config.plugins.lbpanel.keyname.value[:-4]))
-				else:
-					os.system("cp %s%s %s%s.old" % (config.plugins.lbpanel.path.value, config.plugins.lbpanel.keyname.value, config.plugins.lbpanel.path.value, config.plugins.lbpanel.keyname.value[:-5]))
-				os.system("rm %s%s" % (config.plugins.lbpanel.path.value, config.plugins.lbpanel.keyname.value))
-			os.system("cp /tmp/keyfile.tmp %s%s" % (config.plugins.lbpanel.path.value, config.plugins.lbpanel.keyname.value))
-			os.chmod(("%s%s" % (config.plugins.lbpanel.path.value, config.plugins.lbpanel.keyname.value)), 0644)
-			os.system("rm /tmp/keyfile.tmp")
-			os.system("rm /tmp/%s" % (ownbiss))
-			self.mbox = self.session.open(MessageBox,(_("%s downloaded Successfull" % config.plugins.lbpanel.keyname.value)), MessageBox.TYPE_INFO, timeout = 4 )
-		except:
-			os.system("cp /usr/keys/SoftCam.old /usr/keys/SoftCam.Key")
-			self.mbox = self.session.open(MessageBox,(_("%s downloaded UnSuccessfull" % config.plugins.lbpanel.keyname.value)), MessageBox.TYPE_INFO, timeout = 4 )
 ######################################################################################
 class ChangelogScreen(Screen):
 	skin = """

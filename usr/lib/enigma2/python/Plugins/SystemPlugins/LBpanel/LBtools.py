@@ -74,8 +74,9 @@ count = 0
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("enigma2")
+gettext.textdomain("messages")
 gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
+
 
 def mountp():
 	pathmp = []
@@ -518,7 +519,6 @@ class ToolsScreen(Screen):
 		eightpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/scan.png"))
 		self.list.append((_("Tools Crashlog"),"com_one", _("Manage crashlog files"), onepng ))
 		self.list.append((_("System Info"),"com_two", _("System info (free, dh -f)"), twopng ))
-		#self.list.append((_("Download D+ EPG"),"com_tree", _("Download D+ EPG"), treepng ))
 		self.list.append((_("EPG Movistar+"),"com_four", _("Download D+ EPG"), treepng ))
 		self.list.append((_("Scan Peer Security"),"com_scan", _("Check host security"), eightpng ))
 		self.list.append((_("NTP Sync"),"com_six", _("Ntp sync: 30 min,60 min,120 min, 240"), sixpng ))
@@ -547,8 +547,6 @@ class ToolsScreen(Screen):
 				self.session.openWithCallback(self.mList,CrashLogScreen)
 			elif returnValue is "com_two":
 				self.session.openWithCallback(self.mList,Info2Screen)
-			#elif returnValue is "com_tree":
-				#self.session.open(epgdn)
 			elif returnValue is "com_four":
 				self.session.open(epgscript)
 			elif returnValue is "com_five":
@@ -1230,20 +1228,6 @@ class NTPScreen(ConfigListScreen, Screen):
 		else:
 			config.misc.useTransponderTime.value = True
 			config.misc.useTransponderTime.save()
-#		if config.plugins.lbpanel.cold.value == "0":
-#			if fileExists("/etc/rcS.d/S42ntpdate.sh"):
-#				os.unlink("/etc/rcS.d/S42ntpdate.sh")
-#		else:
-#			os.system("tar -C/ -xzpvf /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/ntpdate.tar.gz")
-#			if fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/ntpdate.sh"):
-#				#Change NTP server in config file
-#				if config.plugins.lbpanel.manual.value == "0":
-#					os.system("sed -i 's/ntp_server/%s/g' /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/ntpdate.sh" % config.plugins.lbpanel.server.value)
-#				else:
-#					os.system("sed -i 's/ntp_server/%s/g' /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/ntpdate.sh" % config.plugins.lbpanel.manualserver.value)
-#			if not fileExists("/etc/rcS.d/S42ntpdate.sh"):
-#				os.symlink("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/ntpdate.sh", "/etc/rcS.d/S42ntpdate.sh")
-#				os.chmod("/etc/rcS.d/S42ntpdate.sh", 0777)
 		for i in self["config"].list:
 			i[1].save()
 		configfile.save()
@@ -1996,12 +1980,8 @@ class epgdn(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("LBpanel - EPG Movistar+ Internet"))
 		self.list = []
-		#self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
-		#self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
 		self.list.append(getConfigListEntry(_("Auto download epg.dat"), config.plugins.lbpanel.auto))
 		self.list.append(getConfigListEntry(_("Auto download hour"), config.plugins.lbpanel.epgtime))
-		#self.list.append(getConfigListEntry(_("Auto load and save EPG"), config.plugins.lbpanel.autosave))
-		#self.list.append(getConfigListEntry(_("Save copy in ../epgtmp.gz"), config.plugins.lbpanel.autobackup))
 		ConfigListScreen.__init__(self, self.list)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save"))
@@ -2174,12 +2154,8 @@ class epgscript(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("LBpanel - EPG Movistar+"))
 		self.list = []
-#		self.list.append(getConfigListEntry(_("Select where to save epg.dat"), config.plugins.lbpanel.direct))
-#		self.list.append(getConfigListEntry(_("Select D+ epg"), config.plugins.lbpanel.lang))
 		self.list.append(getConfigListEntry(_("Auto download epg.dat"), config.plugins.lbpanel.auto2))
 		self.list.append(getConfigListEntry(_("Auto download hour"), config.plugins.lbpanel.epgtime2))
-#		self.list.append(getConfigListEntry(_("Auto load and save EPG"), config.plugins.lbpanel.autosave))
-#		self.list.append(getConfigListEntry(_("Save copy in ../epgtmp.gz"), config.plugins.lbpanel.autobackup))
                 self.list.append(getConfigListEntry(_("Timeout downloading epg"), config.plugins.lbpanel.epgmhw2wait))
 		self.list.append(getConfigListEntry(_("Run every hour on standby?"), config.plugins.lbpanel.runeveryhour))
 		ConfigListScreen.__init__(self, self.list)
@@ -2231,22 +2207,12 @@ class epgscript(ConfigListScreen, Screen):
 		self.close(False)
 	
 	def save(self):
-#		config.misc.epgcache_filename.value = ("%sepg.dat" % config.plugins.lbpanel.direct.value)
-#		config.misc.epgcache_filename.save()
 		config.plugins.lbpanel.epgtime2.save()
-#		config.plugins.lbpanel.lang.save()
-#		config.plugins.lbpanel.direct.save()
 		config.plugins.lbpanel.auto2.save()
-#		config.plugins.lbpanel.autosave.save()
-#		config.plugins.lbpanel.autobackup.save()
                 config.plugins.lbpanel.epgmhw2wait.save()
                 config.plugins.lbpanel.runeveryhour.save()
 		configfile.save()
 		self.mbox = self.session.open(MessageBox,(_("configuration is saved")), MessageBox.TYPE_INFO, timeout = 4 )
-################################################################################################################
-	#def manual(self):
-		#self.session.open(epgdmanual)
-################################################################################################################
 	def restart(self):
 		self.session.open(TryQuitMainloop, 3)
 #####################################################
@@ -2591,7 +2557,6 @@ class CrontabManAdd(ConfigListScreen, Screen):
 										everydayofweek, config.plugins.lbpanel.dayofweek.value,
 										config.plugins.lbpanel.command.value))
 		
-		#os.system("echo -e 'root' >> /etc/cron/crontabs/cron.update")
 		for i in self["config"].list:
 			i[1].cancel()
 		self.close()
@@ -2865,12 +2830,7 @@ class scanhost(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Disable Faulty Lines?"), config.plugins.lbpanel.checkoff))
 		self.list.append(getConfigListEntry(_("Scan type"), config.plugins.lbpanel.checktype))
 		self.list.append(getConfigListEntry(_("Auto scan localhost"), config.plugins.lbpanel.autocheck))
-		#self.list.append(getConfigListEntry(_("Send email with log?"), config.plugins.lbpanel.lbemail))
 		self.list.append(getConfigListEntry(_("Send email only in danger lines?"), config.plugins.lbpanel.warnonlyemail))
-		#self.list.append(getConfigListEntry(_("Send report to: (email)"), config.plugins.lbpanel.lbemailto))
-		#self.list.append(getConfigListEntry(_("Smtp server"), config.plugins.lbpanel.smtpserver))
-		#self.list.append(getConfigListEntry(_("Smtp user"), config.plugins.lbpanel.smtpuser))
-		#self.list.append(getConfigListEntry(_("Smtp password"), config.plugins.lbpanel.smtppass))
 		ConfigListScreen.__init__(self, self.list)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Save"))
@@ -2901,9 +2861,6 @@ class scanhost(ConfigListScreen, Screen):
 	        	self["LabelStatus"].setText("Scan init")
         		self.session.open(Console,_("Scan peer"),["/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py " + config.plugins.lbpanel.checktype.value + " " + config.plugins.lbpanel.autocheck.value + " " + config.plugins.lbpanel.checkoff.value + " " + config.plugins.lbpanel.warnonlyemail.value])
         		self["LabelStatus"].setText("Scan end")
-        		# Send email with result by cron
-        		
-#        		self.session.open(showScan)
                 except:
                       	self.mbox = self.session.open(MessageBox,(_("Sorry, I can not find lbscan.py")), MessageBox.TYPE_INFO, timeout = 4 )
 	def viewscanlog(self):
@@ -2923,12 +2880,7 @@ class scanhost(ConfigListScreen, Screen):
 		config.plugins.lbpanel.checkoff.save()
 		config.plugins.lbpanel.checktype.save()
 		config.plugins.lbpanel.autocheck.save()
-#		config.plugins.lbpanel.lbemail.save()
 		config.plugins.lbpanel.warnonlyemail.save()
-#		config.plugins.lbpanel.lbemailto.save()
-#		config.plugins.lbpanel.smtpserver.save()
-#		config.plugins.lbpanel.smtpuser.save()
-#		config.plugins.lbpanel.smtppass.save()
 		configfile.save()
 		self.mbox = self.session.open(MessageBox,(_("Configuration is saved")), MessageBox.TYPE_INFO, timeout = 4 )
 
@@ -2983,13 +2935,6 @@ class LBTools():
               login, password,
               smtpserver='smtp.gmail.com:587', cc_addr=""):
         
-        if (not os.path.isfile("/usr/bin/curl")):
-                os.popen("opkg install curl")
-                if (not os.path.isfile("/usr/bin/curl")):
-                        os.popen("opkg install http://appstore.linux-box.es/files/curl_7.24.0-r0_mips32el.ipk")
-                        if (not os.path.isfile("/usr/bin/curl")):
-                                self.mbox = self.session.open(MessageBox,(_("Mail is not send. Curl is not installed, please install curl")), MessageBox.TYPE_ERROR, timeout = 10 )
-        #try:
         proto = config.plugins.lbpanel.lbemailproto.value
         if config.plugins.lbpanel.lbemail.value == True: 
                 header  = 'From: %s\n' % from_addr
@@ -3011,9 +2956,3 @@ class LBTools():
                 f.write(message)
                 f.close()
                 os.system('curl -F body=@"/tmp/.mail" -k "%s"' % (url))
-	#except Exception as e: print(e)
-	#except:
-        	#fo = open("/tmp/.lbemail.error","a+")
-        	#fo.close()
-        	#config.plugins.lbpanel.lbemail.value = False
-        	#config.plugins.lbpanel.lbemail.save()

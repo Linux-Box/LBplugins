@@ -54,7 +54,7 @@ elif fileExists("/var/lib/opkg/status"):
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("enigma2")
+gettext.textdomain("messages")
 gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
 
 
@@ -148,16 +148,10 @@ class IPKToolsScreen(Screen):
 		treepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		sixpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		fivepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
-		#dospng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
-		#cuatropng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
-		#cincopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		self.list.append((_("IPK installer"),"one", _("Install ipk, bh.tgz, tar.gz, nab.tgz in /tmp"), onepng ))
 		self.list.append((_("Feed installer"),"six", _("Feed installer"), sixpng ))
 		self.list.append((_("Download extensions"),"five", _("Download feeds packages"), fivepng))
 		self.list.append((_("IPK delete packages"),"four", _("Delete IPK packages"), treepng ))
-		#self.list.append((_("Sorys Channel List"),"dos", _("Download Sorys Channel List"), dospng ))
-		#self.list.append((_("Download config emus"),"cuatro", _("Download Config Emus"), cuatropng ))
-		#self.list.append((_("Download Picon"),"cinco", _("Download Picon"), cincopng ))
 		self["menu"].setList(self.list)
 		
 	def exit(self):
@@ -180,12 +174,6 @@ class IPKToolsScreen(Screen):
 			self.session.openWithCallback(self.mList,DownloadFeed)
 		elif item is "six":
 			self.session.openWithCallback(self.mList,downfeed)
-		#elif item is "dos":
-			#self.session.openWithCallback(self.mList,installsorys)
-		#elif item is "cuatro":
-			#self.session.openWithCallback(self.mList,installconfigemus)
-		#elif item is "cinco":
-			#self.session.openWithCallback(self.mList,installpicon)
 			
 ###############################################
 class DownloadFeed(Screen):

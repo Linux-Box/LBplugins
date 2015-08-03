@@ -59,7 +59,6 @@ import LBCamEmu
 import LBipk
 import LBtools
 import LBDaemonsList
-#import LBAbout
 from enigma import eEPGCache
 from types import *
 from enigma import *
@@ -82,7 +81,7 @@ cronvar = 85
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
 gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-gettext.textdomain("enigma2")
+gettext.textdomain("messages")
 gettext.bindtextdomain("messages", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "SystemPlugins/LBpanel/locale/"))
 
 def _(txt):
@@ -161,7 +160,7 @@ def sendemail(from_addr, to_addr, cc_addr,
     	config.plugins.lbpanel.lbemail.save()
     	
 def lbversion():
-	return ("LBpanel_0.99_Red_Bee_r19")
+	return ("LBpanel_1.0")
 
 def Test_camemu():
 
@@ -235,9 +234,7 @@ class LBPanel2(Screen):
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
-		self.setTitle(_("LBpanel - Red Bee"))
-		#version = (_("Version: %s") % lbversion())
-		#self["LBversion"].setText("version")
+		self.setTitle(_("LBpanel"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "CCcamInfoActions", "EPGSelectActions"],
 		{
 			"ok": self.keyOK,
@@ -270,17 +267,13 @@ class LBPanel2(Screen):
 		cuatropng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/daemons.png"))
 		cincopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/infop.png"))
 		settings = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/settings.png"))
-		#self.list.append((_("About"),"com_zero", _("About this machine, Info about software and hardware"), zeropng))
 		if Test_camemu():
 			self.list.append((_("SoftEmus"),"com_one", _("CamEmu start-stop, Test Emu Control, Info Emus"), onepng))
 		self.list.append((_("Services "),"com_two", _("Epg,Ntp,scripts,info ..."), twopng ))
 		self.list.append((_("System"),"com_six", _("Kernel modules,swap,ftp,samba,crond,usb"), sixpng ))
-		#self.list.append((_("Skins LCD Selector"),"com_tres", _("LCD Skins selector"), trespng ))
 		self.list.append((_("Package install"),"com_four", _("Install /uninstall ipk,tar.gz en /tmp"), treepng))
 		self.list.append((_("Settings"),"com_settings", _("Settings of LBpanel"), settings))
 		self.list.append((_("Add-ons"),"com_seven", _("Plugins"), sevenpng))
-		#self.list.append((_("LB Daemons"),"com_cuatro", _("Lista Daemons"), cuatropng))
-		#self.list.append((_("Info Panel"),"com_cinco", _("Informacion Panel"), cincopng))
 		self["menu"].setList(self.list)
 
 
@@ -298,8 +291,6 @@ class LBPanel2(Screen):
 				self.session.open(LBtools.ToolsScreen)
 			elif returnValue is "com_tree":
 				self.session.open(backup.BackupSuite)
-			#elif returnValue is "com_tres":
-				#self.session.open(LCDselectorScreen)
 			elif returnValue is "com_four":
 				self.session.open(LBipk.IPKToolsScreen)
 			elif returnValue is "com_five":
@@ -310,10 +301,6 @@ class LBPanel2(Screen):
 				self.session.open(PluginBrowser)
 			elif returnValue is "com_settings":
 				self.session.open(LBsettings)
-			#elif returnValue is "com_cuatro":
-				#self.session.open(LBDaemonsList.LBDaemonsList)
-			#elif returnValue is "com_cinco":
-				#self.session.open(info)
 			else:
 				print "\n[LBpanel] cancel\n"
 				self.close(None)
@@ -674,20 +661,12 @@ class descargasScreen(Screen):
 
 	def mList(self):
 		self.list = []
-		#onepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
-		#treepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
-		#sixpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
-		#fivepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		dospng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		cuatropng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		cincopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		seispng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		sietepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		ochopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
-		#self.list.append((_("IPK installer"),"one", _("Install ipk, bh.tgz, tar.gz, nab.tgz in /tmp"), onepng ))
-		#self.list.append((_("Feed installer"),"six", _("Feed installer"), sixpng ))
-		#self.list.append((_("Download extensions"),"five", _("Download feeds packages"), fivepng))
-		#self.list.append((_("IPK delete packages"),"four", _("Delete IPK packages"), treepng ))
 		self.list.append((_("Sorys Channel List"),"dos", _("Download Sorys Channel List"), dospng ))
 		if Test_camemu():
 			self.list.append((_("Download config emus"),"cuatro", _("Download Config Emus"), cuatropng ))
@@ -708,14 +687,6 @@ class descargasScreen(Screen):
 
 	def OK(self):
 		item = self["menu"].getCurrent()[1]
-		#if item is "one":
-			#self.session.openWithCallback(self.mList,InstallAll)
-		#elif item is "four":
-			#self.session.openWithCallback(self.mList,RemoveIPK)
-		#elif item is "five":
-			#self.session.openWithCallback(self.mList,DownloadFeed)
-		#elif item is "six":
-			#self.session.openWithCallback(self.mList,downfeed)
 		if item is "dos":
 			self.session.openWithCallback(self.mList,installsorys)
 		elif item is "cuatro":
@@ -1686,14 +1657,14 @@ class lbCron():
 		print "Executing update LBpanel in %s minutes" % (90 - cronvar)
 		if (cronvar == 90 ):
 			cronvar = 0
-			if (config.plugins.lbpanel.update.value):
-				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testupdate &")
+#			if (config.plugins.lbpanel.update.value):
+#				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testupdate &")
 			if (config.plugins.lbpanel.updatesettings.value):
 				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
-		if (os.path.isfile("/tmp/.lbpanel.update") and config.plugins.lbpanel.update.value):
-			print "LBpanel updated"
-			self.mbox = self.session.open(MessageBox,(_("LBpanel has been updated, restart Enigma2 to activate your changes.")), MessageBox.TYPE_INFO, timeout = 30 )
-			os.remove("/tmp/.lbpanel.update")
+#		if (os.path.isfile("/tmp/.lbpanel.update") and config.plugins.lbpanel.update.value):
+#			print "LBpanel updated"
+#			self.mbox = self.session.open(MessageBox,(_("LBpanel has been updated, restart Enigma2 to activate your changes.")), MessageBox.TYPE_INFO, timeout = 30 )
+#			os.remove("/tmp/.lbpanel.update")
 			
 		if (os.path.isfile("/tmp/.lbsettings.update")):
 			print "LBpanel settings updated"
@@ -1712,8 +1683,6 @@ class lbCron():
 			myepg.downepg()
 		# reload epg
 		if (os.path.isfile("/tmp/.epgreload")):
-			#epgreload = LBtools.epgdmanual(self.session)
-			#epgreload.reload()
 			os.remove("/tmp/.epgreload")
 		# cron control scan peer
 		if (config.plugins.lbpanel.checkauto.value == "yes" and config.plugins.lbpanel.checkhour.value[0] == now.tm_hour and config.plugins.lbpanel.checkhour.value[1] == now.tm_min):
@@ -1802,19 +1771,6 @@ class lbCron():
                         epgcache = new.instancemethod(_enigma.eEPGCache_load,None,eEPGCache)
                         epgcache = eEPGCache.getInstance().load()
 
-#			os.system("wget -q http://www.xmltvepg.be/dplus/epg.dat.gz -O %sepg.dat.gz" % (config.plugins.lbpanel.lang.value, config.plugins.lbpanel.direct.value))
-#			if fileExists("%sepg.dat" % config.plugins.lbpanel.direct.value):
-#				os.unlink("%sepg.dat" % config.plugins.lbpanel.direct.value)
-#				os.system("rm -f %sepg.dat" % config.plugins.lbpanel.direct.value)
-#			if not os.path.exists("%sepgtmp" % config.plugins.lbpanel.direct.value):
-#				os.system("mkdir -p %sepgtmp" % config.plugins.lbpanel.direct.value)
-#			os.system("cp -f %sepg.dat.gz %sepgtmp" % (config.plugins.lbpanel.direct.value, config.plugins.lbpanel.direct.value))
-#			os.system("gzip -df %sepg.dat.gz" % config.plugins.lbpanel.direct.value)
-#			if fileExists("%sepg.dat" % config.plugins.lbpanel.direct.value):
-#				os.chmod("%sepg.dat" % config.plugins.lbpanel.direct.value, 0644)
-#			epgcache = new.instancemethod(_enigma.eEPGCache_load,None,eEPGCache)
-#			epgcache = eEPGCache.getInstance().load()
-#			self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.mbox = self.session.open(MessageBox,(_("Sorry, EPG download error")), MessageBox.TYPE_INFO, timeout = 4 )
 #####################################################
