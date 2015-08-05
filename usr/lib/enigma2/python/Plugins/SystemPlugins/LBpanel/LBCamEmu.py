@@ -125,20 +125,20 @@ class emuSel2(Screen):
      
 <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="PARAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel text="REINICIAR" position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_yellow" render="Label" position="621,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="INICIAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_blue" render="Label" position="911,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel text="INSTALAR" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
-    <!-- fin colores keys -->
+   <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+ <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="800,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -176,6 +176,11 @@ class emuSel2(Screen):
 		self.list = []
 		self.indexpos = None
 		self["menu"] = List(self.list)
+		self["key_red"] = StaticText(_("Stop"))
+		self["key_green"] = StaticText(_("Start"))
+		self["key_yellow"] = StaticText(_("Restart"))
+		self["key_blue"] = StaticText(_("Install Emu"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self.selemulist()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "CCcamInfoActions"],
 			{
@@ -335,20 +340,21 @@ class installCam(Screen):
 	</widget>
    <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel render="Label" position="621,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="INSTALAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_blue" render="Label" position="911,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel text="INSTALADOS" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
-    <!-- fin colores keys -->
+   <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+ <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -385,6 +391,10 @@ class installCam(Screen):
 		self.list = []
 		self["menu"] = List(self.list)
 		self.feedlist()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Install"))
+		self["key_blue"] = StaticText(_("Installed"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"cancel": self.cancel,
@@ -437,22 +447,23 @@ class installCam2(Screen):
 	}
 	</convert>
 	</widget>
-   <!-- colores keys -->
+  <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel render="Label" position="621,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="BORRAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel render="Label" position="911,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
-    <!-- fin colores keys -->
+   <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+ <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -489,6 +500,9 @@ class installCam2(Screen):
 		self.list = []
 		self["menu"] = List(self.list)
 		self.feedlist()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Delete"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"cancel": self.cancel,
@@ -528,20 +542,20 @@ class ECMinfo(Screen):
 <screen name="ECMinfo" position="0,0" size="1280,720" title="Ecminfo">
  <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="621,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="912,569" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="912,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
 <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -584,6 +598,7 @@ class ECMinfo(Screen):
 			"ok": self.exit,
 			})
 		self["key_red"] = StaticText(_("Close"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["text"] = ScrollLabel("")
 		self.meminfoall()
 		
@@ -606,7 +621,7 @@ class ECMinfo(Screen):
 #################################################
 class CamEmuPanel(Screen):
 	skin = """
-<screen name="CamEmuPanel" position="0,0" size="1280,720" >
+<screen name="CamEmuPanel" position="0,0" size="1280,720">
 <widget source="menu" render="Listboxlb" position="591,191" foregroundColor="white" backgroundColor="#6e6e6e" foregroundColorSelected="#ffffff" backgroundColorSelected="#fd6502" transparent="1" size="629,350">
       <convert type="TemplatedMultiContent">
     {"template": [ MultiContentEntryText(pos = (30, 5), size = (460, 50), flags = RT_HALIGN_LEFT, text = 0) ],
@@ -618,20 +633,20 @@ class CamEmuPanel(Screen):
     
 <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="621,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="REINICIAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="912,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -676,6 +691,7 @@ class CamEmuPanel(Screen):
 		})
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Reboot"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self.list = []
 		self["menu"] = List(self.list)
 		self.mList()
@@ -739,10 +755,10 @@ class CamEmuPanel(Screen):
 ######################################################################################
 class ChangelogScreen(Screen):
 	skin = """
-<screen name="ChangelogScreen" position="center,160" size="750,370" title="Changelog">
+<screen name="ChangelogScreen" position="center,160" size="750,370" title="Changelog" backgroundColor="white">
 	<ePixmap position="20,358" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/red.png" alphatest="blend" />
-	<widget source="key_red" render="Label" position="20,328" zPosition="2" size="170,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="foreground" transparent="1" />
-	<widget name="text" position="15,10" size="720,300" font="Console;20" />
+	<widget source="key_red" render="Label" position="23,329" zPosition="2" size="170,30" font="Regular;20" halign="center" valign="center" backgroundColor="background" foregroundColor="black" transparent="1" />
+	<widget name="text" position="15,10" size="720,300" font="Console;20" backgroundColor="white" foregroundColor="black" />
 </screen>"""
 
 	def __init__(self, session):
@@ -790,9 +806,9 @@ class wicconfsw(Screen):
 	skin = """
 <screen name="wicconfsw" position="center,160" size="750,370" title="Oscam.conf Switcher">
   <ePixmap position="20,358" zPosition="1" size="170,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/red.png" alphatest="blend" />
-  <widget source="key_red" render="Label" position="20,328" zPosition="2" size="170,30" font="Regular; 19" halign="center" valign="center" backgroundColor="background" foregroundColor="white" transparent="1" />
+  <widget source="key_red" render="Label" position="20,338" zPosition="2" size="170,30" font="Regular; 19" halign="center" valign="center" backgroundColor="background" foregroundColor="white" transparent="1" />
   <ePixmap position="190,358" zPosition="1" size="250,2" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/images/green.png" alphatest="blend" />
-  <widget source="key_green" render="Label" position="190,328" zPosition="2" size="250,30" font="Regular; 19" halign="center" valign="center" backgroundColor="background" foregroundColor="white" transparent="1" />
+  <widget source="key_green" render="Label" position="190,338" zPosition="2" size="250,30" font="Regular; 19" halign="center" valign="center" backgroundColor="background" foregroundColor="white" transparent="1" />
   <widget source="list" render="Listboxlb" position="15,10" size="720,150" scrollbarMode="showOnDemand">
    <convert type="TemplatedMultiContent">
    {"template": [
@@ -908,20 +924,20 @@ class NCLSwp2(Screen):
 <screen name="NCLSwp2" position="0,0" size="1280,720" title="Mgcamd Info">
   	<!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="621,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="912,569" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="912,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
 <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -964,6 +980,7 @@ class NCLSwp2(Screen):
 			"ok": self.exit,
 			})
 		self["key_red"] = StaticText(_("Close"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["text"] = ScrollLabel("")
 		self.meminfoall()
 		
@@ -1010,20 +1027,21 @@ class NCLEdit(Screen):
 <widget source="enable" render="Label" position="60,608" zPosition="2" size="521,29" font="Regular; 18" halign="center" valign="center" backgroundColor="#d6d6d6" foregroundColor="#000000" transparent="1" />
 <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="622,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
-    <eLabel position="592,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
+    <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel text="ADD" position="622,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
-    <eLabel position="592,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
+    <widget source="key_yellow" render="Label" position="621,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
+    <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="EDITAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_blue" render="Label" position="911,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel text="BORRAR" position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
-    <!-- fin colores keys -->
+   <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+ <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -1072,6 +1090,7 @@ class NCLEdit(Screen):
 		self["key_yellow"] = StaticText(_("Add"))
 		self["key_blue"] = StaticText(_("Remove"))
 		self["enable"] = StaticText(_("press OK to enable/disable server"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["timeout"] = StaticText()
 		self["keepalive"] = StaticText()
 		self["debug"] = StaticText()
@@ -1140,24 +1159,24 @@ class NCLEdit(Screen):
 ####################################################################
 class NCLAdd(ConfigListScreen, Screen):
 	skin = """
-<screen name="NCLAdd" position="center,center" size="1280,720" title="LBpanel Server Edit" >
+<screen name="NCLAdd" position="center,center" size="1280,720" title="LBpanel Server Edit">
 		 <widget position="591,191" size="629,350" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
   <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel text="GLOBAL" position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_yellow" render="Label" position="621,603" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="ACTUALIZAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="912,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -1205,8 +1224,9 @@ class NCLAdd(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Password"), config.plugins.lbpanel.passw))
 		ConfigListScreen.__init__(self, self.list)
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Update"))
+		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Global"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"red": self.cancel,
@@ -1240,24 +1260,25 @@ class NCLAdd(ConfigListScreen, Screen):
 ####################################################################
 class NCLEditGlobal(ConfigListScreen, Screen):
 	skin = """
-<screen name="NCLEditGlobal" position="center,center" size="1280,720" title="LBpanel Global parameters" >
+<screen name="NCLEditGlobal" position="center,center" size="1280,720" title="LBpanel Global parameters">
 	<widget position="591,191" size="629,350" foregroundColor="#ffffff" foregroundColorSelected="#ffffff" backgroundColor="#6e6e6e" backgroundColorSelected="#fd6502" transparent="1" name="config" scrollbarMode="showOnDemand" />
   <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="CERRAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="621,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="ACTUALIZAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel position="912,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
     <!-- fin colores keys -->
+
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>
@@ -1312,6 +1333,7 @@ class NCLEditGlobal(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Update"))
+		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"red": self.cancel,
@@ -1446,20 +1468,21 @@ class MboxMan(Screen):
     </widget>
    <!-- colores keys -->
     <!-- rojo -->
-    <eLabel text="PARAR" position="621,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_red" render="Label" position="621,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#ee1d11" zPosition="-1" />
     <!-- amarillo -->
-    <eLabel text="REINICIAR" position="621,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_yellow" render="Label" position="621,603" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <eLabel text="INICIAR" position="912,569" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <eLabel render="Label" position="911,604" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
-    <eLabel position="912,604" size="200,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
+    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#1a2cfb" zPosition="-1" />
-    <!-- fin colores keys -->
+   <widget source="key_cancel" render="Label" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+ <!-- fin colores keys -->
     <eLabel text="LBpanel - Red Bee" position="440,34" size="430,65" font="Regular; 42" halign="center" transparent="1" foregroundColor="white" backgroundColor="#140b1" />
-    <eLabel text="PULSE EXIT PARA SALIR" position="335,644" size="500,50" font="Regular; 30" zPosition="2" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="#8f8f8f" />
+    
     <widget source="Title" transparent="1" render="Label" zPosition="2" valign="center" halign="left" position="80,119" size="600,50" font="Regular; 30" backgroundColor="black" foregroundColor="white" noWrap="1" />
     <widget source="global.CurrentTime" render="Label" position="949,28" size="251,55" backgroundColor="#140b1" foregroundColor="white" transparent="1" zPosition="2" font="Regular;24" valign="center" halign="right" shadowColor="#000000" shadowOffset="-2,-2">
       <convert type="ClockToText">Format:%-H:%M</convert>

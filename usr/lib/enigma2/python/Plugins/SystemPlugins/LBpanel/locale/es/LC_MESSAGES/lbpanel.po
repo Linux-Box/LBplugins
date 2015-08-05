@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-08-03 19:56+0100\n"
-"Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
+"PO-Revision-Date: 2015-08-05 22:34+0100\n"
+"Last-Translator: VillaK\n"
 "Language-Team: netbook\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "%s"
@@ -602,7 +602,7 @@ msgid "LBpanel - Services"
 msgstr "LBpanel - Servicios"
 
 msgid "LBpanel - SoftEmus"
-msgstr "LBpanel - SoftEmus"
+msgstr "LBpanel - Panel Emus"
 
 msgid "LBpanel - Swap Manager"
 msgstr "LBpanel - Administrador Swap"
@@ -1103,7 +1103,7 @@ msgid "Smtp protocol"
 msgstr "Protocolo Smtp"
 
 msgid "SoftEmus"
-msgstr "SoftEmus"
+msgstr "Panel Emus"
 
 msgid "Softcam"
 msgstr "Softcam"
@@ -1545,3 +1545,21 @@ msgstr "Viendo mhw2equiv.conf (/etc/mhw2equiv.conf)"
 
 msgid "SAT Download EPG"
 msgstr "Descargando EPG Movistar+"
+
+msgid "Spinner Default"
+msgstr "Spinner Default"
+
+msgid "Installed"
+msgstr "Instalado"
+
+msgid "Delete"
+msgstr "Borrar Emu"
+
+msgid "Install Emu"
+msgstr "Instalar Emu"
+
+msgid "Restart"
+msgstr "Reiniciar"
+
+msgid "PRESS EXIT TO QUIT"
+msgstr "PULSE EXIT PARA SALIR"
