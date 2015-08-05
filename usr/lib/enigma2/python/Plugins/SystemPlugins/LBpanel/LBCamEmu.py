@@ -639,7 +639,7 @@ class CamEmuPanel(Screen):
     <eLabel position="621,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
     <eLabel position="591,604" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#eefb1a" zPosition="-1" />
     <!-- verde -->
-    <widget source="key_green" render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
+    <eLabel render="Label" position="912,569" size="240,30" zPosition="1" font="Regular; 20" backgroundColor="black" transparent="0" foregroundColor="#d6d6d6" halign="center" />
     <eLabel position="882,569" size="30,30" transparent="0" foregroundColor="white" backgroundColor="#11b90a" zPosition="-1" />
     <!-- azul -->
     <eLabel position="912,604" size="240,30" font="Regular;20" valign="center" halign="center" backgroundColor="black" foregroundColor="white" transparent="0" />
@@ -687,10 +687,8 @@ class CamEmuPanel(Screen):
 			"cancel": self.exit,
 			"back": self.exit,
 			"red": self.exit,
-			"green": self.Restart,
 		})
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Reboot"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self.list = []
 		self["menu"] = List(self.list)
