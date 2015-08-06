@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-08-05 22:34+0100\n"
+"PO-Revision-Date: 2015-08-06 17:59+0100\n"
 "Last-Translator: VillaK\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -1537,8 +1537,8 @@ msgstr "LBpanel - EPG Movistar+"
 msgid "LBpanel - EPG Movistar+ Internet"
 msgstr "LBpanel - EPG Movistar+ Internet"
 
-msgid "Press MENU to download EPG from Internet"
-msgstr "Pulse MENU para descargar EPG desde Internet"
+msgid "Press MENU to download EPG from Server"
+msgstr "Pulse MENU para descargar EPG desde Servidor"
 
 msgid "View mhw2equiv.conf (/etc/mhw2equiv.conf)"
 msgstr "Viendo mhw2equiv.conf (/etc/mhw2equiv.conf)"
@@ -1563,3 +1563,15 @@ msgstr "Reiniciar"
 
 msgid "PRESS EXIT TO QUIT"
 msgstr "PULSE EXIT PARA SALIR"
+
+msgid "PRESS MENU TO DOWNLOAD FROM SERVER"
+msgstr "PULSE MENU PARA DESCARGA DEL SERVIDOR"
+
+msgid "Equivalences"
+msgstr "Equivalencias"
+
+msgid "Cache flush"
+msgstr "Vaciar Ahora"
+
+msgid "Send by email"
+msgstr "Enviar Email"
