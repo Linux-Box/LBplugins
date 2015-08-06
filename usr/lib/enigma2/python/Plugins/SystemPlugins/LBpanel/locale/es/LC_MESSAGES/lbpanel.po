@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-08-06 17:59+0100\n"
+"PO-Revision-Date: 2015-08-06 20:30+0100\n"
 "Last-Translator: VillaK\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -1573,5 +1573,17 @@ msgstr "Equivalencias"
 msgid "Cache flush"
 msgstr "Vaciar Ahora"
 
+msgid "Setup Mount"
+msgstr "Config. Montaje"
+
+msgid "Mount"
+msgstr "Montar"
+
+msgid "Unmount"
+msgstr "Desmontar"
+
 msgid "Send by email"
 msgstr "Enviar Email"
+
+msgid "Reset Passwd"
+msgstr "Reset Contraseña"
