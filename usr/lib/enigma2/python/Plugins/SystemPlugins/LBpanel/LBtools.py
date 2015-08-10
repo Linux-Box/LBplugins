@@ -2892,7 +2892,7 @@ class scanhost(ConfigListScreen, Screen):
 	        try:   
 	        	self["LabelStatus"].setText("Scan init")
         		self.session.open(Console,_("Scan peer"),["/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py " + config.plugins.lbpanel.checktype.value + " " + config.plugins.lbpanel.autocheck.value + " " + config.plugins.lbpanel.checkoff.value + " " + config.plugins.lbpanel.warnonlyemail.value])
-        		self["LabelStatus"].setText("Scan end")
+        		self["LabelStatus"].setText(_("Scan end"))
                 except:
                       	self.mbox = self.session.open(MessageBox,(_("Sorry, I can not find lbscan.py")), MessageBox.TYPE_INFO, timeout = 4 )
 	def viewscanlog(self):

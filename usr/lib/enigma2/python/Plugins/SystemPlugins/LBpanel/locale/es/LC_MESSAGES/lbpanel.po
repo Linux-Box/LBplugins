@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-08-06 20:30+0100\n"
+"PO-Revision-Date: 2015-08-10 20:54+0100\n"
 "Last-Translator: VillaK\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -336,6 +336,9 @@ msgstr "Descargar extensiones desde el feed"
 
 msgid "Download feeds packages"
 msgstr "Descargar paquetes del feed"
+
+msgid "Download default skinparts"
+msgstr "Skinparts OpenplusHD Default"
 
 msgid "Driver Version:"
 msgstr "Driver Version:"
@@ -1552,8 +1555,11 @@ msgstr "Spinner Default"
 msgid "Installed"
 msgstr "Instalado"
 
-msgid "Delete"
+msgid "Delete Emu"
 msgstr "Borrar Emu"
+
+msgid "Delete"
+msgstr "Borrar"
 
 msgid "Install Emu"
 msgstr "Instalar Emu"
@@ -1587,3 +1593,15 @@ msgstr "Enviar Email"
 
 msgid "Reset Passwd"
 msgstr "Reset Contraseña"
+
+msgid "PRESS MENU TO DOWNLOADS"
+msgstr "PULSE MENU PARA DESCARGAS"
+
+msgid "Services"
+msgstr "Servicios"
+
+msgid "Ipk Tools"
+msgstr "Instalar IPK"
+
+msgid "Scan end"
+msgstr "Analisis de Seguridad Finalizado!"

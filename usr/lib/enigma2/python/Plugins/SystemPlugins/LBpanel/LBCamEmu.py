@@ -501,7 +501,7 @@ class installCam2(Screen):
 		self["menu"] = List(self.list)
 		self.feedlist()
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Delete"))
+		self["key_green"] = StaticText(_("Delete Emu"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{

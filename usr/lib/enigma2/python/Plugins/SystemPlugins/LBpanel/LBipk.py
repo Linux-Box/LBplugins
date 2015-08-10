@@ -301,12 +301,15 @@ class DownloadFeed(Screen):
 		self.mbox = self.session.open(MessageBox, _("%s is downloaded" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 
 	def cancel(self):
-		if fileExists("/usr/lib/opkg/status.tmp"):
-			os.system("mv /usr/lib/opkg/status.tmp /usr/lib/opkg/status")
+		try:
+                    if fileExists("/usr/lib/opkg/status.tmp"):
+                        os.system("mv /usr/lib/opkg/status.tmp /usr/lib/opkg/status")
 			os.chmod("/usr/lib/opkg/status", 0644)
-		elif fileExists("/var/lib/opkg/status.tmp"):
-			os.system("mv /var/lib/opkg/status.tmp /var/lib/opkg/status")
-			os.chmod("/var/lib/opkg/status", 0644)
+                    elif fileExists("/var/lib/opkg/status.tmp"):
+		        os.system("mv /var/lib/opkg/status.tmp /var/lib/opkg/status")
+		        os.chmod("/var/lib/opkg/status", 0644)
+		except:
+                    pass
 		self.close()
 #####################################################################################################
 class InstallAll(Screen):
@@ -390,8 +393,8 @@ class InstallAll(Screen):
 		self.list = [ ]
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))
-		self["key_yellow"] = StaticText(_("Forced Install"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
+		self["key_yellow"] = StaticText(_("Forced Install"))
 		
 	def nList(self):
 		self.list = []
