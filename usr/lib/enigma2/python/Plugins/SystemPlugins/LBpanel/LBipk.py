@@ -136,7 +136,6 @@ class IPKToolsScreen(Screen):
 			"yellow": self.clear,
 			"green": self.restartGUI,
 		})
-		os.system("opkg update &")
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Restart GUI"))
 		self["key_yellow"] = StaticText(_("Clear /tmp"))
@@ -295,10 +294,12 @@ class DownloadFeed(Screen):
 		
 	def down(self):
 		os.system("cd /tmp && opkg install -nodeps -download-only %s" % self["menu"].getCurrent()[0])
+		os.system("opkg update &")
 		self.mbox = self.session.open(MessageBox, _("%s is downloaded" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 		
 	def wdown(self):
 		os.system("cd /tmp && opkg install -download-only %s" % self["menu"].getCurrent()[0])
+		os.system("opkg update &")
 		self.mbox = self.session.open(MessageBox, _("%s is downloaded" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 
 	def cancel(self):
@@ -421,6 +422,7 @@ class InstallAll(Screen):
 		if self["menu"].getCurrent()[0][-4:] == '.ipk':
 			try:
 				self.session.open(Console,title = _("Install packets"), cmdlist = ["opkg install /tmp/%s" % self["menu"].getCurrent()[0]])
+				os.system("opkg update &")
 			except:
 				pass
 		else:
@@ -433,6 +435,7 @@ class InstallAll(Screen):
 		if self["menu"].getCurrent()[0][-4:] == '.ipk':
 			try:
 				self.session.open(Console,title = _("Install packets"), cmdlist = ["opkg install -force-overwrite -force-downgrade /tmp/%s" % self["menu"].getCurrent()[0]])
+				os.system("opkg update &")
 			except:
 				pass
 		else:
@@ -669,5 +672,6 @@ class downfeed(Screen):
 		
 	def setup(self):
 		os.system("opkg install -force-reinstall %s" % self["menu"].getCurrent()[0])
+		os.system("opkg update &")
 		self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 ##############################################################################
