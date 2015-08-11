@@ -659,7 +659,7 @@ class descargasScreen(Screen):
 		self.setTitle(_("Download Bee"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Restart Gui"))
+		self["key_green"] = StaticText(_("Restart GUI"))
 		self["key_yellow"] = StaticText(_("Delete"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
 
@@ -750,7 +750,7 @@ class installsoftware(Screen):
 			MultiContentEntryText(pos = (80, 29), size = (630, 18), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 3 is the Description
 			MultiContentEntryPixmapAlphaTest(pos = (5, 5), size = (50, 40), png = 2), # index 4 is the pixmap
 				],
-	"fonts": [gFont("Regular", 16),gFont("Regular", 13)],
+	"fonts": [gFont("Regular", 19),gFont("Regular", 16)],
 	"itemHeight": 50
 	}
 	</convert>
