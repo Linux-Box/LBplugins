@@ -803,24 +803,31 @@ class installsoftware(Screen):
 		if type=="spinner":
 			self.setTitle(_("LBpanel-Download spinner"))
 			self.plist="opkg list | grep -i spinnerlb"
+			self.prev=True
 		elif type=="soryslist":
 			self.setTitle(_("LBpanel-Download Sorys Settings"))
 			self.plist="opkg list | grep sorys"
+			self.prev=False
 		elif type=="configemus":
 			self.setTitle(_("LBpanel-Download Config Emus"))
 			self.plist="opkg list | grep emucfg"
+			self.prev=False
 		elif type=="picon":
 			self.setTitle(_("LBpanel-Download picon"))
 			self.plist="opkg list | grep -i piconlb"
+			self.prev=True
 		elif type=="skinparts":
 			self.setTitle(_("LBpanel-Download skinpart"))
 			self.plist="opkg list | grep -i skinpartlb"
+			self.prev=True
 		elif type=="defaultskinparts":
 			self.setTitle(_("LBpanel-Download skins default part"))
 			self.plist='opkg list | awk "/skinpartlb/ && /default/"'
+			self.prev=True
 		elif type=="bootlogo":
 			self.setTitle(_("LBpanel-Download bootlogo"))
 			self.plist="opkg list | grep -i bootlogolb"
+			self.prev=True
 		
 		self.session = session
 		self.list = []
@@ -830,7 +837,6 @@ class installsoftware(Screen):
 		self.feedlist()
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))
-		#self["key_yellow"] = StaticText(_("Default Package"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self.ctimer = enigma.eTimer()
 		self.ctimer.callback.append(self.__run)
@@ -844,19 +850,14 @@ class installsoftware(Screen):
 				"red": self.cancel,
 				"up": self.Kup,
 				"down": self.Kdown,
+				"left": self.Kleft,
+				"right": self.Kright,
 			},-1)
-		#self.list = [ ]
 
         def __run(self):
         	if len(self.list)==0:
         		image=""
         	elif self.image=="first":
-        		#self["preview"].updateIcon(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/openplus.jpg"))
-                        #self["preview"].show()
-        		#self.image=self.list[0][0].replace(" ","_")
-			#process = threading.Thread(target=self.runDownloadImg, args=[self.image])
-			#process.setDaemon(True)
-			#process.start()
 			self.Kup()
                 elif self.image!="":
 			self.__updateimage()
@@ -864,8 +865,12 @@ class installsoftware(Screen):
 	def __updateimage(self):
 		img="/tmp/.lbimg%s" % (self.image)
 		eimg="/tmp/.lbimg%s.error" % (self.image)
-		print ("Check image: %s" % self.image)
-		if fileExists(img) and os.path.getsize(img)>0:
+		print ("Check image: %s" % img)
+		if self.prev==False:
+			self["preview"].updateIcon(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/openplus.jpg"))
+			self["preview"].show()
+			self.image=""
+		elif fileExists(img) and os.path.getsize(img)>0:
 			self["preview"].updateIcon(img)
 			self["preview"].show()
 			self.image=""
@@ -884,16 +889,12 @@ class installsoftware(Screen):
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		for line in mlist.readlines():
 			try:
-				self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
+				name = line.split(' - ')[0]
+				self.list.append(("%s %s" % (name.split('-')[3], line.split(' - ')[1]), line.split(' - ')[-1], softpng, "%s" % (line.split(' - ')[0]) ))
 			except:
 				pass
 		mlist.close()
 		self["menu"].setList(self.list)
-		#try:
-		#	self.image=self.list[0][0].replace(" ","_")
-		#	self.imageDown()
-		#except:
-		#	pass
 	
 	def Kup(self):
 		if len(self.list)!=0:
@@ -904,14 +905,22 @@ class installsoftware(Screen):
 		if len(self.list)!=0:
 			self["menu"].selectNext()
 			self.imageDown()
+	def Kleft(self):
+		if len(self.list)!=0:
+			self["menu"].selectPrevious()
+			self.imageDown()
+	def Kright(self):
+		if len(self.list)!=0:
+			self["menu"].selectNext()
+			self.imageDown()
 	
         def runDownloadImg(self, img):
 		try:
 			index=self["menu"].getIndex()
 		except:
 			index=0
-        	img=self.list[index][0].replace(" ","_")
-                oimg="http://appstore.linux-box.es/preview/%s_all.ipk.png" % img
+        	img=self["menu"].getCurrent()[3]
+		oimg="http://appstore.linux-box.es/preview/%s_%s_all.ipk.png" % (img, self["menu"].getCurrent()[0].split(' ')[1])
                 timg="/tmp/%s.tmp" % img
                 dimg="/tmp/.lbimg%s" % img
                 print ("Downloading image  %s to %s") % (oimg, dimg)
@@ -933,13 +942,12 @@ class installsoftware(Screen):
 				print "Error downloading %s" % oimg
 				open("%s.error" % (dimg), 'a').close()
 		#run download img cache	
-		print "-------------------------------------INDICE: %s - %s" % (self["menu"].getIndex(), self.list[index][0].replace(" ","_"))
 		for x in range(0, self["menu"].count()):
-			img=self.list[x][0].replace(" ","_")
+			img=self.list[x][3]
 			dimg="/tmp/.lbimg%s" % img
 			if ( x==index-1) or  (x==index+1 ) or (x==index):
 				if not fileExists(dimg):
-					oimg="http://appstore.linux-box.es/preview/%s_all.ipk.png" % img
+					oimg="http://appstore.linux-box.es/preview/%s_%s_all.ipk.png" % (img, self.list[x][0].split(' ')[1])
 					timg="/tmp/%s.tmp" % img
 					try:
 						req = urllib2.Request(oimg)
@@ -962,19 +970,22 @@ class installsoftware(Screen):
 			
                         
 	def imageDown(self):
-		self.image=self["menu"].getCurrent()[0].replace(" ","_")
-		process = threading.Thread(target=self.runDownloadImg, args=[self.image])
-		process.setDaemon(True)
-		process.start()
+		if self.prev==True:
+			self.image=self["menu"].getCurrent()[3]
+			process = threading.Thread(target=self.runDownloadImg, args=[self.image])
+			process.setDaemon(True)
+			process.start()
+		else:
+			self.image="Local"
 		
 	def ok(self):
 		self.setup()
 		
 	def setup(self):
 		try:
-			s=self["menu"].getCurrent()[0]
-			os.system("opkg install -force-overwrite %s" % s[0:len(s.find("_"))-1])
-			self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+			if len(self.list)>0:
+				os.system("opkg install -force-overwrite %s" % self["menu"].getCurrent()[3])
+				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 			

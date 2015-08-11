@@ -136,6 +136,7 @@ class IPKToolsScreen(Screen):
 			"yellow": self.clear,
 			"green": self.restartGUI,
 		})
+		os.system("opkg update &")
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Restart GUI"))
 		self["key_yellow"] = StaticText(_("Clear /tmp"))
