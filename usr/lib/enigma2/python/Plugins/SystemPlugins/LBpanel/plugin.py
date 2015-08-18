@@ -57,7 +57,7 @@ from enigma import ePicLoad
 import os
 import gettext
 import LBCamEmu
-import LBipk
+#import LBipk
 import LBtools
 import LBDaemonsList
 from enigma import eEPGCache
@@ -126,10 +126,6 @@ config.plugins.lbpanel.runeveryhour = ConfigYesNo(default = False)
 if not os.path.isfile("/etc/opkg/lbappstore.conf"):
 	with open ('/etc/opkg/lbappstore.conf', 'a') as f: f.write ("src/gz lbutils http://appstore.linux-box.es/files" + '\n')
 	
-# Check executables
-#os.popen("chmod  777 /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/*")
-#os.popen("chmod 777 /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py*")
-                                
 # Generic function to send email
 def sendemail(from_addr, to_addr, cc_addr,
               subject, message,
@@ -281,7 +277,7 @@ class LBPanel2(Screen):
 			self.list.append((_("SoftEmus"),"com_one", _("CamEmu start-stop, Test Emu Control, Info Emus"), onepng))
 		self.list.append((_("Services "),"com_two", _("Epg,Ntp,scripts,info ..."), twopng ))
 		self.list.append((_("System"),"com_six", _("Kernel modules,swap,ftp,samba,crond,usb"), sixpng ))
-		self.list.append((_("Package install"),"com_four", _("Install /uninstall ipk,tar.gz en /tmp"), treepng))
+		self.list.append((_("Teambox downloads"),"com_four", _("Download Teambox Packages"), treepng))
 		self.list.append((_("Settings"),"com_settings", _("Settings of LBpanel"), settings))
 		self.list.append((_("Add-ons"),"com_seven", _("Plugins"), sevenpng))
 		self["menu"].setList(self.list)
@@ -302,7 +298,7 @@ class LBPanel2(Screen):
 			elif returnValue is "com_tree":
 				self.session.open(backup.BackupSuite)
 			elif returnValue is "com_four":
-				self.session.open(LBipk.IPKToolsScreen)
+				self.session.open(descargasScreen)
 			elif returnValue is "com_five":
 				self.session.open(ConfigExtentions)
 			elif returnValue is "com_six":
@@ -419,8 +415,6 @@ class descargasScreen(Screen):
 		sietepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		ochopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipk.png"))
 		self.list.append((_("Sorys Channel List"),"dos", _("Download Sorys Channel List"), dospng ))
-		#if Test_camemu():
-		#	self.list.append((_("Download config emus"),"cuatro", _("Download Config Emus"), cuatropng ))
 		self.list.append((_("Download Picon"),"cinco", _("Download Picon"), cincopng ))
 		self.list.append((_("Download skinparts"),"seis", _("Download skinparts"), seispng ))
 		self.list.append((_("Download default skinparts"),"nueve", _("Download default skinparts"), seispng ))
