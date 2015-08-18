@@ -236,11 +236,10 @@ class LBPanel2(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("LBpanel"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
-		self["key_menu"] = StaticText(_("PRESS MENU TO DOWNLOADS"))
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("CamEmu"))
 		self["key_yellow"] = StaticText(_("Services"))
-		self["key_blue"] = StaticText(_("Ipk Tools"))
+		self["key_blue"] = StaticText(_("Teambox downloads"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "CCcamInfoActions", "EPGSelectActions"],
 		{
 			"ok": self.keyOK,
@@ -311,8 +310,6 @@ class LBPanel2(Screen):
 				print "\n[LBpanel] cancel\n"
 				self.close(None)
 
-	def keyBlue (self):
-		self.session.open(LBipk.IPKToolsScreen)
 				
 	def keyYellow (self):
 		self.session.open(LBtools.ToolsScreen)
@@ -322,6 +319,9 @@ class LBPanel2(Screen):
 		
 	def keyGreen (self):
 		self.session.open(LBCamEmu.emuSel2)
+		
+	def keyBlue (self):		
+		self.session.open(descargasScreen)
 	
 	def infoKey (self):
 		self.session.openWithCallback(self.mList,info)
@@ -420,6 +420,7 @@ class descargasScreen(Screen):
 		self.list.append((_("Download default skinparts"),"nueve", _("Download default skinparts"), seispng ))
 		self.list.append((_("Download spinner"),"siete", _("Download spinner"), sietepng ))
 		self.list.append((_("Download bootlogo"),"ocho", _("Download bootlogo"), ochopng ))
+		self.list.append((_("Download bootvideo"),"bootvideo", _("Download bootvideo"), ochopng ))
 		self["menu"].setList(self.list)
 		
 	def exit(self):
@@ -447,7 +448,8 @@ class descargasScreen(Screen):
 			self.session.open(installsoftware, "spinner")
 		elif item is "ocho":
 			self.session.open(installsoftware, "bootlogo")
-		
+		elif item is "bootvideo":
+			self.session.open(installsoftware, "bootvideo")		
 
 			
 ###############################################
@@ -556,6 +558,10 @@ class installsoftware(Screen):
 		elif type=="bootlogo":
 			self.setTitle(_("LBpanel-Download bootlogo"))
 			self.plist="opkg list | grep -i bootlogolb"
+			self.prev=True
+		elif type=="bootvideo":
+			self.setTitle(_("LBpanel-Download bootvideo"))
+			self.plist="opkg list | grep -i bootvideolb"
 			self.prev=True
 		
 		self.session = session
