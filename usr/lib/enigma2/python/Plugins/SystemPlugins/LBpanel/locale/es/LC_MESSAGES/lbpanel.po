@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: lbpanel 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-30 21:26+0100\n"
-"PO-Revision-Date: 2015-08-18 16:00+0100\n"
+"PO-Revision-Date: 2015-08-18 22:27+0100\n"
 "Last-Translator: VillaK\n"
 "Language-Team: netbook\n"
 "Language: es\n"
@@ -1608,3 +1608,12 @@ msgstr "Analisis de Seguridad Finalizado!"
 
 msgid "Add Swap Manager"
 msgstr "Añadir/Configurar Swap"
+
+msgid "Teambox downloads"
+msgstr "Descargas Team"
+
+msgid "Download Teambox Packages"
+msgstr "Descargas Paquetes del Team"
+
+msgid "Download bootvideo"
+msgstr "Bootvideos"

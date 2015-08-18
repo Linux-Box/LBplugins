@@ -249,7 +249,6 @@ class LBPanel2(Screen):
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue,
-			"menu": self.keyMenu,
 			
 		})
 		self["lb_version"] = StaticText(_("Version: %s") % lbversion())
