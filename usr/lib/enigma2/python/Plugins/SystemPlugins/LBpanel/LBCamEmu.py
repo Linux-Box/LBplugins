@@ -406,15 +406,19 @@ class installCam(Screen):
 		self.list = [ ]
 				
 	def feedlist(self):
-		self.list = []
-		camdlist = os.popen("opkg list | grep lbcam")
-		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
-		for line in camdlist.readlines():
-			try:
-				self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
-			except:
-				pass
-		camdlist.close()
+		try:
+			self.list = []
+			camdlist = os.popen("opkg list | grep lbcam")
+			softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
+			for line in camdlist.readlines():
+				try:
+					self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
+				except:
+					pass
+			camdlist.close()
+		except:
+			print "Erros executing opkg list | grep lbcam"
+			
 		self["menu"].setList(self.list)
 		
 	def ok(self):

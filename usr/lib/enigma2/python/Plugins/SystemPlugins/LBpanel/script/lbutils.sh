@@ -24,7 +24,7 @@ testsettings)
                 opkg install $arg;
                 echo "." > /tmp/.lbsettings.update
         done;
-        rm -f /tmp/list-upgradable
+        rm -f /tmp/.list-upgradable
                                                                 
 	exit 0
 	;;

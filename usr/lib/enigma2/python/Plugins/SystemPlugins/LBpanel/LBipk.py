@@ -272,21 +272,24 @@ class DownloadFeed(Screen):
 			os.system("mv /usr/lib/opkg/status /usr/lib/opkg/status.tmp")
 		elif fileExists("/var/lib/opkg/status"):
 			os.system("mv /var/lib/opkg/status /var/lib/opkg/status.tmp")
-		camdlist = os.popen("opkg list")
-		softpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipkmini.png"))
-		if camdlist:
-			for line in camdlist:
-				if config.plugins.lbpanel.filtername.value:
-					if line.find("enigma2-plugin-") > -1:
-						try:
-							self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
-						except:
-							pass
-				else:
-					try:
-						self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
-					except:
-						pass
+		try:
+		        camdlist = os.popen("opkg list")
+		        softpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipkmini.png"))
+		        if camdlist:
+			        for line in camdlist:
+				        if config.plugins.lbpanel.filtername.value:
+					        if line.find("enigma2-plugin-") > -1:
+						        try:
+							        self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
+                                                        except:
+							        pass
+                                        else:
+					        try:
+						        self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
+                                                except:
+						        pass
+                except:
+                        print "Error loading opkg list"
 		self["menu"].setList(self.list)
 		
 	def ok(self):
@@ -656,15 +659,16 @@ class downfeed(Screen):
 		self.list = []
 		try:
 			ipklist = os.popen("opkg list")
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipkmini.png"))
+			if ipklist:
+			        for line in ipklist.readlines():
+				        try:
+					        self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], png))
+                                        except:
+					        pass
 		except:
-			pass
-		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipkmini.png"))
-		if ipklist:
-			for line in ipklist.readlines():
-				try:
-					self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], png))
-				except:
-					pass
+		        print "Error loading opkg list"
+		         
 		self["menu"].setList(self.list)
 		
 	def cancel(self):

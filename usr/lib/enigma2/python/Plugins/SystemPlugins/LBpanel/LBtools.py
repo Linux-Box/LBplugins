@@ -65,7 +65,9 @@ import os.path
 import gettext
 import MountManager
 import RestartNetwork
-import urllib
+import gzip
+#import urllib
+from urllib2 import urlopen
 ## Epg
 import Screens.Standby
 from Components.Sources.Progress import Progress
@@ -784,6 +786,7 @@ class SwapScreen(Screen):
 			
 	def makeSwapFile(self, size):
 		try:
+		        print "dd if=/dev/zero of=%s bs=1024 count=%s" % (self.swapfile, size)
 			os.system("dd if=/dev/zero of=%s bs=1024 count=%s" % (self.swapfile, size))
 			os.system("mkswap %s" % (self.swapfile))
 			self.mbox = self.session.open(MessageBox,_("Swap file created"), MessageBox.TYPE_INFO, timeout = 4 )
@@ -1412,11 +1415,13 @@ class SystemScreen(Screen):
 			if returnValue is "1":
 				self.session.openWithCallback(self.mList,KernelScreen)
 			elif returnValue is "3":
-				os.popen("wget -qO /tmp/.myip http://appstore.linux-box.es/myip.php")
-				f = open("/tmp/.myip")
-				myip = f.readline()
-				f.close()
-				self.mbox = self.session.open(MessageBox,_("Your public IP is: %s") % (myip), MessageBox.TYPE_INFO, timeout = 20 )
+				try:
+				        pag = urlopen("http://appstore.linux-box.es/myip.php")
+				        myip = pag.read()
+				        pag.close()
+				        self.mbox = self.session.open(MessageBox,_("Your public IP is: %s") % (myip), MessageBox.TYPE_INFO, timeout = 20 )
+                                except:
+				        print '['+time.strftime('%Y/%m/%d %H:%M:%S')+'] '+'ERROR. http://appstore.linux-box.es/myip.php.'
 			elif returnValue is "4":
 				self.session.openWithCallback(self.mList,SwapScreen2)
 			elif returnValue is "5":
@@ -2021,15 +2026,24 @@ class epgdn(ConfigListScreen, Screen):
 		
 	def downepg(self):
 		try:
-			os.system("wget -q http://appstore.linux-box.es/epg/epg.dat.gz -O %sepg.dat.gz" % (config.misc.epgcachepath.value))
+			page = urlopen("http://appstore.linux-box.es/epg/epg.dat.gz")
+			f = open( "%sepg.dat.gz" % (config.misc.epgcachepath.value), "wb")
+			f.write(page.read())
+                        f.close()
+                        page.close()
+
 			if fileExists("%sepg.dat" % config.misc.epgcachepath.value):
-				os.unlink("%sepg.dat" % config.misc.epgcachepath.value)
-				os.system("rm -f %sepg.dat" % config.misc.epgcachepath.value)
-			if not os.path.exists("%sepgtmp" % config.misc.epgcachepath.value):
-				os.system("mkdir -p %sepgtmp" % config.misc.epgcachepath.value)
-			os.system("cp -f %sepg.dat.gz %sepgtmp" % (config.misc.epgcachepath.value, config.misc.epgcachepath.value))
-			os.system("gzip -df %sepg.dat.gz" % config.misc.epgcachepath.value)
-			os.chmod("%sepg.dat" % config.misc.epgcachepath.value, 0644)
+			        os.unlink("%sepg.dat" % config.misc.epgcachepath.value)
+                        if fileExists("%sepg.dat.gz.bak" % config.misc.epgcachepath.value):			
+			        os.unlink("%sepg.dat.gz.bak" % config.misc.epgcachepath.value)
+                        file = gzip.open("%sepg.dat.gz" % config.misc.epgcachepath.value, 'rb')
+                        f = open( "%sepg.dat" % (config.misc.epgcachepath.value), "wb")
+                        f.write(file.read())
+                        f.close()
+                        file.close()
+                        os.rename("%sepg.dat.gz" % config.misc.epgcachepath.value, "%sepg.dat.gz.bak" % config.misc.epgcachepath.value)
+                        
+                        os.chmod("%sepg.dat" % config.misc.epgcachepath.value, 0644)
 			self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 4 )
 			epgcache = new.instancemethod(_enigma.eEPGCache_load,None,eEPGCache)
 			epgcache = eEPGCache.getInstance().load()
@@ -2097,6 +2111,8 @@ class Ttimer(Screen):
                         self.ctimer.stop()
                         self.session.nav.playService(eServiceReference(config.tv.lastservice.value))
                         rDialog.stopDialog(self.session)
+                        epgcache = new.instancemethod(_enigma.eEPGCache_load,None,eEPGCache)
+                        epgcache = eEPGCache.getInstance().save()
                         self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 5 )
                         self.close()
 pdialog = ""
@@ -2311,10 +2327,14 @@ class epgdmanual(Screen):
 ################################################################################################################
 	def reload(self):
 		try:
-			if fileExists("%sepgtmp/epg.dat.gz" % config.misc.epgcachepath.value):
-				os.system("cp -f %sepgtmp/epg.dat.gz %s" % (config.misc.epgcachepath.value, config.misc.epgcachepath.value))
-				os.system("gzip -df %sepg.dat.gz" % config.misc.epgcachepath.value)
-				os.chmod("%sepg.dat" % config.misc.epgcachepath.value, 0644)
+			if fileExists("%sepg.dat.gz.bak" % config.misc.epgcachepath.value):
+				os.system("cp -f %sepg.dat.gz.bak %sepg.dat.gz" % (config.misc.epgcachepath.value, config.misc.epgcachepath.value))
+                                file = gzip.open("%sepg.dat.gz" % config.misc.epgcachepath.value, 'rb')
+                                f = open( "%sepg.dat" % (config.misc.epgcachepath.value), "wb")
+                                f.write(file.read())
+                                f.close()   
+                                file.close()
+				#os.chmod("%sepg.dat" % config.misc.epgcachepath.value, 0644)
 			epgcache = new.instancemethod(_enigma.eEPGCache_load,None,eEPGCache)
 			epgcache = eEPGCache.getInstance().load()
 			self.mbox = self.session.open(MessageBox,(_("epg.dat reloaded")), MessageBox.TYPE_INFO, timeout = 4 )
