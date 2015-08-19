@@ -813,7 +813,7 @@ class installremove(Screen):
 		
 	def feedlist(self):
 		self.list = []
-		camdlist = os.popen("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'piconlb' -e 'skinpartlb' -e 'spinnerlb' -e 'skindefaultlb' -e 'bootlogolb'")
+		camdlist = os.popen("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'bootvideolb' -e 'piconlb' -e 'skinpartlb' -e 'spinnerlb' -e 'skindefaultlb' -e 'bootlogolb'")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
 		for line in camdlist.readlines():
 			try:
