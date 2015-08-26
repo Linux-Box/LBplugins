@@ -4,7 +4,16 @@
 
 case $1 in
 # Test updates for LBpanel and LBpanel Settings
+init)
+	sync ; echo 3 > /proc/sys/vm/drop_caches ; echo "RAM Liberada"
+	sysctl vm.dirty_background_ratio=1
+	sysctl vm.min_free_kbytes=2192         
+	sysctl vm.dirty_ratio=20
+	sysctl vm.swappiness=10
+	exit 0
+	;;
 testupdate)
+	sync ; echo 3 > /proc/sys/vm/drop_caches ; echo "RAM Liberada"
         opkg update
         opkg list-upgradable > /tmp/.list-upgradable
         for arg in `awk '/enigma2-plugin-extensions-lbpanel/{print $1}' /tmp/.list-upgradable` ; do
@@ -18,6 +27,7 @@ testupdate)
 	;;
 
 testsettings)
+	sync ; echo 3 > /proc/sys/vm/drop_caches ; echo "RAM Liberada"
 	opkg update
         for arg in `awk '/enigma2-plugin-settings-sorys/{print $1}' /tmp/.list-upgradable` ; do
                 echo "Installing $arg";
@@ -28,16 +38,15 @@ testsettings)
                                                                 
 	exit 0
 	;;
-	
-#Download epg
-epgdown)
-	wget -q http://appstore.linux-box.es/epg/epg.dat.gz -O $2epg.dat.gz
-	cp $2epg.dat.gz $2epg.dat.gz.copia
-	rm -f $2epg.dat
-	gzip -df $2epg.dat.gz $2	
+listcams)
+	sync ; echo 3 > /proc/sys/vm/drop_caches ; echo "RAM Liberada"
+	opkg list | grep lbcam
 	exit 0
 	;;
-	
+update)
+	opkg update
+	exit 0
+	;;
 *)
 	echo "Usage: lbutils.sh <util> [<option1>] [<option2>]" ;
 	exit 1

@@ -278,7 +278,7 @@ class emuSel2(Screen):
 			emuexec = emuexec[7:]
 			print "Add execute permision to %s" % (emuexec)
 			if fileExists("/usr/bin/%s" % emuexec):
-				os.chmod("/usr/bin/%s" % emuexec, 0777)
+				os.chmod("/usr/bin/%s" % emuexec, 0755)
 			config.plugins.lbpanel.activeemu.value = self["menu"].getCurrent()[0]
 			self.indexpos = self["menu"].getIndex()
 			config.plugins.lbpanel.activeemu.save()
@@ -408,7 +408,7 @@ class installCam(Screen):
 	def feedlist(self):
 		try:
 			self.list = []
-			camdlist = os.popen("opkg list | grep lbcam")
+			camdlist = os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh listcams")
 			softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 			for line in camdlist.readlines():
 				try:

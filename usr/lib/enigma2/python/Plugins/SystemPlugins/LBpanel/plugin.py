@@ -126,6 +126,7 @@ config.plugins.lbpanel.runeveryhour = ConfigYesNo(default = False)
 if not os.path.isfile("/etc/opkg/lbappstore.conf"):
 	with open ('/etc/opkg/lbappstore.conf', 'a') as f: f.write ("src/gz lbutils http://appstore.linux-box.es/files" + '\n')
 	
+os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh init")
 # Generic function to send email
 def sendemail(from_addr, to_addr, cc_addr,
               subject, message,
@@ -237,7 +238,8 @@ class LBPanel2(Screen):
 		self.setTitle(_("LBpanel"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("CamEmu"))
+		if Test_camemu():
+			self["key_green"] = StaticText(_("CamEmu"))
 		self["key_yellow"] = StaticText(_("Services"))
 		self["key_blue"] = StaticText(_("Teambox downloads"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "CCcamInfoActions", "EPGSelectActions"],
@@ -317,7 +319,8 @@ class LBPanel2(Screen):
 		self.session.open(descargasScreen)
 		
 	def keyGreen (self):
-		self.session.open(LBCamEmu.emuSel2)
+		if Test_camemu():
+			self.session.open(LBCamEmu.emuSel2)
 		
 	def keyBlue (self):		
 		self.session.open(descargasScreen)
@@ -955,7 +958,7 @@ class lbCron():
 		print "Executing update LBpanel in %s minutes" % (60 - cronvar)
 		if (cronvar == 60 ):
 			cronvar = 0
-			os.system("opkg update &")
+			os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update") 
 			if (config.plugins.lbpanel.updatesettings.value):
 				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
 		if (os.path.isfile("/tmp/.lbsettings.update")):
