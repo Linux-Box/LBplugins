@@ -240,6 +240,8 @@ class LBPanel2(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		if Test_camemu():
 			self["key_green"] = StaticText(_("CamEmu"))
+		else:
+			self["key_green"] = StaticText(chr(9))
 		self["key_yellow"] = StaticText(_("Services"))
 		self["key_blue"] = StaticText(_("Teambox downloads"))
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "CCcamInfoActions", "EPGSelectActions"],
@@ -321,6 +323,8 @@ class LBPanel2(Screen):
 	def keyGreen (self):
 		if Test_camemu():
 			self.session.open(LBCamEmu.emuSel2)
+		else:
+			os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
 		
 	def keyBlue (self):		
 		self.session.open(descargasScreen)

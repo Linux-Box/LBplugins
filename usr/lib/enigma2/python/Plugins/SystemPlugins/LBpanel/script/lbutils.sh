@@ -47,6 +47,10 @@ update)
 	opkg update
 	exit 0
 	;;
+appstore)
+	opkg install enigma2-plugin-extensions-extraappstore
+	opkg update
+	;;
 *)
 	echo "Usage: lbutils.sh <util> [<option1>] [<option2>]" ;
 	exit 1
