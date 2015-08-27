@@ -64,7 +64,27 @@ def _(txt):
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
-	
+
+def command(comandline, strip=1):
+        comandline = comandline + " >/tmp/command.txt"
+        os.system(comandline)
+        text = ""
+        if os.path.exists("/tmp/command.txt") is True:
+                file = open("/tmp/command.txt", "r")
+                if strip == 1:
+                        for line in file:
+                                text = text + line.strip() + '\n'
+                else:
+                        for line in file:
+                                text = text + line
+                                if text[-1:] != '\n': text = text + "\n"
+                file.close()   
+        # if one or last line then remove linefeed
+        if text[-1:] == '\n': text = text[:-1]
+        comandline = text
+        os.system("rm /tmp/command.txt")
+        return comandline
+
 class IPKToolsScreen(Screen):
 	skin = """
 	<screen name="IPKToolsScreen" position="0,0" size="1280,720" title="LBpanel Ipk Tools">
@@ -273,7 +293,7 @@ class DownloadFeed(Screen):
 		elif fileExists("/var/lib/opkg/status"):
 			os.system("mv /var/lib/opkg/status /var/lib/opkg/status.tmp")
 		try:
-		        camdlist = os.popen("opkg list")
+		        camdlist = command("opkg list")
 		        softpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipkmini.png"))
 		        if camdlist:
 			        for line in camdlist:
@@ -423,7 +443,7 @@ class InstallAll(Screen):
 		if self["menu"].getCurrent()[0][-4:] == '.ipk':
 			try:
 				self.session.open(Console,title = _("Install packets"), cmdlist = ["opkg install /tmp/%s" % self["menu"].getCurrent()[0]])
-				os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update")
+				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update")
 			except:
 				pass
 		else:
@@ -436,7 +456,7 @@ class InstallAll(Screen):
 		if self["menu"].getCurrent()[0][-4:] == '.ipk':
 			try:
 				self.session.open(Console,title = _("Install packets"), cmdlist = ["opkg install -force-overwrite -force-downgrade /tmp/%s" % self["menu"].getCurrent()[0]])
-				os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update")
+				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update")
 			except:
 				pass
 		else:
@@ -656,7 +676,7 @@ class downfeed(Screen):
 	def nList(self):
 		self.list = []
 		try:
-			ipklist = os.popen("opkg list")
+			ipklist = os.system("opkg list")
 			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/ipkmini.png"))
 			if ipklist:
 			        for line in ipklist.readlines():
@@ -673,7 +693,7 @@ class downfeed(Screen):
 		self.close()
 		
 	def setup(self):
-		os.system("opkg install -force-reinstall %s" % self["menu"].getCurrent()[0])
-		os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update")
+		os.system("opkg install -force-reinstall %s && opkg update" % self["menu"].getCurrent()[0])
+		##os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update")
 		self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 ##############################################################################

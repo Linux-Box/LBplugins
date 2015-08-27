@@ -22,14 +22,14 @@
 # Internet: www.linux-box.es
 # Based on original source by epanel for openpli
 
-#from enigma import *
+from enigma import eTimer
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.List import List
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CURRENT_SKIN
 from Components.Button import Button
 from Components.config import config, ConfigElement, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_OK
-import ExtraActionBox
-import sys
+#import ExtraActionBox
+#import sys
 from Screens.Screen import Screen
 from Screens.PluginBrowser import PluginBrowser
 from Components.PluginComponent import plugins
@@ -37,10 +37,10 @@ from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Components.Sources.List import List
 from Tools.LoadPixmap import LoadPixmap
-from Screens.Console import Console
+#from Screens.Console import Console
 from Components.Label import Label
+#
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Components.Language import language
@@ -48,9 +48,9 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
 from Components.config import config, getConfigListEntry, ConfigText, ConfigPassword, ConfigClock, ConfigSelection, ConfigSubsection, ConfigYesNo, configfile, NoSave
 from Components.ConfigList import ConfigListScreen
 from Tools.Directories import fileExists
-from Components.Harddisk import harddiskmanager
-from Components.NimManager import nimmanager
-from Components.About import about
+#from Components.Harddisk import harddiskmanager
+#from Components.NimManager import nimmanager
+#from Components.About import about
 from os import environ
 from OpenSSL import SSL
 from enigma import ePicLoad
@@ -61,16 +61,16 @@ import LBCamEmu
 import LBtools
 import LBDaemonsList
 from enigma import eEPGCache
-from types import *
-from enigma import *
+#from types import *
+#from enigma import *
 import sys, traceback
 import re
 import time
 import new
-import _enigma
-import enigma
+#import _enigma
+#import enigma
 import smtplib
-import commands
+#import commands
 import threading
 import urllib2
 import Screens.Standby
@@ -126,7 +126,7 @@ config.plugins.lbpanel.runeveryhour = ConfigYesNo(default = False)
 if not os.path.isfile("/etc/opkg/lbappstore.conf"):
 	with open ('/etc/opkg/lbappstore.conf', 'a') as f: f.write ("src/gz lbutils http://appstore.linux-box.es/files" + '\n')
 	
-os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh init")
+os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh init")
 # Generic function to send email
 def sendemail(from_addr, to_addr, cc_addr,
               subject, message,
@@ -152,7 +152,7 @@ def sendemail(from_addr, to_addr, cc_addr,
 	if config.plugins.lbpanel.lbiemail.value == True:
 		f = { 'from' : from_addr, 'to' : to_addr, 'cc' : '', 'subject' : subject, 'message' : message, 'server' : smtpserver, 'proto' : proto, 'user' : login, 'password' : password}
 		url = 'https://appstore.linux-box.es/semail.php?%s' % (urllib.urlencode(f))	
-		os.popen("wget --no-check-certificate '%s' -O  /tmp/.ilbmail.log" % (url))
+		os.system("wget --no-check-certificate '%s' -O  /tmp/.ilbmail.log" % (url))
     except:
         fo = open("/tmp/.lbemail.error","a+")
         fo.close()
@@ -172,7 +172,27 @@ def Test_camemu():
 			break; 													
 	return found
 																	
+def command(comandline, strip=1):
+        comandline = comandline + " >/tmp/command.txt"
+        os.system(comandline)
+        text = ""
+        if os.path.exists("/tmp/command.txt") is True:
+                file = open("/tmp/command.txt", "r")
+                if strip == 1:
+                        for line in file:
+                                text = text + line.strip() + '\n'
+                else:
+                        for line in file:
+                                text = text + line
+                                if text[-1:] != '\n': text = text + "\n"
+                file.close()   
+        # if one or last line then remove linefeed
+        if text[-1:] == '\n': text = text[:-1]
+        comandline = text
+        os.system("rm /tmp/command.txt")
+        return comandline
 																	
+
 class LBPanel2(Screen):
 	skin = """
 <screen name="LBPanel2" position="0,0" size="1280,720">
@@ -324,7 +344,7 @@ class LBPanel2(Screen):
 		if Test_camemu():
 			self.session.open(LBCamEmu.emuSel2)
 		else:
-			os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
+			os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
 		
 	def keyBlue (self):		
 		self.session.open(descargasScreen)
@@ -579,7 +599,7 @@ class installsoftware(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
-		self.ctimer = enigma.eTimer()
+		self.ctimer = eTimer()
 		self.ctimer.callback.append(self.__run)
 		self.ctimer.start(1000,0)
 		                                                
@@ -626,15 +646,16 @@ class installsoftware(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		mlist = os.popen(self.plist)
+		mlist = command(self.plist)
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
-		for line in mlist.readlines():
+		ulist=mlist.split('\n')
+		mlist=""
+		for line in ulist:
 			try:
 				name = line.split(' - ')[0]
 				self.list.append(("%s %s" % (name.split('-')[3], line.split(' - ')[1]), line.split(' - ')[-1], softpng, "%s" % (line.split(' - ')[0]) ))
 			except:
 				pass
-		mlist.close()
 		self["menu"].setList(self.list)
 	
 	def Kup(self):
@@ -725,13 +746,17 @@ class installsoftware(Screen):
 	def setup(self):
 		try:
 			if len(self.list)>0:
-				os.system("opkg install -force-overwrite %s" % self["menu"].getCurrent()[3])
+				if self.plist=="opkg list | grep sorys":
+					command("opkg remove enigma2-plugin-settings-* && opkg install -force-overwrite %s" % self["menu"].getCurrent()[3])
+				else:
+					command("opkg install -force-overwrite %s" % self["menu"].getCurrent()[3])
+					
 				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 			
 	def cancel(self):
-		os.popen('rm -f /tmp/.lbimg*')
+		os.system('rm -f /tmp/.lbimg*')
 		self.ctimer.stop()
 		self.close()
 #################################################
@@ -820,7 +845,7 @@ class installremove(Screen):
 		
 	def feedlist(self):
 		self.list = []
-		camdlist = os.popen("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'bootvideolb' -e 'piconlb' -e 'skinpartlb' -e 'spinnerlb' -e 'skindefaultlb' -e 'bootlogolb'")
+		camdlist = command("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'bootvideolb' -e 'piconlb' -e 'skinpartlb' -e 'spinnerlb' -e 'skindefaultlb' -e 'bootlogolb'")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
 		for line in camdlist.readlines():
 			try:
@@ -948,7 +973,7 @@ class lbCron():
 
 	def gotSession(self, session):
 		self.session = session
-		self.timer = enigma.eTimer() 
+		self.timer = eTimer() 
 		self.timer.callback.append(self.update)
 		self.timer.start(60000, True)
 
@@ -962,7 +987,7 @@ class lbCron():
 		print "Executing update LBpanel in %s minutes" % (60 - cronvar)
 		if (cronvar == 60 ):
 			cronvar = 0
-			os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update") 
+			os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update") 
 			if (config.plugins.lbpanel.updatesettings.value):
 				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
 		if (os.path.isfile("/tmp/.lbsettings.update")):

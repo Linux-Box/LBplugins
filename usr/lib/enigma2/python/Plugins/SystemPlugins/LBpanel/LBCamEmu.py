@@ -106,6 +106,29 @@ config.plugins.lbpanel.keyname = ConfigSelection(default = "SoftCam.Key", choice
 print ("Init/restart SoftCam %s restart" % config.plugins.lbpanel.activeemu.value)
 os.system("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
 ######################################################################################
+
+def command(comandline, strip=1):
+        comandline = comandline + " >/tmp/command.txt"
+        os.system(comandline)
+        text = ""
+        if os.path.exists("/tmp/command.txt") is True:
+                file = open("/tmp/command.txt", "r")
+                if strip == 1:
+                        for line in file:
+                                text = text + line.strip() + '\n'
+                else:
+                        for line in file:
+                                text = text + line
+                                if text[-1:] != '\n': text = text + "\n"
+                file.close()
+        # if one or last line then remove linefeed
+        if text[-1:] == '\n': text = text[:-1]
+        comandline = text
+        os.system("rm /tmp/command.txt")
+        print "---------------------------------------------------------------------------------------------------------------------"
+        print comandline
+        return comandline
+
 class emuSel2(Screen):
 	skin = """
 <screen name="emuSel2" position="0,0" size="1280,720" title="lb_title" zPosition="2">
@@ -408,18 +431,15 @@ class installCam(Screen):
 	def feedlist(self):
 		try:
 			self.list = []
-			camdlist = os.popen("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh listcams")
+			camdlist0 = command("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh listcams")
+			camdlist = camdlist0.split('\n')
+			camdlist0=""
 			softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
-			for line in camdlist.readlines():
-				try:
-					self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
-				except:
-					pass
-			camdlist.close()
+			for line in camdlist:
+				self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[3], softpng))
+			self["menu"].setList(self.list)
 		except:
-			print "Erros executing opkg list | grep lbcam"
-			
-		self["menu"].setList(self.list)
+			pass
 		
 	def ok(self):
 		self.setup()
@@ -428,8 +448,7 @@ class installCam(Screen):
 		self.session.open(installCam2)
 		
 	def setup(self):
-		os.system("opkg install -force-overwrite %s" % self["menu"].getCurrent()[0])
-		os.popen("chmod 777 /usr/CamEmu/camemu.*")	
+		os.system("opkg install -force-overwrite %s && chmod 755 /usr/CamEmu/camemu.*" % self["menu"].getCurrent()[0] )
 		self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 		
 	def cancel(self):
@@ -518,7 +537,7 @@ class installCam2(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		camdlist = os.popen("opkg list-installed | grep lbcam")
+		camdlist = command("opkg list-installed | grep lbcam")
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
 		for line in camdlist.readlines():
 			try:

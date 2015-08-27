@@ -5,7 +5,7 @@
 case $1 in
 # Test updates for LBpanel and LBpanel Settings
 init)
-	sync ; echo 3 > /proc/sys/vm/drop_caches ; echo "RAM Liberada"
+	sync ; echo 3 > /proc/sys/vm/drop_caches
 	sysctl vm.dirty_background_ratio=1
 	sysctl vm.min_free_kbytes=2192         
 	sysctl vm.dirty_ratio=20
@@ -13,7 +13,7 @@ init)
 	exit 0
 	;;
 testupdate)
-	sync ; echo 3 > /proc/sys/vm/drop_caches ; echo "RAM Liberada"
+	sync ; echo 3 > /proc/sys/vm/drop_caches
         opkg update
         opkg list-upgradable > /tmp/.list-upgradable
         for arg in `awk '/enigma2-plugin-extensions-lbpanel/{print $1}' /tmp/.list-upgradable` ; do
@@ -39,7 +39,7 @@ testsettings)
 	exit 0
 	;;
 listcams)
-	sync ; echo 3 > /proc/sys/vm/drop_caches ; echo "RAM Liberada"
+	sync ; echo 3 > /proc/sys/vm/drop_caches
 	opkg list | grep lbcam
 	exit 0
 	;;
