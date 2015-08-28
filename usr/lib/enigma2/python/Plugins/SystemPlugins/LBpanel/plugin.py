@@ -67,7 +67,7 @@ import sys, traceback
 import re
 import time
 import new
-#import _enigma
+import _enigma
 #import enigma
 import smtplib
 #import commands
