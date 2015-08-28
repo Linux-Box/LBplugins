@@ -1038,7 +1038,7 @@ class lbCron():
                 	# Test if a cam is live
                 	actcam = config.plugins.lbpanel.activeemu.value
                 	actcam = actcam.replace("camemu.", "")
-                	if ( int(commands.getoutput('pidof %s |wc -w' % actcam)) == 0):
+                	if ( int(command('pidof %s |wc -w' % actcam, 0)) == 0):
                 		print "Restarting softcam %s" % (config.plugins.lbpanel.activeemu.value)
                 		os.system("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
 				if (config.plugins.lbpanel.lbemail.value or config.plugins.lbpanel.lbiemail.value):

@@ -31,12 +31,11 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Screens.ChoiceBox import ChoiceBox
 from Components.config import config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigList, ConfigListScreen
-from Screens.PluginBrowser import PluginBrowser
+#from Screens.PluginBrowser import PluginBrowser
 from Screens.MessageBox import MessageBox
 from Components.MenuList import MenuList
 from Components.Sources.List import List
 from Tools.LoadPixmap import LoadPixmap
-from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console
 from Screens.Screen import Screen
 from Components.Label import Label
@@ -49,7 +48,7 @@ from os import environ
 import os
 import sys
 import gettext
-import LBtools
+#import LBtools
 
 sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/CCcamInfo') 
 sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo')
@@ -95,11 +94,6 @@ config.plugins.lbpanel.path = ConfigSelection(default = "/usr/keys/", choices = 
 		("/etc/keys/", "/etc/keys/"),
 		("/var/tuxbox/config/", "/var/tuxbox/config/"),
 		("/var/tuxbox/config/oscam-stable/", "/var/tuxbox/config/oscam-stable/"),
-		])
-config.plugins.lbpanel.keyname = ConfigSelection(default = "SoftCam.Key", choices = [
-		("SoftCam.Key", "SoftCam.Key"),
-		("oscam.keys", "oscam.keys"),
-		("oscam.biss", "oscam.biss"),
 		])
 		
 # Start init emu
