@@ -72,6 +72,7 @@ def _(txt):
 		t = gettext.gettext(txt)
 	return t
 ####################################################################
+config.plugins.lbpanel = ConfigSubsection()
 config.plugins.lbpanel.activeserver = ConfigText(default = "NotSelected")
 config.plugins.lbpanel.activeconf = ConfigText(default = "NotSelected")
 config.plugins.lbpanel.activeemu = ConfigText(default = "No EMU activada")
