@@ -44,7 +44,7 @@ listcams)
 	exit 0
 	;;
 update)
-	opkg update
+	opkg update &
 	exit 0
 	;;
 appstore)

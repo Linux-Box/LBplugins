@@ -191,7 +191,18 @@ def command(comandline, strip=1):
         comandline = text
         os.system("rm /tmp/command.txt")
         return comandline
-																	
+
+def search_process(process):
+	pids = [pid for pid in os.listdir('/proc') if pid.isdigit()]
+	for pid in pids:
+	    try:
+	          name = open(os.path.join('/proc', pid, 'cmdline'), 'rb').read()
+	          if name.find(process) >= 0:
+	            return 1
+	    except IOError:
+		  continue
+	return -1
+	                                  																	
 
 class LBPanel2(Screen):
 	skin = """
@@ -1038,7 +1049,7 @@ class lbCron():
                 	# Test if a cam is live
                 	actcam = config.plugins.lbpanel.activeemu.value
                 	actcam = actcam.replace("camemu.", "")
-                	if ( int(command('pidof %s |wc -w' % actcam, 0)) == 0):
+                	if (search_process(actcam) != 1):
                 		print "Restarting softcam %s" % (config.plugins.lbpanel.activeemu.value)
                 		os.system("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
 				if (config.plugins.lbpanel.lbemail.value or config.plugins.lbpanel.lbiemail.value):
