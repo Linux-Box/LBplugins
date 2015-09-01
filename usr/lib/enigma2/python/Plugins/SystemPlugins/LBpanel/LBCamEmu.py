@@ -46,6 +46,7 @@ from Tools.Directories import fileExists
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
 from os import environ
 import os
+import os.path
 import sys
 import gettext
 #import LBtools
@@ -120,9 +121,37 @@ def command(comandline, strip=1):
         if text[-1:] == '\n': text = text[:-1]
         comandline = text
         os.system("rm /tmp/command.txt")
-        print "---------------------------------------------------------------------------------------------------------------------"
-        print comandline
         return comandline
+
+
+def opkg_list(filter=""):
+ search=0
+ list=""
+
+ files = [f for f in os.listdir('/var/lib/opkg/') if os.path.isfile(os.path.join('/var/lib/opkg/', f)) and f != 'status']
+
+ try:
+   for file in files:
+      fh = open(os.path.join('/var/lib/opkg/', file), "r")
+      for line in fh:
+            if line[:8] == 'Package:':
+                  package = line.split(" ")[1].strip()
+                  if (not "-dev"in package) and (not "-dbg" in package):
+                        if filter == "":
+                              search=1
+                        elif filter in package:
+                              search=1
+            if line[:8] == 'Descript' and search==1:
+                  package = package + " - " + line.split(": ")[1].strip() + "\n"
+                  list = list + package
+                  search=0
+            
+      fh.close()
+   if list[-1:] == '\n': list = list[:-1]
+   return list
+ except:
+   print "Error loading files"
+        
 
 class emuSel2(Screen):
 	skin = """
@@ -426,12 +455,12 @@ class installCam(Screen):
 	def feedlist(self):
 		try:
 			self.list = []
-			camdlist0 = command("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh listcams")
+			camdlist0=opkg_list("lbcam")
 			camdlist = camdlist0.split('\n')
 			camdlist0=""
 			softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 			for line in camdlist:
-				self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[3], softpng))
+				self.list.append(("%s %s" % (line.split(' - ')[0], " "), line.split(' - ')[1], softpng))
 			self["menu"].setList(self.list)
 		except:
 			pass
