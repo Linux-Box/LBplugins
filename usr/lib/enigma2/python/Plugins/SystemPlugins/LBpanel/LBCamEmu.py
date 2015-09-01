@@ -50,13 +50,13 @@ import sys
 import gettext
 #import LBtools
 
-sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/CCcamInfo') 
-sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo')
-sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/GboxSuite')
+#sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/CCcamInfo') 
+#sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/OscamInfo')
+#sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/GboxSuite')
 
-import gboxsuite
-import cccaminfo
-import oscaminfo
+#import gboxsuite
+#import cccaminfo
+#import oscaminfo
 
 pluginpath = "/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/"
 
@@ -443,9 +443,11 @@ class installCam(Screen):
 		self.session.open(installCam2)
 		
 	def setup(self):
-		os.system("opkg install -force-overwrite %s && chmod 755 /usr/CamEmu/camemu.*" % self["menu"].getCurrent()[0] )
-		self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
-		
+		try:
+			os.system("opkg install -force-overwrite %s && chmod 755 /usr/CamEmu/camemu.*" % self["menu"].getCurrent()[0] )
+			self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+		except:
+			pass
 	def cancel(self):
 		self.close()
 #################################################
@@ -724,9 +726,12 @@ class CamEmuPanel(Screen):
 		seispng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/mgcami.png"))
 		sietepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/mgcamedi.png"))
 		self.list.append((_("Softcam"),"com_one", _("Softcam Init, Stop and Restart"), onepng))
-		self.list.append((_("CCcam Info"),"com_dos", _("Plugin CCcam Info"), dospng))
-		self.list.append((_("Oscam Info"),"com_tres", _("Plugin Status emu Oscam"), trespng))
-		self.list.append((_("Gbox Suite"),"com_cuatro", _("Plugin Status emu Gbox-Mbox"), cuatropng))
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/CCcamInfo"):
+			self.list.append((_("CCcam Info"),"com_dos", _("Plugin CCcam Info"), dospng))
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/OscamInfo"):
+			self.list.append((_("Oscam Info"),"com_tres", _("Plugin Status emu Oscam"), trespng))
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/GboxSuite"):
+			self.list.append((_("Gbox Suite"),"com_cuatro", _("Plugin Status emu Gbox-Mbox"), cuatropng))
 		self.list.append((_("Mgcamd Info"),"com_seis", _("Mgcamd status information"), seispng))
 		self.list.append((_("Mgcamd Editor"),"com_siete", _("Newcamd Line Editor"), sietepng))
 		self["menu"].setList(self.list)
@@ -739,16 +744,19 @@ class CamEmuPanel(Screen):
 			returnValue = self["menu"].getCurrent()[1]
 			if returnValue is "com_one":
 				self.session.openWithCallback(self.mList,emuSel2)
-			elif returnValue is "com_two":
-				self.session.open(wicconfsw)
-			elif returnValue is "com_five":
-				self.session.open(ServiceMan)
+#			elif returnValue is "com_two":
+#				self.session.open(wicconfsw)
+#			elif returnValue is "com_five":
+#				self.session.open(ServiceMan)
 			elif returnValue is "com_dos":
-				self.session.open(cccaminfo.CCcamInfoMain)
+				from Plugins.Extensions.CCcamInfo.plugin import CCcamInfoMain
+				self.session.open(CCcamInfoMain)
 			elif returnValue is "com_tres":
-				self.session.open(oscaminfo.OscamInfoMenu)
+				from Plugins.Extensions.OscamInfo.plugin import OscamInfoMenu
+                                self.session.open(OscamInfoMenu)
 			elif returnValue is "com_cuatro":
-				self.session.open(gboxsuite.GboxSuiteMainMenu)
+				from Plugins.Extensions.GboxSuite.plugin import GboxSuiteMainMenu
+				self.session.open(GboxSuiteMainMenu)
 			elif returnValue is "com_seis":
 				self.session.open(NCLSwp2)
 			elif returnValue is "com_siete":
