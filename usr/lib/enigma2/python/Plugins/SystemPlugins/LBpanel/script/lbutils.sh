@@ -27,8 +27,9 @@ testupdate)
 	;;
 
 testsettings)
-	sync ; echo 3 > /proc/sys/vm/drop_caches ; echo "RAM Liberada"
+	sync ; echo 3 > /proc/sys/vm/drop_caches
 	opkg update
+	opkg list | grep '/enigma2-plugin-settings-sorys'  > /tmp/.list-upgradable
         for arg in `awk '/enigma2-plugin-settings-sorys/{print $1}' /tmp/.list-upgradable` ; do
                 echo "Installing $arg";
                 opkg install $arg;
@@ -44,12 +45,14 @@ listcams)
 	exit 0
 	;;
 update)
-	opkg update &
+	sleep 5
+	opkg update
 	exit 0
 	;;
 appstore)
+	sleep 2
 	opkg install enigma2-plugin-extensions-extraappstore
-	opkg update
+	opkg update 
 	;;
 *)
 	echo "Usage: lbutils.sh <util> [<option1>] [<option2>]" ;

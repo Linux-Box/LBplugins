@@ -186,7 +186,6 @@ def command(comandline, strip=1):
                                 text = text + line
                                 if text[-1:] != '\n': text = text + "\n"
                 file.close()   
-        # if one or last line then remove linefeed
         if text[-1:] == '\n': text = text[:-1]
         comandline = text
         os.system("rm /tmp/command.txt")
@@ -203,6 +202,34 @@ def search_process(process):
 		  continue
 	return -1
 	                                  																	
+def opkg_list(filter=""):
+ search=0
+ list=""
+
+ files = [f for f in os.listdir('/var/lib/opkg/') if os.path.isfile(os.path.join('/var/lib/opkg/', f)) and f != 'status']
+
+ try:
+   for file in files:
+      fh = open(os.path.join('/var/lib/opkg/', file), "r")
+      for line in fh:
+            if line[:8] == 'Package:':
+                  package = line.split(" ")[1].strip()
+                  if (not "-dev"in package) and (not "-dbg" in package):
+                        if filter == "":
+                              search=1
+                        elif filter in package:
+                              search=1
+            if line[:8] == 'Descript' and search==1:  
+                  package = package + " - " + line.split(": ")[1].strip() + "\n"
+                  list = list + package
+                  search=0
+            
+      fh.close()
+   if list[-1:] == '\n': list = list[:-1]
+   return list
+ except:
+   print "Error loading files"
+
 
 class LBPanel2(Screen):
 	skin = """
@@ -355,8 +382,15 @@ class LBPanel2(Screen):
 		if Test_camemu():
 			self.session.open(LBCamEmu.emuSel2)
 		else:
-			os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
-		
+			#os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
+			print "Installing extraappstore"
+			#from Screens.Ipkg import Ipkg
+			#from Components.Ipkg import IpkgComponent
+                        #self.ipkg = IpkgComponent()
+                        #self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-extensions-extraappstore'})
+                        #self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+                        os.system("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
+			                                                                                                                                                                                                                                                                                                                                	
 	def keyBlue (self):		
 		self.session.open(descargasScreen)
 	
@@ -570,35 +604,35 @@ class installsoftware(Screen):
 		Screen.__init__(self, session)
 		if type=="spinner":
 			self.setTitle(_("LBpanel-Download spinner"))
-			self.plist="opkg list | grep -i spinnerlb"
+			self.plist="spinnerlb"
 			self.prev=True
 		elif type=="soryslist":
 			self.setTitle(_("LBpanel-Download Sorys Settings"))
-			self.plist="opkg list | grep sorys"
+			self.plist="sorys"
 			self.prev=False
 		elif type=="configemus":
 			self.setTitle(_("LBpanel-Download Config Emus"))
-			self.plist="opkg list | grep emucfg"
+			self.plist="emucfg"
 			self.prev=False
 		elif type=="picon":
 			self.setTitle(_("LBpanel-Download picon"))
-			self.plist="opkg list | grep -i piconlb"
+			self.plist="piconlb"
 			self.prev=True
 		elif type=="skinparts":
 			self.setTitle(_("LBpanel-Download skinpart"))
-			self.plist="opkg list | grep -i skinpartlb"
+			self.plist="skinpartlb"
 			self.prev=True
 		elif type=="defaultskinparts":
 			self.setTitle(_("LBpanel-Download skins default part"))
-			self.plist='opkg list | awk "/skinpartlb/ && /default/"'
+			self.plist='skinpartlb-openplushd.default.'
 			self.prev=True
 		elif type=="bootlogo":
 			self.setTitle(_("LBpanel-Download bootlogo"))
-			self.plist="opkg list | grep -i bootlogolb"
+			self.plist="bootlogolb"
 			self.prev=True
 		elif type=="bootvideo":
 			self.setTitle(_("LBpanel-Download bootvideo"))
-			self.plist="opkg list | grep -i bootvideolb"
+			self.plist="bootvideolb"
 			self.prev=True
 		
 		self.session = session
@@ -657,14 +691,13 @@ class installsoftware(Screen):
 				
 	def feedlist(self):
 		self.list = []
-		mlist = command(self.plist)
+		mlist = opkg_list(self.plist)
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		ulist=mlist.split('\n')
 		mlist=""
 		for line in ulist:
 			try:
-				name = line.split(' - ')[0]
-				self.list.append(("%s %s" % (name.split('-')[3], line.split(' - ')[1]), line.split(' - ')[-1], softpng, "%s" % (line.split(' - ')[0]) ))
+				self.list.append(("%s" % (line.split(' - ')[0]), line.split(' - ')[1], softpng ))
 			except:
 				pass
 		self["menu"].setList(self.list)
@@ -692,8 +725,8 @@ class installsoftware(Screen):
 			index=self["menu"].getIndex()
 		except:
 			index=0
-        	img=self["menu"].getCurrent()[3]
-		oimg="http://appstore.linux-box.es/preview/%s_%s_all.ipk.png" % (img, self["menu"].getCurrent()[0].split(' ')[1])
+        	img=self["menu"].getCurrent()[0]
+		oimg="http://appstore.linux-box.es/preview/%s.png" % (img)
                 timg="/tmp/%s.tmp" % img
                 dimg="/tmp/.lbimg%s" % img
                 print ("Downloading image  %s to %s") % (oimg, dimg)
@@ -716,12 +749,13 @@ class installsoftware(Screen):
 				open("%s.error" % (dimg), 'a').close()
 		#run download img cache	
 		for x in range(0, self["menu"].count()):
-			img=self.list[x][3]
+			img=self.list[x][0]
 			dimg="/tmp/.lbimg%s" % img
 			if ( x==index-1) or  (x==index+1 ) or (x==index):
 				if not fileExists(dimg):
-					oimg="http://appstore.linux-box.es/preview/%s_%s_all.ipk.png" % (img, self.list[x][0].split(' ')[1])
+					oimg="http://appstore.linux-box.es/preview/%s.png" % (img)
 					timg="/tmp/%s.tmp" % img
+					print "Downloading %s" % (oimg)
 					try:
 						req = urllib2.Request(oimg)
 						u = urllib2.urlopen(req)
@@ -744,7 +778,7 @@ class installsoftware(Screen):
                         
 	def imageDown(self):
 		if self.prev==True:
-			self.image=self["menu"].getCurrent()[3]
+			self.image=self["menu"].getCurrent()[0]
 			process = threading.Thread(target=self.runDownloadImg, args=[self.image])
 			process.setDaemon(True)
 			process.start()
@@ -755,17 +789,24 @@ class installsoftware(Screen):
 		self.setup()
 		
 	def setup(self):
-		try:
+#		try:
 			if len(self.list)>0:
-				if self.plist=="opkg list | grep sorys":
-					command("opkg remove enigma2-plugin-settings-* && opkg install -force-overwrite %s" % self["menu"].getCurrent()[3])
+				from Screens.Ipkg import Ipkg
+				from Components.Ipkg import IpkgComponent
+				self.dfile = self["menu"].getCurrent()[0]
+				self.ipkg = IpkgComponent()
+				                                        
+				if self.plist=="sorys":
+					#os.system("opkg remove enigma2-plugin-settings-* && opkg install -force-overwrite %s" % self["menu"].getCurrent()[0])
+					#self.ipkg.startCmd(IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-*'})
+					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
 				else:
-					command("opkg install -force-overwrite %s" % self["menu"].getCurrent()[3])
-					
+					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
+				os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")	
 				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
-		except:
-			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
-			
+#		except:
+#			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+					
 	def cancel(self):
 		os.system('rm -f /tmp/.lbimg*')
 		self.ctimer.stop()
@@ -998,9 +1039,15 @@ class lbCron():
 		print "Executing update LBpanel in %s minutes" % (60 - cronvar)
 		if (cronvar == 60 ):
 			cronvar = 0
-			os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update") 
+			print "Openplus Panel: Updating packages......"
+                        #from Screens.Ipkg import Ipkg
+                        #from Components.Ipkg import IpkgComponent
+                        #self.ipkg = IpkgComponent()
+                        #self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)			                                                                                                                        
 			if (config.plugins.lbpanel.updatesettings.value):
-				os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
+				os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
+			else:
+				os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &") 
 		if (os.path.isfile("/tmp/.lbsettings.update")):
 			print "LBpanel settings updated"
 			self.mbox = self.session.open(MessageBox,(_("LBpanel settings has been updated, restart Enigma2 to activate your changes.")), MessageBox.TYPE_INFO, timeout = 30 )

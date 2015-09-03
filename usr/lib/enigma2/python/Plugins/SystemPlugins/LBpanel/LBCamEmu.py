@@ -474,7 +474,13 @@ class installCam(Screen):
 	def setup(self):
 		try:
 			os.system("opkg install -force-overwrite %s && chmod 755 /usr/CamEmu/camemu.*" % self["menu"].getCurrent()[0] )
-			self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+			#from Screens.Ipkg import Ipkg
+			#from Components.Ipkg import IpkgComponent
+			#self.dfile = self["menu"].getCurrent()[0]
+			#self.ipkg = IpkgComponent()
+                        #self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
+			self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
+			os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
 		except:
 			pass
 	def cancel(self):
