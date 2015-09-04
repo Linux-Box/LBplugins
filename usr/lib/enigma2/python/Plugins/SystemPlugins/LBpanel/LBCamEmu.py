@@ -124,11 +124,14 @@ def command(comandline, strip=1):
         return comandline
 
 
-def opkg_list(filter=""):
+def opkg_list(filter="", installed=0):
  search=0
  list=""
-
- files = [f for f in os.listdir('/var/lib/opkg/') if os.path.isfile(os.path.join('/var/lib/opkg/', f)) and f != 'status']
+ if installed == 0:
+    files = [f for f in os.listdir('/var/lib/opkg/') if os.path.isfile(os.path.join('/var/lib/opkg/', f)) and f != 'status']
+ else:
+    files = [f for f in os.listdir('/var/lib/opkg/') if os.path.isfile(os.path.join('/var/lib/opkg/', f)) and f == 'status']
+ 
 
  try:
    for file in files:
@@ -141,7 +144,7 @@ def opkg_list(filter=""):
                               search=1
                         elif filter in package:
                               search=1
-            if line[:8] == 'Descript' and search==1:
+            if (line[:8] == 'Descript' and search==1 and installed==0) or (line[:7] == 'Version' and search==1 and installed==1):
                   package = package + " - " + line.split(": ")[1].strip() + "\n"
                   list = list + package
                   search=0
@@ -473,7 +476,8 @@ class installCam(Screen):
 		
 	def setup(self):
 		try:
-			os.system("opkg install -force-overwrite %s && chmod 755 /usr/CamEmu/camemu.*" % self["menu"].getCurrent()[0] )
+			resp=command("opkg install -force-overwrite %s && chmod 755 /usr/CamEmu/camemu.*" % self["menu"].getCurrent()[0] )
+			print resp
 			#from Screens.Ipkg import Ipkg
 			#from Components.Ipkg import IpkgComponent
 			#self.dfile = self["menu"].getCurrent()[0]
@@ -481,6 +485,7 @@ class installCam(Screen):
                         #self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
 			self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
 			os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
+			self.close()
 		except:
 			pass
 	def cancel(self):
@@ -568,24 +573,41 @@ class installCam2(Screen):
 		self.list = [ ]
 				
 	def feedlist(self):
-		self.list = []
-		camdlist = command("opkg list-installed | grep lbcam")
-		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
-		for line in camdlist.readlines():
-			try:
-				self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
-			except:
-				pass
-		camdlist.close()
-		self["menu"].setList(self.list)
+
+		try:
+			self.list = []
+			camdlist0=opkg_list("lbcam", 1)
+			camdlist = camdlist0.split('\n')
+			camdlist0=""
+			softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
+			for line in camdlist:
+				self.list.append(("%s %s" % (line.split(' - ')[0], " "), line.split(' - ')[1], softpng))
+			self["menu"].setList(self.list)
+		except:
+			pass
+
+
+		#self.list = []
+		#camdlist = command("opkg list-installed | grep lbcam")
+		#softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
+		#for line in camdlist:
+		#		print line
+			#try:
+		#		self.list.append(("%s" % (line.split(' - ')[0]), line.split(' - ')[1], softpng))
+			#except:
+			#	pass
+		#self["menu"].setList(self.list)
 		
 	def ok(self):
 		self.setup()
 		
 	def setup(self):
                 try:
-                        os.system("opkg remove %s" % self["menu"].getCurrent()[0])
+                        resp=command("opkg remove %s" % self["menu"].getCurrent()[0])
+			print resp
+			
 			self.mbox = self.session.open(MessageBox, _("%s is remove" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+			self.close()
 		except:
 			self.close()
 

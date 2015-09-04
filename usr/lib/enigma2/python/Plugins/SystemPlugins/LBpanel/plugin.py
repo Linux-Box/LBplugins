@@ -54,6 +54,7 @@ from Tools.Directories import fileExists
 from os import environ
 from OpenSSL import SSL
 from enigma import ePicLoad
+from enigma import eDVBDB
 import os
 import gettext
 import LBCamEmu
@@ -124,8 +125,13 @@ config.plugins.lbpanel.runeveryhour = ConfigYesNo(default = False)
 
 # Check if feed is active
 if not os.path.isfile("/etc/opkg/lbappstore.conf"):
-	with open ('/etc/opkg/lbappstore.conf', 'a') as f: f.write ("src/gz lbutils http://appstore.linux-box.es/files" + '\n')
-	
+	with open ('/etc/opkg/lbappstore.conf', 'a') as f: f.write ("src/gz lbutils http://appstore.linux-box.es/ficheros" + '\n')
+	f.close()
+
+if os.path.isfile("/etc/opkg/extralbappstore.conf"):
+        with open ('/etc/opkg/lbappstore.conf', 'w') as f: f.write ("src/gz extralbutils http://appstore.linux-box.es/ficheros/Emus" + '\n')
+        f.close()
+        
 os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh init")
 # Generic function to send email
 def sendemail(from_addr, to_addr, cc_addr,
@@ -791,19 +797,31 @@ class installsoftware(Screen):
 	def setup(self):
 #		try:
 			if len(self.list)>0:
-				from Screens.Ipkg import Ipkg
-				from Components.Ipkg import IpkgComponent
-				self.dfile = self["menu"].getCurrent()[0]
-				self.ipkg = IpkgComponent()
-				                                        
+				#from Screens.Ipkg import Ipkg
+				#from Components.Ipkg import IpkgComponent
+				#self.dfile = self["menu"].getCurrent()[0]
+				#self.ipkg = IpkgComponent()
+				print "--------------------------------------------------------------------------------------------------"                                        
 				if self.plist=="sorys":
-					#os.system("opkg remove enigma2-plugin-settings-* && opkg install -force-overwrite %s" % self["menu"].getCurrent()[0])
+					print "--------------------------------------------------------------------------------------------------UUUUUUUUUUUUUUUUUUUUUUUU"
+					resp=command("opkg remove enigma2-plugin-settings-*")
+					print resp
+					resp=command("opkg install --force-overwrite %s " % self["menu"].getCurrent()[0])
+					print resp
 					#self.ipkg.startCmd(IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-*'})
-					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
+					#self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
+					#self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
+					#eDVBDB.getInstance().reloadBouquets()
+					#eDVBDB.getInstance().reloadServicelist()
 				else:
-					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
-				os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")	
-				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+					#self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
+					#self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
+					print "--------------------------------------------------------------------------------------------------AAAAAAAAAAAAAAAAA"
+					resp=command("opkg install --force-overwrite %s " % self["menu"].getCurrent()[0])
+					print resp
+				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )	                                        
+				rep=command("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
+				self.close()
 #		except:
 #			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 					
