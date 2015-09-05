@@ -2438,13 +2438,13 @@ class Info2Screen(Screen):
 	def meminfoall(self):
 		list = " "
 		try:
-			resp=ecommand("free>/tmp/mem && echo>>/tmp/mem && df -h>>/tmp/mem")
+			os.system("free>/tmp/mem && echo>>/tmp/mem && df -h>>/tmp/mem")
 			meminfo = open("/tmp/mem", "r")
 			for line in meminfo:
 				list += line
 			self["text"].setText(list)
 			meminfo.close()
-			resp=ecommand("rm /tmp/mem")
+			os.system("rm /tmp/mem")
 		except:
 			list = " "
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions"], { "cancel": self.close, "up": self["text"].pageUp, "left": self["text"].pageUp, "down": self["text"].pageDown, "right": self["text"].pageDown,}, -1)
