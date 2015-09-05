@@ -1,6 +1,6 @@
 #!/bin/sh
 # Utils for LBPanel 
-# GNU GPL2+
+# GNU GPLV2
 
 case $1 in
 # Test updates for LBpanel and LBpanel Settings
