@@ -45,10 +45,12 @@ from Components.Sources.StaticText import StaticText
 from Tools.Directories import fileExists
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
 from os import environ
+import time
 import os
 import os.path
 import sys
 import gettext
+import uuid
 #import LBtools
 
 #sys.path.append('/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/libs/CCcamInfo') 
@@ -155,6 +157,28 @@ def opkg_list(filter="", installed=0):
  except:
    print "Error loading files"
         
+def ecommand(command=""):
+        name=str(uuid.uuid4())
+        name=name.replace("-","")
+        file = open(("/tmp/.runop%s" % name), "w")
+        file.write(command)
+        file.write('\n')
+        file.close()
+                                              
+        output="/tmp/.runop%s.end" % name
+        
+        cont=0
+        while not os.path.exists(output):
+                cont+=1
+                time.sleep(1)
+                if cont > 30:
+                        if os.path.exists("/tmp/.runop%s" % name) is True:
+                                os.remove("/tmp/.runop%s" % name)
+                        return -1               
+                        break
+        os.remove(output)
+        return 0
+
 
 class emuSel2(Screen):
 	skin = """
@@ -286,7 +310,6 @@ class emuSel2(Screen):
 			if line.find(".None") == -1:
 				if line.split(".")[0] == 'camemu':
 					typeemu = 'camemu'
-					print "EMU: %s - %s" % (line, config.plugins.lbpanel.activeemu.value)
     					if line == config.plugins.lbpanel.activeemu.value : 
 						softpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/%s" % 'ico_crypt_on.png'))
 					else:
@@ -332,7 +355,7 @@ class emuSel2(Screen):
 			config.plugins.lbpanel.activeemu.value = self["menu"].getCurrent()[0]
 			self.indexpos = self["menu"].getIndex()
 			config.plugins.lbpanel.activeemu.save()
-			os.system("/usr/CamEmu/%s start" % config.plugins.lbpanel.activeemu.value)
+			resp=ecommand("/usr/CamEmu/%s start" % config.plugins.lbpanel.activeemu.value)
 			self.mbox = self.session.open(MessageBox, _("Please wait, starting %s") % self["menu"].getCurrent()[0], MessageBox.TYPE_INFO, timeout = 4 )
 			self.setTitle(_("Select SoftCam or CardServer: - %s") % config.plugins.lbpanel.activeemu.value)
 			self.selemulist()
@@ -342,7 +365,7 @@ class emuSel2(Screen):
 	def stop(self):
 		try:
 			emutype = self["menu"].getCurrent()[3]
-			os.system("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
+			resp=ecommand("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
 			self.mbox = self.session.open(MessageBox, _("Please wait, stoping softcam or cardserver"), MessageBox.TYPE_INFO, timeout = 4 )
 			config.plugins.lbpanel.activeemu.value = "No EMU activada"
 			config.plugins.lbpanel.activeemu.save()
@@ -355,7 +378,7 @@ class emuSel2(Screen):
 	def restart(self):
 		try:
 			emutype = self["menu"].getCurrent()[3]
-			os.system("/usr/CamEmu/%s restart" % config.plugins.lbpanel.activeemu.value)
+			resp=ecommand("/usr/CamEmu/%s restart" % config.plugins.lbpanel.activeemu.value)
 			self.mbox = self.session.open(MessageBox,_("Please wait, restarting %s")% self.emuversion(emutype), MessageBox.TYPE_INFO, timeout = 4 )
 			self.indexpos = self["menu"].getIndex()
 		except:
@@ -476,15 +499,12 @@ class installCam(Screen):
 		
 	def setup(self):
 		try:
-			resp=command("opkg install -force-overwrite %s && chmod 755 /usr/CamEmu/camemu.*" % self["menu"].getCurrent()[0] )
-			print resp
-			#from Screens.Ipkg import Ipkg
-			#from Components.Ipkg import IpkgComponent
-			#self.dfile = self["menu"].getCurrent()[0]
-			#self.ipkg = IpkgComponent()
-                        #self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
-			self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
-			os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
+			resp=ecommand("opkg install -force-overwrite %s && chmod 755 /usr/CamEmu/camemu.*" % self["menu"].getCurrent()[0] )
+			if resp == 0:                                                                                                                                                                                          
+				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )                                                                     
+			else:                                                                                                                                                                                                                                        
+				self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 ) 
+			ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
 			self.close()
 		except:
 			pass
@@ -586,27 +606,17 @@ class installCam2(Screen):
 		except:
 			pass
 
-
-		#self.list = []
-		#camdlist = command("opkg list-installed | grep lbcam")
-		#softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
-		#for line in camdlist:
-		#		print line
-			#try:
-		#		self.list.append(("%s" % (line.split(' - ')[0]), line.split(' - ')[1], softpng))
-			#except:
-			#	pass
-		#self["menu"].setList(self.list)
 		
 	def ok(self):
 		self.setup()
 		
 	def setup(self):
                 try:
-                        resp=command("opkg remove %s" % self["menu"].getCurrent()[0])
-			print resp
-			
-			self.mbox = self.session.open(MessageBox, _("%s is remove" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+                        resp=ecommand("opkg remove %s" % self["menu"].getCurrent()[0])
+                        if resp == 0:                                                                                                                                                                                          
+                        	self.mbox = self.session.open(MessageBox, _("%s is removed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )                                                                     
+			else:                                                                                                                                                                                                                                        
+				self.mbox = self.session.open(MessageBox, _("Error in opkg remove %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 ) 
 			self.close()
 		except:
 			self.close()

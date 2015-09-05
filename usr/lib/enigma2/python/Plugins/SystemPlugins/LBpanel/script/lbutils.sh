@@ -10,6 +10,7 @@ init)
 	sysctl vm.min_free_kbytes=2192         
 	sysctl vm.dirty_ratio=20
 	sysctl vm.swappiness=10
+	nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh lbcron &
 	exit 0
 	;;
 testupdate)
@@ -54,6 +55,23 @@ appstore)
 	opkg install enigma2-plugin-extensions-extraappstore
 	opkg update 
 	;;
+lbcron)
+	x=$(ps -ef|grep -v grep|grep "lbutils.sh lbcron" |wc -l)
+	echo $x 
+	if [ "$x" -eq 3 ]; then
+		echo "lbutils lbcron was already running"
+		exit 2 
+	fi
+	while [ 1 ];do 
+	  	for i in `ls /tmp/.runop*`; do
+			sh $i
+			rm -f $i*
+ 		 	touch $i."end"
+	  	done
+		sleep 1s
+	done
+	;;
+
 *)
 	echo "Usage: lbutils.sh <util> [<option1>] [<option2>]" ;
 	exit 1

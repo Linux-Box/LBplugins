@@ -76,6 +76,7 @@ import threading
 import urllib2
 import Screens.Standby
 import subprocess, threading
+import uuid
 
 global min
 min = 0
@@ -129,7 +130,7 @@ if not os.path.isfile("/etc/opkg/lbappstore.conf"):
 	f.close()
 
 if os.path.isfile("/etc/opkg/extralbappstore.conf"):
-        with open ('/etc/opkg/lbappstore.conf', 'w') as f: f.write ("src/gz extralbutils http://appstore.linux-box.es/ficheros/Emus" + '\n')
+        with open ('/etc/opkg/extralbappstore.conf', 'w') as f: f.write ("src/gz extralbutils http://appstore.linux-box.es/ficheros/Emus" + '\n')
         f.close()
         
 os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh init")
@@ -236,6 +237,27 @@ def opkg_list(filter=""):
  except:
    print "Error loading files"
 
+def ecommand(command=""):
+	name=str(uuid.uuid4())
+	name=name.replace("-","")
+	file = open(("/tmp/.runop%s" % name), "w")
+	file.write(command)
+	file.write('\n')
+	file.close()
+	
+	output="/tmp/.runop%s.end" % name
+	
+	cont=0
+	while not os.path.exists(output):
+		cont+=1
+		time.sleep(1)
+		if cont > 30:
+			if os.path.exists("/tmp/.runop%s" % name) is True:
+				os.remove("/tmp/.runop%s" % name)
+			return -1		
+			break
+	os.remove(output)
+	return 0
 
 class LBPanel2(Screen):
 	skin = """
@@ -388,14 +410,8 @@ class LBPanel2(Screen):
 		if Test_camemu():
 			self.session.open(LBCamEmu.emuSel2)
 		else:
-			#os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
 			print "Installing extraappstore"
-			#from Screens.Ipkg import Ipkg
-			#from Components.Ipkg import IpkgComponent
-                        #self.ipkg = IpkgComponent()
-                        #self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-extensions-extraappstore'})
-                        #self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-                        os.system("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
+                        resp=ecommand("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
 			                                                                                                                                                                                                                                                                                                                                	
 	def keyBlue (self):		
 		self.session.open(descargasScreen)
@@ -700,10 +716,14 @@ class installsoftware(Screen):
 		mlist = opkg_list(self.plist)
 		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini.png"))
 		ulist=mlist.split('\n')
+		ulist.sort()
 		mlist=""
+		last=""
 		for line in ulist:
 			try:
-				self.list.append(("%s" % (line.split(' - ')[0]), line.split(' - ')[1], softpng ))
+				if line.split(' - ')[0] != last:
+					self.list.append(("%s" % (line.split(' - ')[0]), line.split(' - ')[1], softpng ))
+				last = line.split(' - ')[0]
 			except:
 				pass
 		self["menu"].setList(self.list)
@@ -797,30 +817,17 @@ class installsoftware(Screen):
 	def setup(self):
 #		try:
 			if len(self.list)>0:
-				#from Screens.Ipkg import Ipkg
-				#from Components.Ipkg import IpkgComponent
-				#self.dfile = self["menu"].getCurrent()[0]
-				#self.ipkg = IpkgComponent()
-				print "--------------------------------------------------------------------------------------------------"                                        
 				if self.plist=="sorys":
-					print "--------------------------------------------------------------------------------------------------UUUUUUUUUUUUUUUUUUUUUUUU"
-					resp=command("opkg remove enigma2-plugin-settings-*")
-					print resp
-					resp=command("opkg install --force-overwrite %s " % self["menu"].getCurrent()[0])
-					print resp
-					#self.ipkg.startCmd(IpkgComponent.CMD_REMOVE, {'package': 'enigma2-plugin-settings-*'})
-					#self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
-					#self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
-					#eDVBDB.getInstance().reloadBouquets()
-					#eDVBDB.getInstance().reloadServicelist()
+					resp=ecommand("opkg remove enigma2-plugin-settings-*")
+					resp=ecommand("opkg install --force-overwrite %s " % self["menu"].getCurrent()[0])
 				else:
-					#self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.dfile})
-					#self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
-					print "--------------------------------------------------------------------------------------------------AAAAAAAAAAAAAAAAA"
-					resp=command("opkg install --force-overwrite %s " % self["menu"].getCurrent()[0])
-					print resp
-				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )	                                        
-				rep=command("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
+					resp=ecommand("opkg install --force-overwrite %s " % self["menu"].getCurrent()[0])
+				if resp == 0:
+					self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
+				else:
+					self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
+				#self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )	                                        
+				ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
 				self.close()
 #		except:
 #			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
@@ -929,7 +936,7 @@ class installremove(Screen):
 		self.setup()
 		
 	def setup(self):
-		os.system("opkg remove %s" % self["menu"].getCurrent()[0])
+		resp=ecommand("opkg remove %s" % self["menu"].getCurrent()[0])
 		self.mbox = self.session.open(MessageBox, _("%s is remove" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 		
 
