@@ -816,7 +816,7 @@ class installsoftware(Screen):
 		self.setup()
 		
 	def setup(self):
-#		try:
+		try:
 			if len(self.list)>0:
 				if self.plist=="sorys":
 					resp=ecommand("opkg remove enigma2-plugin-settings-*")
@@ -827,11 +827,9 @@ class installsoftware(Screen):
 					self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
 				else:
 					self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
-				#self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )	                                        
-				#ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
 				self.close()
-#		except:
-#			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+		except:
+			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
 					
 	def cancel(self):
 		os.system('rm -f /tmp/.lbimg*')
@@ -1066,14 +1064,10 @@ class lbCron():
 		if (cronvar == 60 ):
 			cronvar = 0
 			print "Openplus Panel: Updating packages......"
-                        #from Screens.Ipkg import Ipkg
-                        #from Components.Ipkg import IpkgComponent
-                        #self.ipkg = IpkgComponent()
-                        #self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)			                                                                                                                        
 			if (config.plugins.lbpanel.updatesettings.value):
-				os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
+				resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
 			else:
-				os.system("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &") 
+				resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &") 
 		if (os.path.isfile("/tmp/.lbsettings.update")):
 			print "LBpanel settings updated"
 			self.mbox = self.session.open(MessageBox,(_("LBpanel settings has been updated, restart Enigma2 to activate your changes.")), MessageBox.TYPE_INFO, timeout = 30 )
@@ -1124,7 +1118,7 @@ class lbCron():
                 	actcam = actcam.replace("camemu.", "")
                 	if (search_process(actcam) != 1):
                 		print "Restarting softcam %s" % (config.plugins.lbpanel.activeemu.value)
-                		os.system("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
+                		resp=ecommand("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
 				if (config.plugins.lbpanel.lbemail.value or config.plugins.lbpanel.lbiemail.value):
 					if os.path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/templates/errorcam.msg"):
 						subj = f.readline()
@@ -1173,7 +1167,7 @@ class lbCron():
 		epgcache = eEPGCache.getInstance().load()
 
 	def scanpeer(self):
-		os.system("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py %s %s %s %s &" % (config.plugins.lbpanel.checktype.value, config.plugins.lbpanel.autocheck.value, config.plugins.lbpanel.checkoff.value, config.plugins.lbpanel.warnonlyemail.value))
+		resp=ecommand("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py %s %s %s %s &" % (config.plugins.lbpanel.checktype.value, config.plugins.lbpanel.autocheck.value, config.plugins.lbpanel.checkoff.value, config.plugins.lbpanel.warnonlyemail.value))
 	
 #####################################################
 def main(session, **kwargs):

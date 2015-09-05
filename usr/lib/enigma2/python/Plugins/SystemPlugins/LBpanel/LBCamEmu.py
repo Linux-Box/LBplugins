@@ -346,7 +346,7 @@ class emuSel2(Screen):
 	def start(self):
 		try:
 			emutype = self["menu"].getCurrent()[3]
-			os.system("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
+			resp=ecommand("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
 			emuexec = self["menu"].getCurrent()[0]
 			emuexec = emuexec[7:]
 			print "Add execute permision to %s" % (emuexec)
@@ -504,7 +504,6 @@ class installCam(Screen):
 				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )                                                                     
 			else:                                                                                                                                                                                                                                        
 				self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 ) 
-			#ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
 			self.close()
 		except:
 			pass
@@ -695,7 +694,7 @@ class ECMinfo(Screen):
 	def meminfoall(self):
 		list = " "
 		try:
-			os.system("uptime>/tmp/mem && echo>>/tmp/mem && /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/extrainfo>>/tmp/mem")
+			resp=ecommand("uptime>/tmp/mem && echo>>/tmp/mem && /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/extrainfo>>/tmp/mem")
 			meminfo = open("/tmp/mem", "r")
 			for line in meminfo:
 				list += line
@@ -834,12 +833,12 @@ class CamEmuPanel(Screen):
 
 	def Restart(self):
 		if fileExists("/usr/CamEmu/camemu"):
-			os.system("/usr/CamEmu/camemu stop")
+			resp=ecommand("/usr/CamEmu/camemu stop")
 		if fileExists("/etc/init.d/cardserver"):
-			os.system("/etc/init.d/cardserver stop")
-			os.system("/etc/init.d/cardserver start")
+			resp=ecommand("/etc/init.d/cardserver stop")
+			resp=ecommand("/etc/init.d/cardserver start")
 		if fileExists("/usr/CamEmu/camemu"):
-			os.system("/usr/CamEmu/camemu start")
+			resp=ecommand("/usr/CamEmu/camemu start")
 		if fileExists("/usr/CamEmu/camemu") or fileExists("/etc/init.d/cardserver"):
 			self.mbox = self.session.open(MessageBox, _("Restarting ..."), MessageBox.TYPE_INFO, timeout = 4 )
 		
@@ -1524,21 +1523,21 @@ class ServiceMan(Screen):
 
 	def restartservice(self):
 		try:
-			os.system("/etc/init.d/%s restart" % (self["menu"].getCurrent()[1]))
+			resp=ecommand("/etc/init.d/%s restart" % (self["menu"].getCurrent()[1]))
 			self.session.open(MessageBox, _("Restarting %s service" % self["menu"].getCurrent()[1]), type = MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.session.open(MessageBox, _("UnSuccessfull") , type = MessageBox.TYPE_INFO, timeout = 4 )
 			
 	def startservice(self):
 		try:
-			os.system("/etc/init.d/%s start" % (self["menu"].getCurrent()[1]))
+			resp=ecommand("/etc/init.d/%s start" % (self["menu"].getCurrent()[1]))
 			self.session.open(MessageBox, _("Starting %s service" % self["menu"].getCurrent()[1]), type = MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.session.open(MessageBox, _("UnSuccessfull"), type = MessageBox.TYPE_INFO, timeout = 4 )
 			
 	def stopservice(self):
 		try:
-			os.system("/etc/init.d/%s stop" % (self["menu"].getCurrent()[1]))
+			resp=ecommand("/etc/init.d/%s stop" % (self["menu"].getCurrent()[1]))
 			self.session.open(MessageBox, _("Stoping %s service" % self["menu"].getCurrent()[1]), type = MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.session.open(MessageBox, _("UnSuccessfull"), type = MessageBox.TYPE_INFO, timeout = 4 )
@@ -1638,21 +1637,21 @@ class MboxMan(Screen):
 
 	def restartservice(self):
 		try:
-			os.system("/etc/init.d/%s restart" % (self["menu"].getCurrent()[1]))
+			resp=ecommand("/etc/init.d/%s restart" % (self["menu"].getCurrent()[1]))
 			self.session.open(MessageBox, _("Restarting %s service" % self["menu"].getCurrent()[1]), type = MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.session.open(MessageBox, _("UnSuccessfull") , type = MessageBox.TYPE_INFO, timeout = 4 )
 			
 	def startservice(self):
 		try:
-			os.system("/etc/init.d/%s start" % (self["menu"].getCurrent()[1]))
+			resp=ecommand("/etc/init.d/%s start" % (self["menu"].getCurrent()[1]))
 			self.session.open(MessageBox, _("Starting %s service" % self["menu"].getCurrent()[1]), type = MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.session.open(MessageBox, _("UnSuccessfull"), type = MessageBox.TYPE_INFO, timeout = 4 )
 			
 	def stopservice(self):
 		try:
-			os.system("/etc/init.d/%s stop" % (self["menu"].getCurrent()[1]))
+			resp=ecommand("/etc/init.d/%s stop" % (self["menu"].getCurrent()[1]))
 			self.session.open(MessageBox, _("Stoping %s service" % self["menu"].getCurrent()[1]), type = MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.session.open(MessageBox, _("UnSuccessfull"), type = MessageBox.TYPE_INFO, timeout = 4 )

@@ -66,6 +66,7 @@ import gettext
 import MountManager
 import RestartNetwork
 import gzip
+import uuid
 #import urllib
 from urllib2 import urlopen
 ## Epg
@@ -432,6 +433,28 @@ if config.plugins.lbpanel.cold.value == "1":
 		os.system("/usr/bin/ntpdate -s -u %s" % (config.plugins.lbpanel.server.value))
 	else:
 		os.system("/usr/bin/ntpdate -s -u %s" % (config.plugins.lbpanel.manualserver.value))			                                                                                                                                                                                                                                                                                                                                                                                                                 
+def ecommand(command=""):
+        name=str(uuid.uuid4())
+        name=name.replace("-","")
+        file = open(("/tmp/.runop%s" % name), "w")
+        file.write(command)
+        file.write('\n')
+        file.close()
+      
+        output="/tmp/.runop%s.end" % name
+ 
+        cont=0
+        while not os.path.exists(output):
+                cont+=1
+                time.sleep(1)
+                if cont > 30:
+                        if os.path.exists("/tmp/.runop%s" % name) is True:
+                                os.remove("/tmp/.runop%s" % name)
+                        return -1               
+                        break
+        os.remove(output)
+        return 0
+
 
 class ToolsScreen(Screen):
 	skin = """
@@ -787,8 +810,8 @@ class SwapScreen(Screen):
 	def makeSwapFile(self, size):
 		try:
 		        print "dd if=/dev/zero of=%s bs=1024 count=%s" % (self.swapfile, size)
-			os.system("dd if=/dev/zero of=%s bs=1024 count=%s" % (self.swapfile, size))
-			os.system("mkswap %s" % (self.swapfile))
+			resp=ecommand("dd if=/dev/zero of=%s bs=1024 count=%s" % (self.swapfile, size))
+			resp=ecommand("mkswap %s" % (self.swapfile))
 			self.mbox = self.session.open(MessageBox,_("Swap file created"), MessageBox.TYPE_INFO, timeout = 4 )
 			self.CfgMenu()
 		except:
@@ -818,18 +841,18 @@ class SwapScreen(Screen):
 			try:
 				for line in open("/proc/swaps"):
 					if  line.find("swapfile") > -1:
-						os.system("swapoff %s" % (line.split()[0]))
+						resp=ecommand("swapoff %s" % (line.split()[0]))
 			except:
 				pass
-			os.system("swapon %s" % (self.swapfile))
-			os.system("sed -i '/swap/d' /etc/fstab")
-			os.system("echo -e '%s/swapfile swap swap defaults 0 0' >> /etc/fstab" % self.swapfile[:10])
+			resp=ecommand("swapon %s" % (self.swapfile))
+			resp=ecommand("sed -i '/swap/d' /etc/fstab")
+			resp=ecommand("echo -e '%s/swapfile swap swap defaults 0 0' >> /etc/fstab" % self.swapfile[:10])
 			self.mbox = self.session.open(MessageBox,_("Swap file started"), MessageBox.TYPE_INFO, timeout = 4 )
 			self.CfgMenu()
 			
 		elif m_choice is "5":
-			os.system("swapoff %s" % (self.swapfile))
-			os.system("sed -i '/swap/d' /etc/fstab")
+			resp=ecommand("swapoff %s" % (self.swapfile))
+			resp=ecommand("sed -i '/swap/d' /etc/fstab")
 			self.mbox = self.session.open(MessageBox,_("Swap file stoped"), MessageBox.TYPE_INFO, timeout = 4 )
 			self.CfgMenu()
 						
@@ -843,7 +866,7 @@ class SwapScreen(Screen):
 			self.makeSwapFile("524288")
 
 		elif m_choice is "7":
-			os.system("rm %s" % (self.swapfile))
+			resp=ecommand("rm %s" % (self.swapfile))
 			self.mbox = self.session.open(MessageBox,_("Swap file removed"), MessageBox.TYPE_INFO, timeout = 4 )
 			self.CfgMenu()
 			
@@ -918,7 +941,7 @@ class UsbScreen(Screen):
 	def Ok(self):
 		try:
 			item = self["menu"].getCurrent()[3]
-			os.system("umount -f %s" % item)
+			resp=ecommand("umount -f %s" % item)
 			self.mbox = self.session.open(MessageBox,_("Unmounted %s" % item), MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			pass
@@ -1102,7 +1125,7 @@ class ConfigScript(ConfigListScreen, Screen):
 	def save(self):
 		if not os.path.exists(config.plugins.lbpanel.scriptpath.value):
 			try:
-				os.system("mkdir %s" % config.plugins.lbpanel.scriptpath.value)
+				resp=ecommand("mkdir %s" % config.plugins.lbpanel.scriptpath.value)
 			except:
 				pass
 		config.plugins.lbpanel.scriptpath.save()
@@ -1202,7 +1225,7 @@ class NTPScreen(ConfigListScreen, Screen):
 		if os.path.exists("/etc/bhcron"):
 			path = "/etc/bhcron/root"
 			if not os.path.exists("/etc/cron"):
-				 os.system("ln -s /etc/bhcron /etc/cron")
+				 resp=ecommand("ln -s /etc/bhcron /etc/cron")
 		else:
 			path = "/etc/cron/root"
 
@@ -1213,14 +1236,14 @@ class NTPScreen(ConfigListScreen, Screen):
 
 		if config.plugins.lbpanel.onoff.value == "0":
 			if fileExists(path):
-				os.system("crontab -l | grep -v '/usr/bin/ntpdate -s -u' | crontab -" )
-				os.system("awk '!/ntpdate/' %s > /tmp/.cronntp" % path)
-				os.system("mv /tmp/.cronntp /etc/cron/root")
+				resp=ecommand("crontab -l | grep -v '/usr/bin/ntpdate -s -u' | crontab -" )
+				resp=ecommand("awk '!/ntpdate/' %s > /tmp/.cronntp" % path)
+				resp=ecommand("mv /tmp/.cronntp /etc/cron/root")
 		if config.plugins.lbpanel.onoff.value == "1":
 			if fileExists(path):
-				os.system("crontab -l | grep -v '/usr/bin/ntpdate -s -u' | crontab -" )
-				os.system("awk '!/ntpdate/' %s > /tmp/.cronntp" % path)
-				os.system("mv /tmp/.cronntp /etc/cron/root")
+				resp=ecommand("crontab -l | grep -v '/usr/bin/ntpdate -s -u' | crontab -" )
+				resp=ecommand("awk '!/ntpdate/' %s > /tmp/.cronntp" % path)
+				resp=ecommand("mv /tmp/.cronntp /etc/cron/root")
 			if config.plugins.lbpanel.manual.value == "0":
 				if config.plugins.lbpanel.time.value == "30":
 					data = "/%s * * * * /usr/bin/ntpdate -s -u %s" % (config.plugins.lbpanel.time.value, config.plugins.lbpanel.server.value)
@@ -1232,8 +1255,8 @@ class NTPScreen(ConfigListScreen, Screen):
 				else:
 					data = "* /%s * * * /usr/bin/ntpdate -s -u %s" % (config.plugins.lbpanel.time.value, config.plugins.lbpanel.manualserver.value)
 		
-			os.system("echo -e '%s' >> %s" % (data, path))
-			os.system("echo '%s' | crontab -" % (data))
+			resp=ecommand("echo -e '%s' >> %s" % (data, path))
+			resp=ecommand("echo '%s' | crontab -" % (data))
 
 		if fileExists(path):
 			os.chmod("%s" % path, 0644)
@@ -1302,7 +1325,7 @@ class ManualSetTime(Screen):
 
 	def ChangeTime(self,what):
 		if what is True:
-			os.system("date %s" % (self.newtime))
+			resp=ecommand("date %s" % (self.newtime))
 		else:
 			self.breakSetTime(_("not confirmed"))
 
@@ -1405,7 +1428,7 @@ class SystemScreen(Screen):
 		self.close()
 
 	def resetpass(self):
-		os.system("passwd -d root")
+		resp=ecommand("passwd -d root")
 		self.mbox = self.session.open(MessageBox,_("Your password has been reset"), MessageBox.TYPE_INFO, timeout = 4 )
 
 	
@@ -1835,7 +1858,7 @@ class CrashLogScreen(Screen):
 			crashdir = "/media/hdd/"
 		item = crashdir +  self["menu"].getCurrent()[0]
 		try:
-			os.system("rm %s"%(item))
+			resp=ecommand("rm %s"%(item))
 			self.mbox = self.session.open(MessageBox,(_("Removed %s") % (item)), MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.mbox = self.session.open(MessageBox,(_("Failed remove")), MessageBox.TYPE_INFO, timeout = 4 )
@@ -1847,7 +1870,7 @@ class CrashLogScreen(Screen):
 		else:
 			crashdir = "/media/hdd/"
 		try:
-			os.system("rm %senigma2_crash*.log" % (crashdir))
+			resp=ecommand("rm %senigma2_crash*.log" % (crashdir))
 			self.mbox = self.session.open(MessageBox,(_("Removed All Crashlog Files") ), MessageBox.TYPE_INFO, timeout = 4 )
 		except:
 			self.mbox = self.session.open(MessageBox,(_("Failed remove")), MessageBox.TYPE_INFO, timeout = 4 )
@@ -1933,8 +1956,8 @@ class LogScreen(Screen):
 		self.session.open(TryQuitMainloop, 3)
 		
 	def YellowKey(self):
-		os.system("gzip %s" % (self.crashfile))
-		os.system("mv %s.gz /tmp" % (self.crashfile))
+		resp=ecommand("gzip %s" % (self.crashfile))
+		resp=ecommand("mv %s.gz /tmp" % (self.crashfile))
 		self.mbox = self.session.open(MessageBox,_("%s.gz created in /tmp") % self.crashfile, MessageBox.TYPE_INFO, timeout = 4)
 		
 	def listcrah(self):
@@ -2331,7 +2354,7 @@ class epgdmanual(Screen):
 	def reload(self):
 		try:
 			if fileExists("%sepg.dat.gz.bak" % config.misc.epgcachepath.value):
-				os.system("cp -f %sepg.dat.gz.bak %sepg.dat.gz" % (config.misc.epgcachepath.value, config.misc.epgcachepath.value))
+				resp=ecommand("cp -f %sepg.dat.gz.bak %sepg.dat.gz" % (config.misc.epgcachepath.value, config.misc.epgcachepath.value))
                                 file = gzip.open("%sepg.dat.gz" % config.misc.epgcachepath.value, 'rb')
                                 f = open( "%sepg.dat" % (config.misc.epgcachepath.value), "wb")
                                 f.write(file.read())
@@ -2415,13 +2438,13 @@ class Info2Screen(Screen):
 	def meminfoall(self):
 		list = " "
 		try:
-			os.system("free>/tmp/mem && echo>>/tmp/mem && df -h>>/tmp/mem")
+			resp=ecommand("free>/tmp/mem && echo>>/tmp/mem && df -h>>/tmp/mem")
 			meminfo = open("/tmp/mem", "r")
 			for line in meminfo:
 				list += line
 			self["text"].setText(list)
 			meminfo.close()
-			os.system("rm /tmp/mem")
+			resp=ecommand("rm /tmp/mem")
 		except:
 			list = " "
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions"], { "cancel": self.close, "up": self["text"].pageUp, "left": self["text"].pageUp, "down": self["text"].pageDown, "right": self["text"].pageDown,}, -1)
@@ -2650,7 +2673,7 @@ class scanhost(ConfigListScreen, Screen):
         def check(self):
 	        try:   
 			self["LabelStatus"].setText("Scan init")                     
-        		os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py %s %s %s %s" % (config.plugins.lbpanel.checktype.value, config.plugins.lbpanel.autocheck.value, config.plugins.lbpanel.checkoff.value, config.plugins.lbpanel.warnonlyemail.value))
+        		resp=ecommand("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/lbscan.py %s %s %s %s" % (config.plugins.lbpanel.checktype.value, config.plugins.lbpanel.autocheck.value, config.plugins.lbpanel.checkoff.value, config.plugins.lbpanel.warnonlyemail.value))
         		self["LabelStatus"].setText("Scan end")
         		self.session.open(showScan)
                 except IOError:
@@ -2755,4 +2778,4 @@ class LBTools():
                 f = open("/tmp/.mail","w")
                 f.write(message)
                 f.close()
-                os.system('curl -F body=@"/tmp/.mail" -k "%s"' % (url))
+                resp=ecommand('curl -F body=@"/tmp/.mail" -k "%s"' % (url))
