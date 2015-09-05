@@ -259,6 +259,7 @@ def ecommand(command=""):
 	os.remove(output)
 	return 0
 
+ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
 class LBPanel2(Screen):
 	skin = """
 <screen name="LBPanel2" position="0,0" size="1280,720">
@@ -827,7 +828,7 @@ class installsoftware(Screen):
 				else:
 					self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
 				#self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )	                                        
-				ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
+				#ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
 				self.close()
 #		except:
 #			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )

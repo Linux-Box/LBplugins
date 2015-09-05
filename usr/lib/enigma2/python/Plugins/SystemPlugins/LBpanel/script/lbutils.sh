@@ -46,12 +46,12 @@ listcams)
 	exit 0
 	;;
 update)
-	sleep 5
+	sync ; echo 3 > /proc/sys/vm/drop_caches
 	opkg update
 	exit 0
 	;;
 appstore)
-	sleep 2
+	sync ; echo 3 > /proc/sys/vm/drop_caches
 	opkg install enigma2-plugin-extensions-extraappstore
 	opkg update 
 	;;
