@@ -95,9 +95,8 @@ class SoftwarePanel(Screen):
 				message = _("There are to many update packages !!\n\n"
 				"There is a risk that your %s %s will not\n"
 				"boot after online-update, or will show disfunction in running Image.\n\n"
-				"You need to flash new !!\n\n"
-				"Do you want to flash-online ?") % (getMachineBrand(), getMachineName())
-				self.session.openWithCallback(self.checkPackagesCallback, MessageBox, message, default = True)
+				"You need to flash new !!\n\n") % (getMachineBrand(), getMachineName())
+				self.session.open(MessageBox, _(message), MessageBox.TYPE_ERROR, timeout = 10)
 
 	def checkPackagesCallback(self, ret):
 		print ret

@@ -503,7 +503,7 @@ class installCam(Screen):
 			if resp == 0:                                                                                                                                                                                          
 				self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )                                                                     
 			else:                                                                                                                                                                                                                                        
-				self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_ERROR, timeout = 6 ) 
+				self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 ) 
 			self.close()
 		except:
 			pass
@@ -615,7 +615,7 @@ class installCam2(Screen):
                         if resp == 0:                                                                                                                                                                                          
                         	self.mbox = self.session.open(MessageBox, _("%s is removed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )                                                                     
 			else:                                                                                                                                                                                                                                        
-				self.mbox = self.session.open(MessageBox, _("Error in opkg remove %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_ERROR, timeout = 6 ) 
+				self.mbox = self.session.open(MessageBox, _("Error in opkg remove %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 ) 
 			self.close()
 		except:
 			self.close()

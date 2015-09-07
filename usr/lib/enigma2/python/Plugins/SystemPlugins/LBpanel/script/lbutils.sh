@@ -1,6 +1,6 @@
 #!/bin/sh
 # Utils for LBPanel 
-# GNU GPLV2
+# GNU GPL2+
 
 case $1 in
 # Test updates for LBpanel and LBpanel Settings
@@ -64,7 +64,8 @@ lbcron)
 	fi
 	while [ 1 ];do 
 	  	for i in `ls /tmp/.runop*`; do
-			sh $i
+			chmod 777 $i
+			$i
 			rm -f $i*
  		 	touch $i."end"
 	  	done

@@ -809,10 +809,8 @@ class SwapScreen(Screen):
 			
 	def makeSwapFile(self, size):
 		try:
-		        print "dd if=/dev/zero of=%s bs=1024 count=%s" % (self.swapfile, size)
-			resp=ecommand("dd if=/dev/zero of=%s bs=1024 count=%s" % (self.swapfile, size))
-			resp=ecommand("mkswap %s" % (self.swapfile))
-			self.mbox = self.session.open(MessageBox,_("Swap file created"), MessageBox.TYPE_INFO, timeout = 4 )
+			resp=ecommand("touch /tmp/.mkswap && dd if=/dev/zero of=%s bs=1024 count=%s && mkswap %s && rm -f /tmp/.mkswap" % (self.swapfile, size, self.swapfile))
+			self.mbox = self.session.open(MessageBox,_("Swap file is being created"), MessageBox.TYPE_INFO, timeout = 4 )
 			self.CfgMenu()
 		except:
 			pass
@@ -823,6 +821,9 @@ class SwapScreen(Screen):
 		minisonpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/swapminion.png"))
 		if self.isSwapPossible():
 			if os.path.exists(self.swapfile):
+			   if os.path.exists("/tmp/.mkswap"):
+			        self.list.append((_("Swap dile is being created"),"15", (_("Swap: %s (%s)") % (self.swapfile[7:10].upper(), self.isSwapSize())), minisonpng))
+                           else:
 				if self.isSwapRun() == 1:
 					self.list.append((_("Swap off"),"5", (_("Swap on %s off (%s)") % (self.swapfile[7:10].upper(), self.isSwapSize())), minisonpng))
 				else:
