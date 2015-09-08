@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Infopanel\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-17 00:53+0200\n"
-"PO-Revision-Date: 2015-09-08 16:44+0200\n"
+"PO-Revision-Date: 2015-09-08 16:48+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: LANGUAGE <lala@li.org>\n"
 "Language: es\n"
@@ -579,7 +579,7 @@ msgstr "Ajustes de restauración"
 
 #: plugin.py:588
 msgid "Choose backup files"
-msgstr "Selecciona archivos de copia"
+msgstr "Selecciona archivos de copia de seguridad"
 
 #: plugin.py:600 QuickMenu.py:626
 msgid "Backup done."
@@ -1363,7 +1363,7 @@ msgstr ""
 
 #: QuickMenu.py:528
 msgid "Select Backup files"
-msgstr "Selecciona archivos de copia de seguridad"
+msgstr "Selecciona archivos de"
 
 #: QuickMenu.py:530
 msgid "Software Manager Setup"
