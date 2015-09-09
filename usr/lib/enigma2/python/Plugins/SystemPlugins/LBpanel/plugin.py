@@ -355,7 +355,7 @@ class LBPanel2(Screen):
 		twopng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/tools.png"))
 		backuppng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/backup.png"))
 		trespng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/seleck.png"))
-		treepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/install.png"))
+		treepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/installf.png"))
 		fourpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/epp2.png"))
 		sixpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/system.png"))
 		sevenpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/addon.png"))
@@ -723,7 +723,12 @@ class installsoftware(Screen):
 		for line in ulist:
 			try:
 				if line.split(' - ')[0] != last:
-					self.list.append(("%s" % (line.split(' - ')[0]), line.split(' - ')[1], softpng ))
+					name = line.split(' - ')[0]
+					print line
+					self.list.append(("%s" % (name.split('-')[3]), line.split(' - ')[-1], softpng, "%s" % (line.split(' - ')[0]) ))
+					
+					#fname=line.split('-')[0]
+					#self.list.append(("%s" % (fname.split(self.plist)[1]), line.split(' - ')[1]), softpng, ("%s" % (line.split(' - ')[0])) )
 				last = line.split(' - ')[0]
 			except:
 				pass
@@ -752,7 +757,7 @@ class installsoftware(Screen):
 			index=self["menu"].getIndex()
 		except:
 			index=0
-        	img=self["menu"].getCurrent()[0]
+        	img=self["menu"].getCurrent()[3]
 		oimg="http://appstore.linux-box.es/preview/%s.png" % (img)
                 timg="/tmp/%s.tmp" % img
                 dimg="/tmp/.lbimg%s" % img
@@ -776,7 +781,7 @@ class installsoftware(Screen):
 				open("%s.error" % (dimg), 'a').close()
 		#run download img cache	
 		for x in range(0, self["menu"].count()):
-			img=self.list[x][0]
+			img=self.list[x][3]
 			dimg="/tmp/.lbimg%s" % img
 			if ( x==index-1) or  (x==index+1 ) or (x==index):
 				if not fileExists(dimg):
@@ -805,7 +810,7 @@ class installsoftware(Screen):
                         
 	def imageDown(self):
 		if self.prev==True:
-			self.image=self["menu"].getCurrent()[0]
+			self.image=self["menu"].getCurrent()[3]
 			process = threading.Thread(target=self.runDownloadImg, args=[self.image])
 			process.setDaemon(True)
 			process.start()
@@ -820,16 +825,16 @@ class installsoftware(Screen):
 			if len(self.list)>0:
 				if self.plist=="sorys":
 					resp=ecommand("opkg remove enigma2-plugin-settings-*")
-					resp=ecommand("opkg install --force-overwrite %s " % self["menu"].getCurrent()[0])
+					resp=ecommand("opkg install --force-overwrite %s " % self["menu"].getCurrent()[3])
 				else:
-					resp=ecommand("opkg install --force-overwrite --force-reinstall %s " % self["menu"].getCurrent()[0])
+					resp=ecommand("opkg install --force-overwrite --force-reinstall %s " % self["menu"].getCurrent()[3])
 				if resp == 0:
-					self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
+					self.mbox = self.session.open(MessageBox, _("%s is installed" % self["menu"].getCurrent()[3]), MessageBox.TYPE_INFO, timeout = 6 )
 				else:
-					self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 6 )
+					self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[3]), MessageBox.TYPE_INFO, timeout = 6 )
 				self.close()
 		except:
-			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+			self.mbox = self.session.open(MessageBox, _("Error in opkg install %s " % self["menu"].getCurrent()[3]), MessageBox.TYPE_INFO, timeout = 4 )
 					
 	def cancel(self):
 		os.system('rm -f /tmp/.lbimg*')
@@ -1002,7 +1007,7 @@ class LBsettings(ConfigListScreen, Screen):
 		#self["key_yellow"] = StaticText(_("Default Package"))
 		self["key_cancel"] = StaticText(_("PRESS EXIT TO QUIT"))
 		self.list = []
-		self.list.append(getConfigListEntry(_("Auto Update LBpanel"), config.plugins.lbpanel.update))
+		self.list.append(getConfigListEntry(_("Auto Update Openplus"), config.plugins.lbpanel.update))
 		self.list.append(getConfigListEntry(_("Auto Update Settings"), config.plugins.lbpanel.updatesettings))
 		self.list.append(getConfigListEntry(_("Send email on report by local to user?"), config.plugins.lbpanel.lbemail))
 		self.list.append(getConfigListEntry(_("Send email on report by proxy to user?"), config.plugins.lbpanel.lbiemail))
@@ -1065,9 +1070,16 @@ class lbCron():
 			cronvar = 0
 			print "Openplus Panel: Updating packages......"
 			if (config.plugins.lbpanel.updatesettings.value):
-				resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
+				if (config.plugins.lbpanel.update.value):
+					resp=ecommand("nohup opkg update && opkg upgrade &")
+				else:
+					resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
+					
+			elif (config.plugins.lbpanel.update.value):        
+				resp=ecommand("nohup opkg update && opkg upgrade &") 
 			else:
 				resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &") 
+				
 		if (os.path.isfile("/tmp/.lbsettings.update")):
 			print "LBpanel settings updated"
 			self.mbox = self.session.open(MessageBox,(_("LBpanel settings has been updated, restart Enigma2 to activate your changes.")), MessageBox.TYPE_INFO, timeout = 30 )
