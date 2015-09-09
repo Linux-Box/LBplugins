@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: Infopanel\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-17 00:53+0200\n"
-"PO-Revision-Date: 2015-08-01 11:46+0200\n"
+"PO-Revision-Date: 2015-09-08 16:50+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: LANGUAGE <lala@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.3\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: CamStart.py:10
 msgid "0 (disabled)"
@@ -1102,7 +1102,7 @@ msgid ""
 "setup, channels, network"
 msgstr ""
 "Puedes seleccionar qué archivos se añadirán a la copia de seguridad. (Pred.: "
-"config de E2, canales, red"
+"config de E2, canales, red)"
 
 #: QuickMenu.py:340
 msgid "Manage your online update files"
@@ -1363,7 +1363,7 @@ msgstr ""
 
 #: QuickMenu.py:528
 msgid "Select Backup files"
-msgstr "Selecciona archivos de copia de seguridad"
+msgstr "Selecciona archivos de copia"
 
 #: QuickMenu.py:530
 msgid "Software Manager Setup"
