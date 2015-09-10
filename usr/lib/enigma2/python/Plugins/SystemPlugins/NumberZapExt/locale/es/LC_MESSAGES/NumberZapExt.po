@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: extnumzap\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-12 22:55+0300\n"
-"PO-Revision-Date: 2015-09-10 02:15+0200\n"
+"PO-Revision-Date: 2015-09-10 02:28+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: Linux-Box\n"
 "Language: es_ES\n"
@@ -149,7 +149,7 @@ msgstr "Lista de temporizadores"
 msgid "Plugin Browser"
 msgstr "Navegador de complementos"
 
-msgid "Extensiones Menu"
+msgid "Extensions Menu"
 msgstr "Menú de extensiones"
 
 msgid "Menu Mainmenu"
@@ -174,7 +174,7 @@ msgid "Menu Standby/Restart"
 msgstr "Menú de apagado"
 
 msgid "Menuitem About"
-msgstr "Sección Acerca de"
+msgstr "Acerca de"
 
 msgid "Menuitem Manual Scan"
 msgstr "Búsqueda manual"
@@ -196,3 +196,6 @@ msgstr "Configurar red"
 
 msgid "Setup Timezone"
 msgstr "Configurar zona horaria"
+
+msgid "Extended NumberZap Setup "
+msgstr "Configuración de Extended NumberZap"
