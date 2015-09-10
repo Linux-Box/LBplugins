@@ -100,11 +100,6 @@ config.plugins.lbpanel.path = ConfigSelection(default = "/usr/keys/", choices = 
 		("/var/tuxbox/config/oscam-stable/", "/var/tuxbox/config/oscam-stable/"),
 		])
 		
-# Start init emu
-print ("Init/restart SoftCam %s restart" % config.plugins.lbpanel.activeemu.value)
-os.system("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
-######################################################################################
-
 def command(comandline, strip=1):
         comandline = comandline + " >/tmp/command.txt"
         os.system(comandline)
@@ -179,6 +174,10 @@ def ecommand(command=""):
         os.remove(output)
         return 0
 
+# Start init emu
+print ("Init/restart SoftCam %s restart" % config.plugins.lbpanel.activeemu.value)
+ecommand("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
+######################################################################################
 
 class emuSel2(Screen):
 	skin = """

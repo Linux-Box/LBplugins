@@ -1196,7 +1196,7 @@ def main(session, **kwargs):
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
-		return [(_("LBpanel"), main, _("Linux_Box_Panel"), 48)]
+		return [(_("LBpanel"), main, _("Open_Plus_Panel"), 1)]
 	return []
 
 def extsoft(session, **kwargs):
