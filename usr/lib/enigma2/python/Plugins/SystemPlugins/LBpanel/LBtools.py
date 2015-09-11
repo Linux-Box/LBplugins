@@ -822,7 +822,7 @@ class SwapScreen(Screen):
 		if self.isSwapPossible():
 			if os.path.exists(self.swapfile):
 			   if os.path.exists("/tmp/.mkswap"):
-			        self.list.append((_("Swap dile is being created"),"15", (_("Swap: %s (%s)") % (self.swapfile[7:10].upper(), self.isSwapSize())), minisonpng))
+			        self.list.append((_("Swap file is being created"),"15", (_("Swap: %s (%s)") % (self.swapfile[7:10].upper(), self.isSwapSize())), minisonpng))
                            else:
 				if self.isSwapRun() == 1:
 					self.list.append((_("Swap off"),"5", (_("Swap on %s off (%s)") % (self.swapfile[7:10].upper(), self.isSwapSize())), minisonpng))
