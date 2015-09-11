@@ -176,7 +176,7 @@ def ecommand(command=""):
 
 # Start init emu
 print ("Init/restart SoftCam %s restart" % config.plugins.lbpanel.activeemu.value)
-ecommand("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
+command("/usr/CamEmu/%s restart &" % config.plugins.lbpanel.activeemu.value )
 ######################################################################################
 
 class emuSel2(Screen):
@@ -345,7 +345,7 @@ class emuSel2(Screen):
 	def start(self):
 		try:
 			emutype = self["menu"].getCurrent()[3]
-			resp=ecommand("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
+			command("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
 			emuexec = self["menu"].getCurrent()[0]
 			emuexec = emuexec[7:]
 			print "Add execute permision to %s" % (emuexec)
@@ -354,7 +354,7 @@ class emuSel2(Screen):
 			config.plugins.lbpanel.activeemu.value = self["menu"].getCurrent()[0]
 			self.indexpos = self["menu"].getIndex()
 			config.plugins.lbpanel.activeemu.save()
-			resp=ecommand("/usr/CamEmu/%s start" % config.plugins.lbpanel.activeemu.value)
+			command("/usr/CamEmu/%s start" % config.plugins.lbpanel.activeemu.value)
 			self.mbox = self.session.open(MessageBox, _("Please wait, starting %s") % self["menu"].getCurrent()[0], MessageBox.TYPE_INFO, timeout = 4 )
 			self.setTitle(_("Select SoftCam or CardServer: - %s") % config.plugins.lbpanel.activeemu.value)
 			self.selemulist()
@@ -364,7 +364,7 @@ class emuSel2(Screen):
 	def stop(self):
 		try:
 			emutype = self["menu"].getCurrent()[3]
-			resp=ecommand("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
+			command("/usr/CamEmu/%s stop" % config.plugins.lbpanel.activeemu.value)
 			self.mbox = self.session.open(MessageBox, _("Please wait, stoping softcam or cardserver"), MessageBox.TYPE_INFO, timeout = 4 )
 			config.plugins.lbpanel.activeemu.value = "No EMU activada"
 			config.plugins.lbpanel.activeemu.save()
@@ -377,7 +377,7 @@ class emuSel2(Screen):
 	def restart(self):
 		try:
 			emutype = self["menu"].getCurrent()[3]
-			resp=ecommand("/usr/CamEmu/%s restart" % config.plugins.lbpanel.activeemu.value)
+			command("/usr/CamEmu/%s restart" % config.plugins.lbpanel.activeemu.value)
 			self.mbox = self.session.open(MessageBox,_("Please wait, restarting %s")% self.emuversion(emutype), MessageBox.TYPE_INFO, timeout = 4 )
 			self.indexpos = self["menu"].getIndex()
 		except:
