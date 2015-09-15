@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Infopanel\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-17 00:53+0200\n"
-"PO-Revision-Date: 2015-09-08 16:50+0200\n"
+"PO-Revision-Date: 2015-09-12 18:08+0200\n"
 "Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
 "Language-Team: LANGUAGE <lala@li.org>\n"
 "Language: es\n"
@@ -340,6 +340,14 @@ msgstr ""
 #: MountManager.py:483, python-format
 msgid "Restart %s %s."
 msgstr "Reiniciar %s %s."
+
+#: MountManager.py
+msgid "Mount"
+msgstr "Montar"
+
+#: MountManager.py
+msgid "Unmount"
+msgstr "Desmontar"
 
 #: plugin.py:45
 msgid "dont wait"
@@ -1291,7 +1299,7 @@ msgstr "Ajustes de EPG"
 
 #: QuickMenu.py:471
 msgid "Network Browser"
-msgstr "Navegador Web"
+msgstr "Entorno de red"
 
 #: QuickMenu.py:473
 msgid "Device Manager"
