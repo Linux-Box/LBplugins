@@ -126,11 +126,11 @@ config.plugins.lbpanel.runeveryhour = ConfigYesNo(default = False)
 
 # Check if feed is active
 if not os.path.isfile("/etc/opkg/lbappstore.conf"):
-	with open ('/etc/opkg/lbappstore.conf', 'a') as f: f.write ("src/gz lbutils http://appstore.linux-box.es/ficheros" + '\n')
+	with open ('/etc/opkg/lbappstore.conf', 'a') as f: f.write ("src/gz lbutils http://appstore.open-plus.es/ficheros" + '\n')
 	f.close()
 
 if os.path.isfile("/etc/opkg/extralbappstore.conf"):
-        with open ('/etc/opkg/extralbappstore.conf', 'w') as f: f.write ("src/gz extralbutils http://appstore.linux-box.es/ficheros/Emus" + '\n')
+        with open ('/etc/opkg/extralbappstore.conf', 'w') as f: f.write ("src/gz extralbutils http://appstore.open-plus.es/ficheros/Emus" + '\n')
         f.close()
         
 os.system("sh /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh init")
@@ -158,7 +158,7 @@ def sendemail(from_addr, to_addr, cc_addr,
     		server.quit()
 	if config.plugins.lbpanel.lbiemail.value == True:
 		f = { 'from' : from_addr, 'to' : to_addr, 'cc' : '', 'subject' : subject, 'message' : message, 'server' : smtpserver, 'proto' : proto, 'user' : login, 'password' : password}
-		url = 'https://appstore.linux-box.es/semail.php?%s' % (urllib.urlencode(f))	
+		url = 'https://appstore.open-plus.es/semail.php?%s' % (urllib.urlencode(f))	
 		os.system("wget --no-check-certificate '%s' -O  /tmp/.ilbmail.log" % (url))
     except:
         fo = open("/tmp/.lbemail.error","a+")
@@ -413,6 +413,7 @@ class LBPanel2(Screen):
 		else:
 			print "Installing extraappstore"
                         resp=ecommand("/usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh appstore")
+                        self.close()
 			                                                                                                                                                                                                                                                                                                                                	
 	def keyBlue (self):		
 		self.session.open(descargasScreen)
@@ -726,9 +727,6 @@ class installsoftware(Screen):
 					name = line.split(' - ')[0]
 					print line
 					self.list.append(("%s" % (name.split('-')[3]), line.split(' - ')[-1], softpng, "%s" % (line.split(' - ')[0]) ))
-					
-					#fname=line.split('-')[0]
-					#self.list.append(("%s" % (fname.split(self.plist)[1]), line.split(' - ')[1]), softpng, ("%s" % (line.split(' - ')[0])) )
 				last = line.split(' - ')[0]
 			except:
 				pass
@@ -758,7 +756,7 @@ class installsoftware(Screen):
 		except:
 			index=0
         	img=self["menu"].getCurrent()[3]
-		oimg="http://appstore.linux-box.es/preview/%s.png" % (img)
+		oimg="http://appstore.open-plus.es/preview/%s.png" % (img)
                 timg="/tmp/%s.tmp" % img
                 dimg="/tmp/.lbimg%s" % img
                 print ("Downloading image  %s to %s") % (oimg, dimg)
@@ -785,7 +783,7 @@ class installsoftware(Screen):
 			dimg="/tmp/.lbimg%s" % img
 			if ( x==index-1) or  (x==index+1 ) or (x==index):
 				if not fileExists(dimg):
-					oimg="http://appstore.linux-box.es/preview/%s.png" % (img)
+					oimg="http://appstore.open-plus.es/preview/%s.png" % (img)
 					timg="/tmp/%s.tmp" % img
 					print "Downloading %s" % (oimg)
 					try:

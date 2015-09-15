@@ -54,6 +54,7 @@ appstore)
 	sync ; echo 3 > /proc/sys/vm/drop_caches
 	opkg install enigma2-plugin-extensions-extraappstore
 	opkg update 
+	exit 0
 	;;
 lbcron)
 	x=$(ps -ef|grep -v grep|grep "lbutils.sh lbcron" |wc -l)

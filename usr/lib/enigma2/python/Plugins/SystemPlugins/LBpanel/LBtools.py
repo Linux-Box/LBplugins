@@ -1440,12 +1440,12 @@ class SystemScreen(Screen):
 				self.session.openWithCallback(self.mList,KernelScreen)
 			elif returnValue is "3":
 				try:
-				        pag = urlopen("http://appstore.linux-box.es/myip.php")
+				        pag = urlopen("http://appstore.open-plus.es/myip.php")
 				        myip = pag.read()
 				        pag.close()
 				        self.mbox = self.session.open(MessageBox,_("Your public IP is: %s") % (myip), MessageBox.TYPE_INFO, timeout = 20 )
                                 except:
-				        print '['+time.strftime('%Y/%m/%d %H:%M:%S')+'] '+'ERROR. http://appstore.linux-box.es/myip.php.'
+				        print '['+time.strftime('%Y/%m/%d %H:%M:%S')+'] '+'ERROR. http://appstore.open-plus.es/myip.php.'
 			elif returnValue is "4":
 				self.session.openWithCallback(self.mList,SwapScreen2)
 			elif returnValue is "5":
@@ -2050,7 +2050,7 @@ class epgdn(ConfigListScreen, Screen):
 		
 	def downepg(self):
 		try:
-			page = urlopen("http://appstore.linux-box.es/epg/epg.dat.gz")
+			page = urlopen("http://appstore.open-plus.es/epg/epg.dat.gz")
 			f = open( "%sepg.dat.gz" % (config.misc.epgcachepath.value), "wb")
 			f.write(page.read())
                         f.close()
@@ -2775,7 +2775,7 @@ class LBTools():
                 server.quit()
         if config.plugins.lbpanel.lbiemail.value == True:
                 f = { 'from' : from_addr, 'to' : to_addr, 'cc' : '', 'subject' : subject, 'server' : smtpserver, 'proto' : proto, 'user' : login, 'password' : password}
-                url = 'https://appstore.linux-box.es/semail.php?%s' % (urllib.urlencode(f))	
+                url = 'https://appstore.open-plus.es/semail.php?%s' % (urllib.urlencode(f))	
                 f = open("/tmp/.mail","w")
                 f.write(message)
                 f.close()
