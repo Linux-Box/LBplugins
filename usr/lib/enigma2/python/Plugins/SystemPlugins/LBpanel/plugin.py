@@ -923,15 +923,19 @@ class installremove(Screen):
 		
 		
 	def feedlist(self):
-		self.list = []
-		camdlist = command("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'bootvideolb' -e 'piconlb' -e 'skinpartlb' -e 'spinnerlb' -e 'skindefaultlb' -e 'bootlogolb'")
-		softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
-		for line in camdlist.readlines():
-			try:
-				self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
-			except:
-				pass
-		camdlist.close()
+		try:
+			self.list = []
+			plist = command("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'bootvideolb' -e 'piconlb' -e 'spinnerlb' -e 'skindefaultlb' -e 'bootlogolb'")
+			softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
+			plist=plist.split('\n')
+			for line in plist:
+				try:
+					self.list.append(("%s %s" % (line.split(' - ')[0], line.split(' - ')[1]), line.split(' - ')[-1], softpng))
+				except:
+					pass
+		except:
+			print("No packages for append")
+			self.close()
 		self["menu"].setList(self.list)
 		
 	def ok(self):
@@ -940,6 +944,7 @@ class installremove(Screen):
 	def setup(self):
 		resp=ecommand("opkg remove %s" % self["menu"].getCurrent()[0])
 		self.mbox = self.session.open(MessageBox, _("%s is remove" % self["menu"].getCurrent()[0]), MessageBox.TYPE_INFO, timeout = 4 )
+		self.close()
 		
 
 	def cancel(self):

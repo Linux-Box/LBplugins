@@ -1420,7 +1420,7 @@ class SystemScreen(Screen):
 		treepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/unusb.png"))
 		self.list.append((_("Manager Kernel Modules"),"1", _("Load & unload Kernel Modules"), onepng))
 		#self.list.append((_("Cron Manager"),"5", _("Cron Manager"), fivepng))
-		self.list.append((_("Mount Manager"),"6", _("Hard Disc Manager"), seispng))
+		#self.list.append((_("Mount Manager"),"6", _("Hard Disc Manager"), seispng))
 		self.list.append((_("Swap Manager"),"4", _("Start, Stop, Create, Remove Swap Files"), fourpng ))
 		self.list.append((_("My IP"),"3", _("Public IP"), treepng ))
 		self["menu"].setList(self.list)
