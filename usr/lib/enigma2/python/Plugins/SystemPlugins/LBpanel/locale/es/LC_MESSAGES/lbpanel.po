@@ -1623,3 +1623,6 @@ msgstr "Bootvideos"
 
 msgid "Auto Update Openplus"
 msgstr "Auto actualizar OpenPlus"
+
+msgid "LBpanel - Remove Bee installed"
+msgstr "LBpanel - Borrar paquetes instalados"
