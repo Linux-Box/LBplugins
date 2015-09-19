@@ -925,7 +925,7 @@ class installremove(Screen):
 	def feedlist(self):
 		try:
 			self.list = []
-			plist = command("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'bootvideolb' -e 'piconlb' -e 'spinnerlb' -e 'skindefaultlb' -e 'bootlogolb'")
+			plist = command("opkg list-installed | grep -i -e 'sorys' -e 'emucfg' -e 'bootvideolb' -e 'piconlb' -e 'spinnerlb' -e 'bootlogolb'")
 			softpng = LoadPixmap(cached = True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/LBpanel/images/emumini1.png"))
 			plist=plist.split('\n')
 			for line in plist:
