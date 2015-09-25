@@ -141,7 +141,7 @@ msgid "Auto Update LBpanel"
 msgstr "Auto actualizar LBpanel"
 
 msgid "Auto Update Settings"
-msgstr "Auto actualizar ajustes"
+msgstr "Auto actualizar Canales"
 
 msgid "Auto download epg.dat"
 msgstr "Descarga automática epg.dat"
