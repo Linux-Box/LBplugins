@@ -10,7 +10,7 @@ init)
 	sysctl vm.min_free_kbytes=2192         
 	sysctl vm.dirty_ratio=20
 	sysctl vm.swappiness=10
-	nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh lbcron &
+	nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh lbcron >/dev/null 2>&1 &
 	exit 0
 	;;
 testupdate)

@@ -259,7 +259,7 @@ def ecommand(command=""):
 	os.remove(output)
 	return 0
 
-ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &")
+ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update >/dev/null 2>&1 &")
 class LBPanel2(Screen):
 	skin = """
 <screen name="LBPanel2" position="0,0" size="1280,720">
@@ -1074,14 +1074,14 @@ class lbCron():
 			print "Openplus Panel: Updating packages......"
 			if (config.plugins.lbpanel.updatesettings.value):
 				if (config.plugins.lbpanel.update.value):
-					resp=ecommand("nohup opkg update && opkg upgrade &")
+					resp=ecommand("nohup opkg update && opkg upgrade >/dev/null 2>&1 &")
 				else:
-					resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings &")
+					resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings >/dev/null 2>&1 &")
 					
 			elif (config.plugins.lbpanel.update.value):        
-				resp=ecommand("nohup opkg update && opkg upgrade &") 
+				resp=ecommand("nohup opkg update && opkg upgrade >/dev/null 2>&1 &") 
 			else:
-				resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update &") 
+				resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update >/dev/null 2>&1 &") 
 				
 		if (os.path.isfile("/tmp/.lbsettings.update")):
 			print "LBpanel settings updated"
