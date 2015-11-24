@@ -660,8 +660,8 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 	if screenwidth and screenwidth == 1920:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(90, 10), size=(width-90, 38), font=0, text = _(name)),
-			MultiContentEntryText(pos=(90, 39), size=(width-90, 26), font=1, text = _(description)),
+			MultiContentEntryText(pos=(90, 5), size=(width-90, 38), font=0, text = _(name)),
+			MultiContentEntryText(pos=(90, 34), size=(width-90, 26), font=1, text = _(description)),
 			MultiContentEntryPixmapAlphaBlend(pos=(15, 10), size=(60, 60), png = png),
 			_(long_description),
 		]
@@ -679,8 +679,8 @@ def QuickSubMenuEntryComponent(name, description, long_description = None, width
 	if screenwidth and screenwidth == 1920:
 		return [
 			_(name),
-			MultiContentEntryText(pos=(15, 8), size=(width-15, 38), font=0, text = _(name)),
-			MultiContentEntryText(pos=(15, 39), size=(width-15, 26), font=1, text = _(description)),
+			MultiContentEntryText(pos=(15, 3), size=(width-15, 38), font=0, text = _(name)),
+			MultiContentEntryText(pos=(15, 32), size=(width-15, 26), font=1, text = _(description)),
 			_(long_description),
 		]
 	else:
@@ -696,8 +696,8 @@ class QuickMenuList(MenuList):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		screenwidth = getDesktop(0).size().width()
 		if screenwidth and screenwidth == 1920:
-			self.l.setFont(0, gFont("Regular", 30))
-			self.l.setFont(1, gFont("Regular", 21))
+			self.l.setFont(0, gFont("Regular", 27))
+			self.l.setFont(1, gFont("Regular", 20))
 			self.l.setItemHeight(75)
 		else:
 			self.l.setFont(0, gFont("Regular", 20))
@@ -709,8 +709,8 @@ class QuickMenuSubList(MenuList):
 		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
 		screenwidth = getDesktop(0).size().width()
 		if screenwidth and screenwidth == 1920:
-			self.l.setFont(0, gFont("Regular", 30))
-			self.l.setFont(1, gFont("Regular", 21))
+			self.l.setFont(0, gFont("Regular", 26))
+			self.l.setFont(1, gFont("Regular", 19))
 			self.l.setItemHeight(75)
 		else:
 			self.l.setFont(0, gFont("Regular", 20))
