@@ -2138,6 +2138,9 @@ class Ttimer(Screen):
                         epgcache = new.instancemethod(_enigma.eEPGCache_load,None,eEPGCache)
                         epgcache = eEPGCache.getInstance().save()
                         self.mbox = self.session.open(MessageBox,(_("EPG downloaded")), MessageBox.TYPE_INFO, timeout = 5 )
+                        from Screens.Standby import inStandby
+                        if inStandby: 
+				self.session.nav.stopService()
                         self.close()
 pdialog = ""
 
