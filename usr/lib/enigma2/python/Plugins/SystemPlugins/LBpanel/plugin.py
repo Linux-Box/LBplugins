@@ -28,8 +28,6 @@ from Components.Sources.List import List
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CURRENT_SKIN
 from Components.Button import Button
 from Components.config import config, ConfigElement, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_OK
-#import ExtraActionBox
-#import sys
 from Screens.Screen import Screen
 from Screens.PluginBrowser import PluginBrowser
 from Components.PluginComponent import plugins
@@ -38,9 +36,7 @@ from Screens.MessageBox import MessageBox
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Tools.LoadPixmap import LoadPixmap
-#from Screens.Console import Console
 from Components.Label import Label
-#
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Components.Language import language
@@ -48,9 +44,6 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
 from Components.config import config, getConfigListEntry, ConfigText, ConfigPassword, ConfigClock, ConfigSelection, ConfigSubsection, ConfigYesNo, configfile, NoSave
 from Components.ConfigList import ConfigListScreen
 from Tools.Directories import fileExists
-#from Components.Harddisk import harddiskmanager
-#from Components.NimManager import nimmanager
-#from Components.About import about
 from os import environ
 from OpenSSL import SSL
 from enigma import ePicLoad
@@ -58,20 +51,15 @@ from enigma import eDVBDB
 import os
 import gettext
 import LBCamEmu
-#import LBipk
 import LBtools
 import LBDaemonsList
 from enigma import eEPGCache
-#from types import *
-#from enigma import *
 import sys, traceback
 import re
 import time
 import new
 import _enigma
-#import enigma
 import smtplib
-#import commands
 import threading
 import urllib2
 import Screens.Standby
@@ -81,7 +69,7 @@ import uuid
 global min
 min = 0
 global cronvar
-cronvar = 55
+cronvar = 3480
 
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]
@@ -1068,8 +1056,8 @@ class lbCron():
                 global cronvar
 		cronvar += 1
 		## Check for updates
-		print "Executing update LBpanel in %s minutes" % (60 - cronvar)
-		if (cronvar == 60 ):
+		print "Executing update LBpanel in %s minutes" % (3600 - cronvar)
+		if (cronvar == 3600 ):
 			cronvar = 0
 			print "Openplus Panel: Updating packages......"
 			if (config.plugins.lbpanel.updatesettings.value):
@@ -1079,7 +1067,7 @@ class lbCron():
 					resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh testsettings >/dev/null 2>&1 &")
 					
 			elif (config.plugins.lbpanel.update.value):        
-				resp=ecommand("nohup opkg update && opkg upgrade >/dev/null 2>&1 &") 
+				resp=ecommand("nohup opkg update && opkg upgrade >/dev/null 2>&1 &")						
 			else:
 				resp=ecommand("nohup /usr/lib/enigma2/python/Plugins/SystemPlugins/LBpanel/script/lbutils.sh update >/dev/null 2>&1 &") 
 				
