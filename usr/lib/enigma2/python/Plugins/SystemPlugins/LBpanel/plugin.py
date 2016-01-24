@@ -620,7 +620,7 @@ class installsoftware(Screen):
 			self.prev=True
 		elif type=="soryslist":
 			self.setTitle(_("LBpanel-Download Sorys Settings"))
-			self.plist="sorys"
+			self.plist="enigma2-plugin-settings"
 			self.prev=False
 		elif type=="configemus":
 			self.setTitle(_("LBpanel-Download Config Emus"))
