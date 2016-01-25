@@ -298,6 +298,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("SABnzbd",_("Setup SABnzbd"),_("Setup SABnzbd")))
 		self.sublist.append(QuickSubMenuEntryComponent("uShare",_("Setup uShare"),_("Setup uShare")))
 		self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
+                self.sublist.append(QuickSubMenuEntryComponent("Movistar+ Iptv Server",_("Movistar+ Iptv Server Config"),_("Movistar+ Iptv Server Config")))
 		self.sublist.append(QuickSubMenuEntryComponent("RemoteTuner",_("Setup Remote Tuner Server"),_("Setup Remote Tuner Server")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -462,6 +463,8 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(NetworkTelnet)
 		elif item[0] == _("RemoteTuner"):
 			self.session.open(RemoteTunerServer)
+                elif item[0] == _("Movistar+ Iptv Server"):
+			self.session.open(udpxyServer)
 ######## Select System Setup Menu ##############################
 		elif item[0] == _("Customise"):
 			self.openSetup("usage")

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: Infopanel\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-17 00:53+0200\n"
-"PO-Revision-Date: 2015-09-12 18:08+0200\n"
-"Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
+"PO-Revision-Date: 2016-01-25 21:02+0100\n"
+"Last-Translator: VillaK\n"
 "Language-Team: LANGUAGE <lala@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: CamStart.py:10
 msgid "0 (disabled)"
@@ -165,7 +165,8 @@ msgstr "Añadir"
 msgid "Delete"
 msgstr "Borrar"
 
-#: CronManager.py:63 CronManager.py:147 SoftcamPanel.py:339 SoftcamPanel.py:516
+#: CronManager.py:63 CronManager.py:147 SoftcamPanel.py:339
+#: SoftcamPanel.py:516
 msgid "Start"
 msgstr "Inicio"
 
@@ -250,8 +251,8 @@ msgstr "No disponible"
 #: MountManager.py:210 MountManager.py:212 MountManager.py:214
 #: MountManager.py:223 MountManager.py:225 MountManager.py:227
 #: MountManager.py:429 MountManager.py:431 MountManager.py:433
-#: MountManager.py:442 MountManager.py:444 MountManager.py:446 QuickMenu.py:836
-#: QuickMenu.py:838 QuickMenu.py:847 QuickMenu.py:849
+#: MountManager.py:442 MountManager.py:444 MountManager.py:446
+#: QuickMenu.py:836 QuickMenu.py:838 QuickMenu.py:847 QuickMenu.py:849
 msgid "Size: "
 msgstr "Tamaño: "
 
@@ -1864,6 +1865,12 @@ msgstr "256 Mb"
 #: SwapManager.py:283
 msgid "512 Mb"
 msgstr "512 Mb"
+
+msgid "Movistar+ Iptv Server"
+msgstr "Movistar+ Iptv Servidor"
+
+msgid "Movistar+ Iptv Server Config"
+msgstr "Movistar+ Iptv Configuración del Servidor"
 
 #: SwapManager.py:284
 msgid "Select the Swap File Size:"
