@@ -118,6 +118,14 @@ def actionConfirmed(self, action, retval):
 					self.session.open(*eval(openstr))
 
 def zapToNumber(self, number, bouquet, startBouquet, checkParentalControl=True, ref=None):
+	import NavigationInstance
+	from enigma import pNavigation
+	try:
+		#not all images support recording type indicators
+		for rec in NavigationInstance.instance.getRecordings(False,pNavigation.isFromSpecialJumpFastZap):
+			NavigationInstance.instance.stopRecordService(rec)
+	except:
+		pass
 	if checkParentalControl:
 		service, bouquet = getServiceFromNumber(self, number, config.plugins.NumberZapExt.acount.value, bouquet, startBouquet)
 	else:
